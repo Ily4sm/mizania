@@ -1,1 +1,114 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --surface-soft: #f1f5f9;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --primary: #10b981;
+  --primary-dark: #059669;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme='dark'] {
+  --bg: #07111f;
+  --surface: #0f1b2d;
+  --surface-soft: #142238;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #1e2d44;
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: -0.04em;
+}
+
+.page-subtitle {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 18px;
+  background: var(--surface-soft);
+  color: var(--text);
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--primary);
+}
+
+[dir='rtl'] {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+}

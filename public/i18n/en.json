@@ -1,0 +1,43 @@
+{
+  "APP": {
+    "NAME": "Mizania",
+    "TAGLINE": "Your budget, finally clear."
+  },
+  "NAV": {
+    "DASHBOARD": "Dashboard",
+    "TRANSACTIONS": "Transactions",
+    "CATEGORIES": "Categories",
+    "RECURRING": "Fixed items",
+    "SETTINGS": "Settings"
+  },
+  "ACTIONS": {
+    "ADD": "Add",
+    "LOGIN": "Login",
+    "REGISTER": "Create account",
+    "LOGOUT": "Logout"
+  },
+  "DASHBOARD": {
+    "TITLE": "Hello, Ilyas",
+    "SUBTITLE": "Here is how your month is going.",
+    "INCOME": "Income",
+    "EXPENSES": "Expenses",
+    "REMAINING": "Remaining",
+    "SAFE_DAILY": "Safe daily spending",
+    "HEALTH": "Budget health",
+    "GOOD": "Balanced month",
+    "QUICK_ACTIONS": "Quick actions"
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Welcome back",
+    "LOGIN_SUBTITLE": "Sign in to manage your budget.",
+    "REGISTER_TITLE": "Create your account",
+    "REGISTER_SUBTITLE": "Start tracking your expenses easily.",
+    "EMAIL": "Email address",
+    "PASSWORD": "Password",
+    "FULL_NAME": "Full name",
+    "VERIFY_TITLE": "Verify your email",
+    "VERIFY_SUBTITLE": "We sent you a confirmation link.",
+    "FORGOT_TITLE": "Forgot password",
+    "FORGOT_SUBTITLE": "Enter your email to receive a reset link."
+  }
+}

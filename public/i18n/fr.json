@@ -1,0 +1,43 @@
+{
+  "APP": {
+    "NAME": "Mizania",
+    "TAGLINE": "Votre budget, enfin clair."
+  },
+  "NAV": {
+    "DASHBOARD": "Tableau de bord",
+    "TRANSACTIONS": "Transactions",
+    "CATEGORIES": "Catégories",
+    "RECURRING": "Éléments fixes",
+    "SETTINGS": "Paramètres"
+  },
+  "ACTIONS": {
+    "ADD": "Ajouter",
+    "LOGIN": "Se connecter",
+    "REGISTER": "Créer un compte",
+    "LOGOUT": "Se déconnecter"
+  },
+  "DASHBOARD": {
+    "TITLE": "Bonjour, Ilyas",
+    "SUBTITLE": "Voici l’état de votre mois.",
+    "INCOME": "Revenus",
+    "EXPENSES": "Dépenses",
+    "REMAINING": "Restant",
+    "SAFE_DAILY": "Dépense sûre par jour",
+    "HEALTH": "Santé du budget",
+    "GOOD": "Mois équilibré",
+    "QUICK_ACTIONS": "Actions rapides"
+  },
+  "AUTH": {
+    "LOGIN_TITLE": "Bon retour",
+    "LOGIN_SUBTITLE": "Connectez-vous pour gérer votre budget.",
+    "REGISTER_TITLE": "Créer votre compte",
+    "REGISTER_SUBTITLE": "Commencez à suivre vos dépenses simplement.",
+    "EMAIL": "Adresse email",
+    "PASSWORD": "Mot de passe",
+    "FULL_NAME": "Nom complet",
+    "VERIFY_TITLE": "Vérifiez votre email",
+    "VERIFY_SUBTITLE": "Nous vous avons envoyé un lien de confirmation.",
+    "FORGOT_TITLE": "Mot de passe oublié",
+    "FORGOT_SUBTITLE": "Entrez votre email pour recevoir un lien de réinitialisation."
+  }
+}
