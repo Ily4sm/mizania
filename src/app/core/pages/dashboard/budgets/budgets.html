@@ -1,0 +1,150 @@
+<section class="budgets-page">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">{{ 'BUDGETS.TITLE' | translate }}</h2>
+      <p class="page-subtitle">{{ 'BUDGETS.SUBTITLE' | translate }}</p>
+    </div>
+
+    <label class="month-picker">
+      <span>{{ 'BUDGETS.MONTH' | translate }}</span>
+      <input
+        class="input"
+        type="month"
+        [value]="selectedMonth()"
+        (change)="onMonthChange($event)"
+      />
+    </label>
+  </div>
+
+  <div class="budgets-grid">
+    <article class="card form-card">
+      <h3>
+        @if (editingBudgetId()) {
+          {{ 'BUDGETS.EDIT' | translate }}
+        } @else {
+          {{ 'BUDGETS.CREATE' | translate }}
+        }
+      </h3>
+
+      <form class="budget-form" [formGroup]="form" (ngSubmit)="submit()">
+        <label class="field">
+          <span>{{ 'BUDGETS.CATEGORY' | translate }}</span>
+          <select class="input" formControlName="category_id">
+            <option value="">{{ 'BUDGETS.CHOOSE_CATEGORY' | translate }}</option>
+
+            @for (category of expenseCategories(); track category.id) {
+              <option [value]="category.id">
+                {{ getCategoryName(category) }}
+              </option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'BUDGETS.MONTH' | translate }}</span>
+          <input class="input" type="month" formControlName="month" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'BUDGETS.LIMIT' | translate }}</span>
+          <input
+            class="input"
+            type="number"
+            min="0"
+            step="0.01"
+            formControlName="limit_amount"
+          />
+        </label>
+
+        @if (alert()) {
+          <div
+            class="page-alert"
+            [class.success]="alert()?.type === 'success'"
+            [class.error]="alert()?.type === 'error'"
+          >
+            <p>{{ alert()?.message }}</p>
+            <span></span>
+          </div>
+        }
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">
+            @if (editingBudgetId()) {
+              {{ 'ACTIONS.SAVE' | translate }}
+            } @else {
+              {{ 'ACTIONS.ADD' | translate }}
+            }
+          </button>
+
+          @if (editingBudgetId()) {
+            <button class="btn" type="button" (click)="resetForm()">
+              {{ 'ACTIONS.CANCEL' | translate }}
+            </button>
+          }
+        </div>
+      </form>
+    </article>
+
+    <article class="card list-card">
+      <h3>{{ 'BUDGETS.MONTHLY_LIMITS' | translate }}</h3>
+
+      @if (budgetService.loading()) {
+        <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
+      } @else if (budgetProgress().length === 0) {
+        <p class="muted">{{ 'BUDGETS.EMPTY' | translate }}</p>
+      } @else {
+        <div class="budget-list">
+          @for (progress of budgetProgress(); track progress.budget.id) {
+            <div class="budget-item" [class.warning]="progress.status === 'warning'" [class.danger]="progress.status === 'danger'">
+              <div class="budget-top">
+                <div>
+                  <strong class="budget-category-name">
+                    <span>{{ progress.budget.categories?.icon }}</span>
+                    <span>{{ progress.budget.categories?.name }}</span>
+                  </strong>
+                  <small>{{ getStatusLabel(progress) | translate }}</small>
+                </div>
+
+                <bdi class="money" dir="ltr">{{ progress.percentage }}%</bdi>
+              </div>
+
+              <div class="progress-track">
+                <div
+                  class="progress-fill"
+                  [style.width.%]="progress.percentage > 100 ? 100 : progress.percentage"
+                ></div>
+              </div>
+
+              <div class="budget-numbers">
+                <span>
+                  {{ 'BUDGETS.SPENT' | translate }}
+                  <bdi class="money" dir="ltr">{{ formatMoney(progress.spent) }}</bdi>
+                </span>
+
+                <span>
+                  {{ 'BUDGETS.LIMIT' | translate }}
+                  <bdi class="money" dir="ltr">{{ formatMoney(progress.budget.limit_amount) }}</bdi>
+                </span>
+
+                <span>
+                  {{ 'BUDGETS.REMAINING' | translate }}
+                  <bdi class="money" dir="ltr">{{ formatMoney(progress.remaining) }}</bdi>
+                </span>
+              </div>
+
+              <div class="item-actions">
+                <button type="button" (click)="editBudget(progress.budget)">
+                  {{ 'ACTIONS.EDIT' | translate }}
+                </button>
+
+                <button type="button" class="danger-btn" (click)="deleteBudget(progress.budget)">
+                  {{ 'ACTIONS.DELETE' | translate }}
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </article>
+  </div>
+</section>

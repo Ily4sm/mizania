@@ -54,6 +54,13 @@ export const routes: Routes = [
           import('./core/pages/dashboard/dashboard').then((m) => m.Dashboard),
       },
       {
+        path: 'budgets',
+        loadComponent: () =>
+          import('./core/pages/dashboard/budgets/budgets').then(
+            (m) => m.Budgets
+          ),
+      },
+      {
         path: 'transactions',
         loadComponent: () =>
           import('./core/pages/dashboard/transactions/transactions').then(

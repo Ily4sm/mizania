@@ -22,6 +22,11 @@ import { TranslatePipe } from '@ngx-translate/core';
           {{ 'NAV.DASHBOARD' | translate }}
         </a>
 
+        <a routerLink="/budgets" routerLinkActive="active">
+          <span>🎯</span>
+          {{ 'NAV.BUDGETS' | translate }}
+        </a>
+
         <a routerLink="/transactions" routerLinkActive="active">
           <span>💸</span>
           {{ 'NAV.TRANSACTIONS' | translate }}

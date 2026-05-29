@@ -7,10 +7,27 @@
     "DASHBOARD": "Dashboard",
     "TRANSACTIONS": "Transactions",
     "CATEGORIES": "Categories",
+    "BUDGETS": "Budgets",
     "RECURRING": "Fixed items",
     "SETTINGS": "Settings"
   },
-  
+  "BUDGETS": {
+    "TITLE": "Monthly budgets",
+    "SUBTITLE": "Set category limits and track your spending for the month.",
+    "MONTH": "Month",
+    "CREATE": "New budget",
+    "EDIT": "Edit budget",
+    "CATEGORY": "Category",
+    "CHOOSE_CATEGORY": "Choose a category",
+    "LIMIT": "Limit",
+    "MONTHLY_LIMITS": "Monthly limits",
+    "EMPTY": "No budget defined for this month.",
+    "SPENT": "Spent",
+    "REMAINING": "Remaining",
+    "STATUS_SAFE": "Budget under control",
+    "STATUS_WARNING": "Warning, limit almost reached",
+    "STATUS_DANGER": "Limit exceeded"
+  },
   "COMMON": {
     "LOADING": "Loading...",
     "SAVING": "Saving..."

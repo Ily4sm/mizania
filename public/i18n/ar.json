@@ -7,8 +7,26 @@
     "DASHBOARD": "لوحة التحكم",
     "TRANSACTIONS": "المعاملات",
     "CATEGORIES": "الفئات",
+    "BUDGETS": "الميزانيات",
     "RECURRING": "المصاريف الثابتة",
     "SETTINGS": "الإعدادات"
+  },
+  "BUDGETS": {
+    "TITLE": "الميزانيات الشهرية",
+    "SUBTITLE": "حدد حدودا لكل فئة وتابع مصاريفك خلال الشهر.",
+    "MONTH": "الشهر",
+    "CREATE": "ميزانية جديدة",
+    "EDIT": "تعديل الميزانية",
+    "CATEGORY": "الفئة",
+    "CHOOSE_CATEGORY": "اختر فئة",
+    "LIMIT": "الحد",
+    "MONTHLY_LIMITS": "حدود الشهر",
+    "EMPTY": "لا توجد ميزانية محددة لهذا الشهر.",
+    "SPENT": "المصروف",
+    "REMAINING": "المتبقي",
+    "STATUS_SAFE": "الميزانية تحت السيطرة",
+    "STATUS_WARNING": "انتبه، الحد قريب",
+    "STATUS_DANGER": "تم تجاوز الحد"
   },
  
   "COMMON": {

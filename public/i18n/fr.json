@@ -7,8 +7,26 @@
     "DASHBOARD": "Tableau de bord",
     "TRANSACTIONS": "Transactions",
     "CATEGORIES": "Catégories",
+    "BUDGETS": "Budgets",
     "RECURRING": "Éléments fixes",
     "SETTINGS": "Paramètres"
+  },
+  "BUDGETS": {
+    "TITLE": "Budgets mensuels",
+    "SUBTITLE": "Définissez des limites par catégorie et suivez vos dépenses du mois.",
+    "MONTH": "Mois",
+    "CREATE": "Nouveau budget",
+    "EDIT": "Modifier le budget",
+    "CATEGORY": "Catégorie",
+    "CHOOSE_CATEGORY": "Choisir une catégorie",
+    "LIMIT": "Limite",
+    "MONTHLY_LIMITS": "Limites du mois",
+    "EMPTY": "Aucun budget défini pour ce mois.",
+    "SPENT": "Dépensé",
+    "REMAINING": "Restant",
+    "STATUS_SAFE": "Budget maîtrisé",
+    "STATUS_WARNING": "Attention, limite bientôt atteinte",
+    "STATUS_DANGER": "Limite dépassée"
   },
   "COMMON": {
     "LOADING": "Chargement...",

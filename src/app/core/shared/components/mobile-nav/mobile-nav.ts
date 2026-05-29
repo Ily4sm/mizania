@@ -8,6 +8,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   template: `
     <nav class="mobile-nav">
       <a routerLink="/dashboard" routerLinkActive="active">📊</a>
+      <a routerLink="/budgets" routerLinkActive="active">🎯</a>
       <a routerLink="/transactions" routerLinkActive="active">💸</a>
       <a routerLink="/categories" routerLinkActive="active">🏷️</a>
       <a routerLink="/recurring-items" routerLinkActive="active">🔁</a>
