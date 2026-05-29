@@ -1,0 +1,78 @@
+<section class="chart-card">
+  <div class="chart-header">
+    <div>
+      <span class="eyebrow">6M</span>
+      <h2>{{ 'DASHBOARD.MONTHLY_TREND' | translate }}</h2>
+      <p>{{ 'DASHBOARD.MONTHLY_TREND_SUBTITLE' | translate }}</p>
+    </div>
+
+    @if (hasData) {
+      <div class="balance-box" [class.negative]="totalBalance < 0">
+        <span>{{ 'DASHBOARD.SIX_MONTH_BALANCE' | translate }}</span>
+        <strong>
+          <bdi dir="ltr">{{ formatMoney(totalBalance) }}</bdi>
+        </strong>
+      </div>
+    }
+  </div>
+
+  @if (hasData) {
+    <div class="trend-layout">
+      <div class="trend-chart">
+        @for (item of data; track item.label) {
+          <div class="month-group">
+            <div class="bars">
+              <div
+                class="bar income"
+                [style.height]="getHeight(item.income)"
+                [title]="incomeLabel + ': ' + formatMoney(item.income)"
+              ></div>
+
+              <div
+                class="bar expenses"
+                [style.height]="getHeight(item.expenses)"
+                [title]="expensesLabel + ': ' + formatMoney(item.expenses)"
+              ></div>
+            </div>
+
+            <span>{{ item.label }}</span>
+          </div>
+        }
+      </div>
+
+      <div class="trend-summary">
+        <article>
+          <span>{{ 'DASHBOARD.TOTAL_INCOME_6_MONTHS' | translate }}</span>
+          <strong>
+            <bdi dir="ltr">{{ formatMoney(totalIncome) }}</bdi>
+          </strong>
+        </article>
+
+        <article>
+          <span>{{ 'DASHBOARD.TOTAL_EXPENSES_6_MONTHS' | translate }}</span>
+          <strong>
+            <bdi dir="ltr">{{ formatMoney(totalExpenses) }}</bdi>
+          </strong>
+        </article>
+
+        <article>
+          <span>{{ 'DASHBOARD.SIX_MONTH_BALANCE' | translate }}</span>
+          <strong [class.negative]="totalBalance < 0">
+            <bdi dir="ltr">{{ formatMoney(totalBalance) }}</bdi>
+          </strong>
+        </article>
+
+        <div class="legend">
+          <span><i class="income-dot"></i>{{ incomeLabel }}</span>
+          <span><i class="expense-dot"></i>{{ expensesLabel }}</span>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-chart">
+      <div class="empty-icon">📈</div>
+      <h3>{{ 'DASHBOARD.NO_MONTHLY_TREND_DATA' | translate }}</h3>
+      <p>{{ 'DASHBOARD.NO_MONTHLY_TREND_DATA_HINT' | translate }}</p>
+    </div>
+  }
+</section>

@@ -50,6 +50,30 @@
     </article>
   </div>
 
+  <div class="charts-grid">
+    <app-income-expense-chart
+      [income]="totalIncome()"
+      [expenses]="totalExpenses()"
+      [currency]="currency"
+      [incomeLabel]="'DASHBOARD.INCOME' | translate"
+      [expensesLabel]="'DASHBOARD.EXPENSES' | translate"
+    ></app-income-expense-chart>
+
+    <app-expense-category-chart
+      [data]="expenseCategoryChartData"
+      [currency]="currency"
+    ></app-expense-category-chart>
+
+    <div class="wide-chart">
+      <app-monthly-trend-chart
+        [data]="monthlyTrendChartData"
+        [currency]="currency"
+        [incomeLabel]="'DASHBOARD.INCOME' | translate"
+        [expensesLabel]="'DASHBOARD.EXPENSES' | translate"
+      ></app-monthly-trend-chart>
+    </div>
+  </div>
+
   <div class="content-grid">
     <article class="card budget-health">
       <div>
@@ -79,8 +103,8 @@
               <div>
                 <strong>{{ getTransactionLabel(transaction) }}</strong>
                 <small>
-                {{ getTransactionSubtitle(transaction) }} •
-                <bdi dir="ltr">{{ transaction.transaction_date }}</bdi>
+                  {{ getTransactionSubtitle(transaction) }} •
+                  <bdi dir="ltr">{{ transaction.transaction_date }}</bdi>
                 </small>
               </div>
 

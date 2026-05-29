@@ -1,0 +1,57 @@
+<section class="chart-card">
+  <div class="chart-header">
+    <div>
+      <span class="eyebrow">{{ 'DASHBOARD.THIS_MONTH' | translate }}</span>
+      <h2>{{ 'DASHBOARD.EXPENSES_BY_CATEGORY' | translate }}</h2>
+      <p>{{ 'DASHBOARD.EXPENSES_BY_CATEGORY_SUBTITLE' | translate }}</p>
+    </div>
+
+    @if (hasData) {
+      <div class="total-box">
+        <span>{{ 'DASHBOARD.TOTAL' | translate }}</span>
+        <strong>
+          <bdi dir="ltr">{{ formatMoney(total) }}</bdi>
+        </strong>
+      </div>
+    }
+  </div>
+
+  @if (hasData) {
+    <div class="top-category">
+      <span>{{ 'DASHBOARD.TOP_CATEGORY' | translate }}</span>
+      <strong>{{ topCategory?.label }}</strong>
+      <small>
+        <bdi dir="ltr">{{ formatMoney(topCategory?.amount || 0) }}</bdi>
+      </small>
+    </div>
+
+    <div class="category-list">
+      @for (item of visibleData; track item.label) {
+        <div class="category-row">
+          <div class="row-top">
+            <span class="label">{{ item.label }}</span>
+
+            <div class="amount">
+              <strong>
+                <bdi dir="ltr">{{ formatMoney(item.amount) }}</bdi>
+              </strong>
+              <small>
+                <bdi dir="ltr">{{ getPercent(item.amount) }}%</bdi>
+              </small>
+            </div>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill" [style.width]="getBarWidth(item.amount)"></div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="empty-chart">
+      <div class="empty-icon">📊</div>
+      <h3>{{ 'DASHBOARD.NO_EXPENSE_CHART_DATA' | translate }}</h3>
+      <p>{{ 'DASHBOARD.NO_EXPENSE_CHART_DATA_HINT' | translate }}</p>
+    </div>
+  }
+</section>

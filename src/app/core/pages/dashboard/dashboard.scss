@@ -176,3 +176,37 @@
     flex-direction: column;
   }
 }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 1180px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.wide-chart {
+  min-width: 0;
+}
+
+@media (min-width: 1180px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .wide-chart {
+    grid-column: 1 / -1;
+  }
+}

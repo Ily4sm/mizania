@@ -3,17 +3,34 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileService } from '../../services/profile.service';
 import { TransactionService } from '../../services/transaction.service';
 import { Transaction } from '../../models/transaction.model';
+import {
+  ExpenseCategoryChart,
+  ExpenseCategoryChartItem,
+} from '../../shared/components/expense-category-chart/expense-category-chart';
+import { IncomeExpenseChart } from '../../shared/components/income-expense-chart/income-expense-chart';
+import {
+  MonthlyTrendChart,
+  MonthlyTrendChartPoint,
+} from '../../shared/components/monthly-trend-chart/monthly-trend-chart';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [
+    TranslatePipe,
+    ExpenseCategoryChart,
+    IncomeExpenseChart,
+    MonthlyTrendChart,
+  ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
 export class Dashboard implements OnInit {
   readonly profileService = inject(ProfileService);
   readonly transactionService = inject(TransactionService);
+
+  expenseCategoryChartData: ExpenseCategoryChartItem[] = [];
+  monthlyTrendChartData: MonthlyTrendChartPoint[] = [];
 
   readonly currentMonthTransactions = computed(() => {
     const now = new Date();
@@ -22,7 +39,11 @@ export class Dashboard implements OnInit {
 
     return this.transactionService.transactions().filter((transaction) => {
       const date = new Date(transaction.transaction_date);
-      return date.getFullYear() === currentYear && date.getMonth() === currentMonth;
+
+      return (
+        date.getFullYear() === currentYear &&
+        date.getMonth() === currentMonth
+      );
     });
   });
 
@@ -47,6 +68,7 @@ export class Dashboard implements OnInit {
   readonly daysLeft = computed(() => {
     const now = new Date();
     const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+
     return Math.max(lastDayOfMonth.getDate() - now.getDate() + 1, 1);
   });
 
@@ -97,6 +119,8 @@ export class Dashboard implements OnInit {
       this.profileService.loadMyProfile(),
       this.transactionService.loadTransactions(),
     ]);
+
+    this.buildDashboardCharts();
   }
 
   get firstName(): string {
@@ -109,12 +133,17 @@ export class Dashboard implements OnInit {
     return fullName.trim().split(' ')[0];
   }
 
+  get currency(): string {
+    return this.profileService.profile()?.currency || 'MAD';
+  }
+
   formatMoney(value: number): string {
-    return `${Math.round(value).toLocaleString('fr-FR')} DH`;
+    return `${Math.round(value).toLocaleString('fr-FR')} ${this.currency}`;
   }
 
   getTransactionAmount(transaction: Transaction): string {
     const sign = transaction.type === 'income' ? '+' : '-';
+
     return `${sign} ${this.formatMoney(Number(transaction.amount))}`;
   }
 
@@ -128,5 +157,98 @@ export class Dashboard implements OnInit {
     }
 
     return 'No category';
+  }
+
+  private buildDashboardCharts(): void {
+    this.buildExpenseCategoryChartData();
+    this.buildMonthlyTrendChartData();
+  }
+
+  private buildExpenseCategoryChartData(): void {
+    const expenseTotals = new Map<string, number>();
+
+    for (const transaction of this.currentMonthTransactions()) {
+      if (transaction.type !== 'expense') continue;
+
+      const label = transaction.categories
+        ? transaction.categories.name
+        : 'No category';
+
+      const currentAmount = expenseTotals.get(label) || 0;
+
+      expenseTotals.set(label, currentAmount + Number(transaction.amount));
+    }
+
+    this.expenseCategoryChartData = Array.from(expenseTotals.entries())
+      .map(([label, amount]) => ({ label, amount }))
+      .sort((a, b) => b.amount - a.amount);
+  }
+
+  private buildMonthlyTrendChartData(): void {
+    const monthPoints = this.getLastSixMonths();
+
+    for (const transaction of this.transactionService.transactions()) {
+      const transactionDate = new Date(transaction.transaction_date);
+      const key = this.getMonthKey(transactionDate);
+      const point = monthPoints.find((item) => item.key === key);
+
+      if (!point) continue;
+
+      const amount = Number(transaction.amount);
+
+      if (transaction.type === 'income') {
+        point.income += amount;
+      } else {
+        point.expenses += amount;
+      }
+    }
+
+    this.monthlyTrendChartData = monthPoints.map((item) => ({
+      label: item.label,
+      income: item.income,
+      expenses: item.expenses,
+    }));
+  }
+
+  private getLastSixMonths(): Array<{
+    key: string;
+    label: string;
+    income: number;
+    expenses: number;
+  }> {
+    const result: Array<{
+      key: string;
+      label: string;
+      income: number;
+      expenses: number;
+    }> = [];
+
+    const now = new Date();
+
+    for (let index = 5; index >= 0; index--) {
+      const date = new Date(now.getFullYear(), now.getMonth() - index, 1);
+
+      result.push({
+        key: this.getMonthKey(date),
+        label: this.getMonthLabel(date),
+        income: 0,
+        expenses: 0,
+      });
+    }
+
+    return result;
+  }
+
+  private getMonthKey(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+
+    return `${year}-${month}`;
+  }
+
+  private getMonthLabel(date: Date): string {
+    return date.toLocaleDateString('fr-FR', {
+      month: 'short',
+    });
   }
 }

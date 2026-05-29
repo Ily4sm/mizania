@@ -1,0 +1,70 @@
+<section class="chart-card">
+  <div class="chart-header">
+    <div>
+      <span class="eyebrow">{{ 'DASHBOARD.THIS_MONTH' | translate }}</span>
+      <h2>{{ 'DASHBOARD.INCOME_VS_EXPENSES' | translate }}</h2>
+      <p>{{ 'DASHBOARD.INCOME_VS_EXPENSES_SUBTITLE' | translate }}</p>
+    </div>
+
+    @if (hasData) {
+      <div class="balance-box" [class.negative]="balance < 0">
+        <span>{{ 'DASHBOARD.BALANCE' | translate }}</span>
+        <strong>
+          <bdi dir="ltr">{{ formatMoney(balance) }}</bdi>
+        </strong>
+      </div>
+    }
+  </div>
+
+  @if (hasData) {
+    <div class="comparison">
+      <div class="metric income">
+        <div class="metric-top">
+          <span>{{ incomeLabel }}</span>
+          <strong>
+            <bdi dir="ltr">{{ formatMoney(income) }}</bdi>
+          </strong>
+        </div>
+
+        <div class="bar-track">
+          <div class="bar-fill" [style.width.%]="incomePercent"></div>
+        </div>
+      </div>
+
+      <div class="metric expenses">
+        <div class="metric-top">
+          <span>{{ expensesLabel }}</span>
+          <strong>
+            <bdi dir="ltr">{{ formatMoney(expenses) }}</bdi>
+          </strong>
+        </div>
+
+        <div class="bar-track">
+          <div class="bar-fill" [style.width.%]="expensesPercent"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-stats">
+      <article>
+        <span>{{ 'DASHBOARD.EXPENSE_RATIO' | translate }}</span>
+        <strong>
+          <bdi dir="ltr">{{ expenseRatio.toFixed(1) }}%</bdi>
+        </strong>
+      </article>
+
+      <article>
+        <span>{{ 'DASHBOARD.REMAINING' | translate }}</span>
+        <strong [class.negative]="balance < 0">
+          <bdi dir="ltr">{{ formatMoney(balance) }}</bdi>
+        </strong>
+      </article>
+    </div>
+  } @else {
+    <div class="empty-chart">
+      <div class="empty-icon">💸</div>
+      <h3>{{ 'DASHBOARD.NO_INCOME_EXPENSE_DATA' | translate }}</h3>
+      <p>{{ 'DASHBOARD.NO_INCOME_EXPENSE_DATA_HINT' | translate }}</p>
+    </div>
+  }
+</section>
