@@ -57,7 +57,14 @@
     "COFFEE": "قهوة ☕",
     "TAXI": "طاكسي 🚕",
     "PHONE_BILL": "فاتورة الهاتف 📱",
-    "LUNCH": "غداء 🍔"
+    "LUNCH": "غداء 🍔",
+    "THIS_MONTH": "هذا الشهر",
+    "AFTER_EXPENSES": "بعد المصاريف",
+    "HEALTH_GOOD": "شهر متوازن",
+    "HEALTH_WARNING": "انتبه للمصاريف",
+    "HEALTH_DANGER": "المصاريف مرتفعة",
+    "RECENT_TRANSACTIONS": "آخر المعاملات",
+    "NO_TRANSACTIONS": "لا توجد معاملات حديثة."
   },
   "AUTH": {
     "LOGIN_TITLE": "مرحبا بعودتك",
@@ -86,6 +93,8 @@
     "DATE": "التاريخ",
     "NOTE": "ملاحظة",
     "RECENT": "آخر المعاملات",
-    "EMPTY": "لا توجد معاملات حاليا."
+    "EMPTY": "لا توجد معاملات حاليا.",
+    "TITLE_FIELD": "العنوان",
+    "TITLE_PLACEHOLDER": "مثال: مشروب، طاكسي، راتب..."
   }
 }

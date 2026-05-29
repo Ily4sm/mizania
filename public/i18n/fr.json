@@ -41,7 +41,14 @@
     "COFFEE": "Café ☕",
     "TAXI": "Taxi 🚕",
     "PHONE_BILL": "Facture téléphone 📱",
-    "LUNCH": "Déjeuner 🍔"
+    "LUNCH": "Déjeuner 🍔",
+    "THIS_MONTH": "Ce mois-ci",
+    "AFTER_EXPENSES": "Après les dépenses",
+    "HEALTH_GOOD": "Mois équilibré",
+    "HEALTH_WARNING": "Attention aux dépenses",
+    "HEALTH_DANGER": "Dépenses trop élevées",
+    "RECENT_TRANSACTIONS": "Transactions récentes",
+    "NO_TRANSACTIONS": "Aucune transaction récente."
   },
   "AUTH": {
     "LOGIN_TITLE": "Bon retour",
@@ -86,6 +93,8 @@
     "DATE": "Date",
     "NOTE": "Note",
     "RECENT": "Transactions récentes",
-    "EMPTY": "Aucune transaction pour le moment."
+    "EMPTY": "Aucune transaction pour le moment.",
+    "TITLE_FIELD": "Titre",
+    "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salaire..."
   }
 }

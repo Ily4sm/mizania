@@ -8,76 +8,93 @@
       <p class="page-subtitle">{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
     </div>
 
-    <button class="btn btn-primary">+ {{ 'ACTIONS.ADD' | translate }}</button>
+    <a class="btn btn-primary" href="/transactions">
+      + {{ 'ACTIONS.ADD' | translate }}
+    </a>
   </div>
 
   <div class="stats-grid">
     <article class="stat-card card">
-        <span>{{ 'DASHBOARD.INCOME' | translate }}</span>
-        <strong>
-        <bdi class="money" dir="ltr">5&nbsp;000&nbsp;DH</bdi>
-        </strong>
-        <small>
-        <bdi class="money" dir="ltr">+12%</bdi>
-        {{ 'DASHBOARD.INCOME_NOTE' | translate }}
-        </small>
+      <span>{{ 'DASHBOARD.INCOME' | translate }}</span>
+      <strong>
+        <bdi class="money" dir="ltr">{{ formatMoney(totalIncome()) }}</bdi>
+      </strong>
+      <small>{{ 'DASHBOARD.THIS_MONTH' | translate }}</small>
     </article>
 
     <article class="stat-card card">
-        <span>{{ 'DASHBOARD.EXPENSES' | translate }}</span>
-        <strong>
-        <bdi class="money" dir="ltr">3&nbsp;200&nbsp;DH</bdi>
-        </strong>
-        <small>
-        <bdi class="money" dir="ltr">64%</bdi>
-        {{ 'DASHBOARD.EXPENSES_NOTE' | translate }}
-        </small>
+      <span>{{ 'DASHBOARD.EXPENSES' | translate }}</span>
+      <strong>
+        <bdi class="money" dir="ltr">{{ formatMoney(totalExpenses()) }}</bdi>
+      </strong>
+      <small>{{ 'DASHBOARD.THIS_MONTH' | translate }}</small>
     </article>
 
     <article class="stat-card card">
-        <span>{{ 'DASHBOARD.REMAINING' | translate }}</span>
-        <strong>
-        <bdi class="money" dir="ltr">1&nbsp;800&nbsp;DH</bdi>
-        </strong>
-        <small>{{ 'DASHBOARD.REMAINING_NOTE' | translate }}</small>
+      <span>{{ 'DASHBOARD.REMAINING' | translate }}</span>
+      <strong>
+        <bdi class="money" dir="ltr">{{ formatMoney(remaining()) }}</bdi>
+      </strong>
+      <small>{{ 'DASHBOARD.AFTER_EXPENSES' | translate }}</small>
     </article>
 
     <article class="stat-card card highlight">
-        <span>{{ 'DASHBOARD.SAFE_DAILY' | translate }}</span>
-        <strong>
-        <bdi class="money" dir="ltr">150&nbsp;DH</bdi>
-        </strong>
-        <small>
-        <bdi class="money" dir="ltr">12</bdi>
+      <span>{{ 'DASHBOARD.SAFE_DAILY' | translate }}</span>
+      <strong>
+        <bdi class="money" dir="ltr">{{ formatMoney(safeDailySpending()) }}</bdi>
+      </strong>
+      <small>
+        <bdi class="money" dir="ltr">{{ daysLeft() }}</bdi>
         {{ 'DASHBOARD.DAYS_LEFT' | translate }}
-        </small>
+      </small>
     </article>
-    </div>
+  </div>
 
   <div class="content-grid">
     <article class="card budget-health">
-        <div>
-            <span>{{ 'DASHBOARD.HEALTH' | translate }}</span>
-            <strong>
-            <bdi class="money" dir="ltr">85/100</bdi>
-            </strong>
-            <p>{{ 'DASHBOARD.GOOD' | translate }}</p>
-        </div>
+      <div>
+        <span>{{ 'DASHBOARD.HEALTH' | translate }}</span>
+        <strong>
+          <bdi class="money" dir="ltr">{{ budgetHealthScore() }}/100</bdi>
+        </strong>
+        <p>{{ budgetHealthLabel() | translate }}</p>
+      </div>
 
-        <div class="circle">
-            <bdi class="money" dir="ltr">85%</bdi>
-        </div>
+      <div class="circle">
+        <bdi class="money" dir="ltr">{{ budgetHealthScore() }}%</bdi>
+      </div>
     </article>
 
-    <article class="card quick-actions">
-      <h3>{{ 'DASHBOARD.QUICK_ACTIONS' | translate }}</h3>
+    <article class="card recent-card">
+      <h3>{{ 'DASHBOARD.RECENT_TRANSACTIONS' | translate }}</h3>
 
-      <div class="quick-list">
-        <button class="btn">{{ 'DASHBOARD.COFFEE' | translate }}</button>
-        <button class="btn">{{ 'DASHBOARD.TAXI' | translate }}</button>
-        <button class="btn">{{ 'DASHBOARD.PHONE_BILL' | translate }}</button>
-        <button class="btn">{{ 'DASHBOARD.LUNCH' | translate }}</button>
-      </div>
+      @if (transactionService.loading()) {
+        <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
+      } @else if (recentTransactions().length === 0) {
+        <p class="muted">{{ 'DASHBOARD.NO_TRANSACTIONS' | translate }}</p>
+      } @else {
+        <div class="recent-list">
+          @for (transaction of recentTransactions(); track transaction.id) {
+            <div class="recent-item">
+              <div>
+                <strong>{{ getTransactionLabel(transaction) }}</strong>
+                <small>
+                {{ getTransactionSubtitle(transaction) }} •
+                <bdi dir="ltr">{{ transaction.transaction_date }}</bdi>
+                </small>
+              </div>
+
+              <bdi
+                class="money transaction-amount"
+                dir="ltr"
+                [class.income]="transaction.type === 'income'"
+              >
+                {{ getTransactionAmount(transaction) }}
+              </bdi>
+            </div>
+          }
+        </div>
+      }
     </article>
   </div>
 </section>

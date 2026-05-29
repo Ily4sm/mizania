@@ -52,7 +52,7 @@
 
 .content-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
@@ -92,18 +92,59 @@
   font-size: 1.4rem;
 }
 
-.quick-actions {
+.recent-card {
   padding: 24px;
 }
 
-.quick-actions h3 {
+.recent-card h3 {
   margin-top: 0;
 }
 
-.quick-list {
+.recent-list {
+  display: grid;
+  gap: 12px;
+}
+
+.recent-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-soft);
+}
+
+.recent-item strong {
+  display: block;
+}
+
+.recent-item small {
+  display: block;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.transaction-amount {
+  color: var(--danger);
+  font-weight: 900;
+}
+
+.transaction-amount.income {
+  color: var(--primary);
+}
+
+.muted {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.money {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  white-space: nowrap;
 }
 
 @media (max-width: 1100px) {
@@ -127,12 +168,11 @@
 
   .hero .btn {
     width: 100%;
+    text-align: center;
   }
 
-  .money {
-    direction: ltr;
-    unicode-bidi: isolate;
-    display: inline-block;
-    white-space: nowrap;
-    }
+  .recent-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }

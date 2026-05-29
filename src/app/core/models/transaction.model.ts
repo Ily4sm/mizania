@@ -5,6 +5,7 @@ export interface Transaction {
   user_id: string;
   category_id: string | null;
   type: TransactionType;
+  title: string;
   amount: number;
   note: string | null;
   transaction_date: string;
@@ -21,6 +22,7 @@ export interface Transaction {
 export interface CreateTransactionPayload {
   category_id: string | null;
   type: TransactionType;
+  title: string;
   amount: number;
   note: string | null;
   transaction_date: string;
@@ -29,6 +31,7 @@ export interface CreateTransactionPayload {
 export interface UpdateTransactionPayload {
   category_id: string | null;
   type: TransactionType;
+  title: string;
   amount: number;
   note: string | null;
   transaction_date: string;

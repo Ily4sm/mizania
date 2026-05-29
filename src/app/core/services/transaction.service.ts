@@ -69,6 +69,7 @@ export class TransactionService {
       user_id: session.user.id,
       category_id: payload.category_id,
       type: payload.type,
+      title: payload.title.trim(),
       amount: payload.amount,
       note: payload.note,
       transaction_date: payload.transaction_date,
@@ -92,6 +93,7 @@ export class TransactionService {
       .update({
         category_id: payload.category_id,
         type: payload.type,
+        title: payload.title.trim(),
         amount: payload.amount,
         note: payload.note,
         transaction_date: payload.transaction_date,

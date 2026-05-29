@@ -57,7 +57,14 @@
     "COFFEE": "Coffee ☕",
     "TAXI": "Taxi 🚕",
     "PHONE_BILL": "Phone bill 📱",
-    "LUNCH": "Lunch 🍔"
+    "LUNCH": "Lunch 🍔",
+    "THIS_MONTH": "This month",
+    "AFTER_EXPENSES": "After expenses",
+    "HEALTH_GOOD": "Balanced month",
+    "HEALTH_WARNING": "Watch your spending",
+    "HEALTH_DANGER": "Spending too high",
+    "RECENT_TRANSACTIONS": "Recent transactions",
+    "NO_TRANSACTIONS": "No recent transactions."
   },
   "AUTH": {
     "LOGIN_TITLE": "Welcome back",
@@ -86,6 +93,8 @@
     "DATE": "Date",
     "NOTE": "Note",
     "RECENT": "Recent transactions",
-    "EMPTY": "No transactions yet."
+    "EMPTY": "No transactions yet.",
+    "TITLE_FIELD": "Title",
+    "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salary..."
   }
 }

@@ -40,6 +40,7 @@ export class Transactions implements OnInit {
 
   form = this.fb.nonNullable.group({
     type: ['expense' as TransactionType, [Validators.required]],
+    title: ['', [Validators.required, Validators.minLength(2)]],
     amount: [0, [Validators.required, Validators.min(0.01)]],
     category_id: [''],
     transaction_date: [this.getTodayDate(), [Validators.required]],
@@ -71,6 +72,7 @@ export class Transactions implements OnInit {
 
       const payload = {
         type: formValue.type,
+        title: formValue.title.trim(),
         amount: Number(formValue.amount),
         category_id: formValue.category_id || null,
         transaction_date: formValue.transaction_date,
@@ -99,6 +101,16 @@ export class Transactions implements OnInit {
 
     this.form.patchValue({
       type: transaction.type,
+      title: transaction.title,
+      amount: Number(transaction.amount),
+      category_id: transaction.category_id ?? '',
+      transaction_date: transaction.transaction_date,
+      note: transaction.note ?? '',
+    });
+
+    this.form.patchValue({
+      type: transaction.type,
+      title: transaction.title,
       amount: Number(transaction.amount),
       category_id: transaction.category_id ?? '',
       transaction_date: transaction.transaction_date,
@@ -131,6 +143,7 @@ export class Transactions implements OnInit {
 
     this.form.reset({
       type: 'expense',
+      title: '',
       amount: 0,
       category_id: '',
       transaction_date: this.getTodayDate(),

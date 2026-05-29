@@ -26,6 +26,16 @@
         </label>
 
         <label class="field">
+        <span>{{ 'TRANSACTIONS.TITLE_FIELD' | translate }}</span>
+        <input
+            class="input"
+            type="text"
+            formControlName="title"
+            [placeholder]="'TRANSACTIONS.TITLE_PLACEHOLDER' | translate"
+        />
+        </label>
+
+        <label class="field">
           <span>{{ 'TRANSACTIONS.AMOUNT' | translate }}</span>
           <input class="input" type="number" min="0" step="0.01" formControlName="amount" />
         </label>
@@ -103,8 +113,11 @@
                 </div>
 
                 <div>
-                  <strong>{{ getCategoryLabel(transaction) }}</strong>
-                  <small>{{ transaction.transaction_date }}</small>
+                  <strong>{{ transaction.title }}</strong>
+                  <small>
+                    {{ getCategoryLabel(transaction) }} •
+                    <bdi dir="ltr">{{ transaction.transaction_date }}</bdi>
+                  </small>
                 </div>
               </div>
 
