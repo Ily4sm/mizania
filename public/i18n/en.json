@@ -71,5 +71,21 @@
     "VERIFY_SUBTITLE": "We sent you a confirmation link.",
     "FORGOT_TITLE": "Forgot password",
     "FORGOT_SUBTITLE": "Enter your email to receive a reset link."
+  },
+  "TRANSACTIONS": {
+    "TITLE": "Transactions",
+    "SUBTITLE": "Add your income and expenses to track your budget.",
+    "CREATE": "New transaction",
+    "EDIT": "Edit transaction",
+    "TYPE": "Type",
+    "EXPENSE": "Expense",
+    "INCOME": "Income",
+    "AMOUNT": "Amount",
+    "CATEGORY": "Category",
+    "NO_CATEGORY": "No category",
+    "DATE": "Date",
+    "NOTE": "Note",
+    "RECENT": "Recent transactions",
+    "EMPTY": "No transactions yet."
   }
 }

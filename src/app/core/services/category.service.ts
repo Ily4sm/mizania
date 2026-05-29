@@ -1,4 +1,5 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import {
   Category,
   CreateCategoryPayload,
@@ -11,11 +12,20 @@ import { AuthService } from './auth.service';
 })
 export class CategoryService {
   private readonly authService = inject(AuthService);
+  private readonly isBrowser: boolean;
 
   categories = signal<Category[]>([]);
   loading = signal(false);
 
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   async loadCategories(): Promise<void> {
+    if (!this.isBrowser) {
+      return;
+    }
+
     this.loading.set(true);
 
     try {
@@ -86,10 +96,7 @@ export class CategoryService {
   async deleteCategory(categoryId: string): Promise<void> {
     const client = this.authService.getSupabaseClient();
 
-    const { error } = await client
-      .from('categories')
-      .delete()
-      .eq('id', categoryId);
+    const { error } = await client.from('categories').delete().eq('id', categoryId);
 
     if (error) {
       throw error;

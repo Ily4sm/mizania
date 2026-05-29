@@ -1,0 +1,142 @@
+<section class="transactions-page">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">{{ 'TRANSACTIONS.TITLE' | translate }}</h2>
+      <p class="page-subtitle">{{ 'TRANSACTIONS.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="transactions-grid">
+    <article class="card form-card">
+      <h3>
+        @if (editingTransactionId()) {
+          {{ 'TRANSACTIONS.EDIT' | translate }}
+        } @else {
+          {{ 'TRANSACTIONS.CREATE' | translate }}
+        }
+      </h3>
+
+      <form class="transaction-form" [formGroup]="form" (ngSubmit)="submit()">
+        <label class="field">
+          <span>{{ 'TRANSACTIONS.TYPE' | translate }}</span>
+          <select class="input" formControlName="type" (change)="onTypeChange($event)">
+            <option value="expense">{{ 'TRANSACTIONS.EXPENSE' | translate }}</option>
+            <option value="income">{{ 'TRANSACTIONS.INCOME' | translate }}</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'TRANSACTIONS.AMOUNT' | translate }}</span>
+          <input class="input" type="number" min="0" step="0.01" formControlName="amount" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'TRANSACTIONS.CATEGORY' | translate }}</span>
+          <select class="input" formControlName="category_id">
+            <option value="">{{ 'TRANSACTIONS.NO_CATEGORY' | translate }}</option>
+
+            @for (category of filteredCategories(); track category.id) {
+              <option [value]="category.id">
+                {{ category.icon }} {{ category.name }}
+              </option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'TRANSACTIONS.DATE' | translate }}</span>
+          <input class="input" type="date" formControlName="transaction_date" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'TRANSACTIONS.NOTE' | translate }}</span>
+          <input class="input" type="text" formControlName="note" />
+        </label>
+
+        @if (alert()) {
+          <div
+            class="page-alert"
+            [class.success]="alert()?.type === 'success'"
+            [class.error]="alert()?.type === 'error'"
+          >
+            <p>{{ alert()?.message }}</p>
+            <span></span>
+          </div>
+        }
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">
+            @if (editingTransactionId()) {
+              {{ 'ACTIONS.SAVE' | translate }}
+            } @else {
+              {{ 'ACTIONS.ADD' | translate }}
+            }
+          </button>
+
+          @if (editingTransactionId()) {
+            <button class="btn" type="button" (click)="resetForm()">
+              {{ 'ACTIONS.CANCEL' | translate }}
+            </button>
+          }
+        </div>
+      </form>
+    </article>
+
+    <article class="card list-card">
+      <h3>{{ 'TRANSACTIONS.RECENT' | translate }}</h3>
+
+      @if (transactionService.loading()) {
+        <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
+      } @else if (transactionService.transactions().length === 0) {
+        <p class="muted">{{ 'TRANSACTIONS.EMPTY' | translate }}</p>
+      } @else {
+        <div class="transaction-list">
+          @for (transaction of transactionService.transactions(); track transaction.id) {
+            <div class="transaction-item" [class.income]="transaction.type === 'income'">
+              <div class="transaction-main">
+                <div class="transaction-icon">
+                  @if (transaction.categories) {
+                    {{ transaction.categories.icon }}
+                  } @else {
+                    💸
+                  }
+                </div>
+
+                <div>
+                  <strong>{{ getCategoryLabel(transaction) }}</strong>
+                  <small>{{ transaction.transaction_date }}</small>
+                </div>
+              </div>
+
+              <div class="transaction-side">
+                <strong class="money">
+                  <bdi dir="ltr">
+                    {{ transaction.type === 'income' ? '+' : '-' }}
+                    {{ transaction.amount }} DH
+                  </bdi>
+                </strong>
+
+                @if (transaction.note) {
+                  <small>{{ transaction.note }}</small>
+                }
+              </div>
+
+              <div class="item-actions">
+                <button type="button" (click)="editTransaction(transaction)">
+                  {{ 'ACTIONS.EDIT' | translate }}
+                </button>
+                <button
+                  type="button"
+                  class="danger"
+                  (click)="deleteTransaction(transaction)"
+                >
+                  {{ 'ACTIONS.DELETE' | translate }}
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </article>
+  </div>
+</section>

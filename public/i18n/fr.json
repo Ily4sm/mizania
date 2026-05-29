@@ -71,5 +71,21 @@
     "INCOME_CATEGORIES": "Catégories de revenus",
     "EMPTY_EXPENSE": "Aucune catégorie de dépense pour le moment.",
     "EMPTY_INCOME": "Aucune catégorie de revenu pour le moment."
+  },
+  "TRANSACTIONS": {
+    "TITLE": "Transactions",
+    "SUBTITLE": "Ajoutez vos revenus et dépenses pour suivre votre budget.",
+    "CREATE": "Nouvelle transaction",
+    "EDIT": "Modifier la transaction",
+    "TYPE": "Type",
+    "EXPENSE": "Dépense",
+    "INCOME": "Revenu",
+    "AMOUNT": "Montant",
+    "CATEGORY": "Catégorie",
+    "NO_CATEGORY": "Sans catégorie",
+    "DATE": "Date",
+    "NOTE": "Note",
+    "RECENT": "Transactions récentes",
+    "EMPTY": "Aucune transaction pour le moment."
   }
 }
