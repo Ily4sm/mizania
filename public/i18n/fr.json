@@ -11,7 +11,8 @@
     "SETTINGS": "Paramètres"
   },
   "COMMON": {
-    "LOADING": "Chargement..."
+    "LOADING": "Chargement...",
+    "SAVING": "Enregistrement..."
   },
   "ACTIONS": {
     "ADD": "Ajouter",
@@ -117,5 +118,24 @@
     "SAVED_ITEMS": "Éléments enregistrés",
     "EMPTY": "Aucun élément fixe pour le moment.",
     "ADD_TRANSACTION": "Ajouter comme transaction"
+  },
+  "SETTINGS": {
+    "TITLE": "Paramètres",
+    "SUBTITLE": "Gérez vos informations, préférences et options de compte.",
+    "PROFILE": "Profil",
+    "FULL_NAME": "Nom complet",
+    "EMAIL": "Adresse email",
+    "EMAIL_HINT": "L’adresse email ne peut pas être modifiée. Vous pouvez supprimer votre compte si nécessaire.",
+    "LANGUAGE": "Langue",
+    "THEME": "Thème",
+    "LIGHT": "Clair",
+    "DARK": "Sombre",
+    "CURRENCY": "Devise",
+    "ACCOUNT": "Compte",
+    "PLAN": "Plan actuel",
+    "DANGER_ZONE": "Zone dangereuse",
+    "DELETE_HINT": "La suppression du compte retirera vos données de Mizania.",
+    "DELETE_ACCOUNT": "Supprimer le compte",
+    "DELETE_COMING_SOON": "Cette action sera activée après la mise en place du flux de suppression sécurisé."
   }
 }

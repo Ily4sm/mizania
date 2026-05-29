@@ -10,9 +10,31 @@
     "RECURRING": "Fixed items",
     "SETTINGS": "Settings"
   },
+  
   "COMMON": {
-  "LOADING": "Loading..."
-},
+    "LOADING": "Loading...",
+    "SAVING": "Saving..."
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "SUBTITLE": "Manage your information, preferences, and account options.",
+    "PROFILE": "Profile",
+    "FULL_NAME": "Full name",
+    "EMAIL": "Email address",
+    "EMAIL_HINT": "The email address cannot be changed. You can delete your account if needed.",
+    "LANGUAGE": "Language",
+    "THEME": "Theme",
+    "LIGHT": "Light",
+    "DARK": "Dark",
+    "CURRENCY": "Currency",
+    "ACCOUNT": "Account",
+    "PLAN": "Current plan",
+    "DANGER_ZONE": "Danger zone",
+    "DELETE_HINT": "Deleting your account will remove your data from Mizania.",
+    "DELETE_ACCOUNT": "Delete account",
+    "DELETE_COMING_SOON": "This action will be enabled after the secure deletion flow is implemented."
+  },
+
 "ACTIONS": {
     "ADD": "Add",
     "LOGIN": "Login",

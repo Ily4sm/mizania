@@ -1,4 +1,5 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { Profile } from '../models/profile.model';
 import { AuthService } from './auth.service';
 
@@ -7,11 +8,20 @@ import { AuthService } from './auth.service';
 })
 export class ProfileService {
   private readonly authService = inject(AuthService);
+  private readonly isBrowser: boolean;
 
   profile = signal<Profile | null>(null);
   loading = signal(false);
 
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   async loadMyProfile(): Promise<Profile | null> {
+    if (!this.isBrowser) {
+      return null;
+    }
+
     this.loading.set(true);
 
     try {

@@ -1,0 +1,99 @@
+<section class="settings-page">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">{{ 'SETTINGS.TITLE' | translate }}</h2>
+      <p class="page-subtitle">{{ 'SETTINGS.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="settings-grid">
+    <article class="card settings-card">
+      <h3>{{ 'SETTINGS.PROFILE' | translate }}</h3>
+
+      <form class="settings-form" [formGroup]="form" (ngSubmit)="submit()">
+        <label class="field">
+          <span>{{ 'SETTINGS.FULL_NAME' | translate }}</span>
+          <input class="input" type="text" formControlName="full_name" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'SETTINGS.EMAIL' | translate }}</span>
+          <input class="input readonly-input" type="email" formControlName="email" />
+          <small>{{ 'SETTINGS.EMAIL_HINT' | translate }}</small>
+        </label>
+
+        <label class="field">
+          <span>{{ 'SETTINGS.LANGUAGE' | translate }}</span>
+          <select class="input" formControlName="preferred_language">
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'SETTINGS.THEME' | translate }}</span>
+          <select class="input" formControlName="theme">
+            <option value="light">{{ 'SETTINGS.LIGHT' | translate }}</option>
+            <option value="dark">{{ 'SETTINGS.DARK' | translate }}</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'SETTINGS.CURRENCY' | translate }}</span>
+          <select class="input" formControlName="currency">
+            <option value="MAD">MAD - Moroccan Dirham</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="USD">USD - US Dollar</option>
+          </select>
+        </label>
+
+        @if (alert()) {
+          <div
+            class="page-alert"
+            [class.success]="alert()?.type === 'success'"
+            [class.error]="alert()?.type === 'error'"
+          >
+            <p>{{ alert()?.message }}</p>
+            <span></span>
+          </div>
+        }
+
+        <button class="btn btn-primary" type="submit" [disabled]="loading()">
+          @if (loading()) {
+            {{ 'COMMON.SAVING' | translate }}
+          } @else {
+            {{ 'ACTIONS.SAVE' | translate }}
+          }
+        </button>
+      </form>
+    </article>
+
+    <article class="card account-card">
+      <h3>{{ 'SETTINGS.ACCOUNT' | translate }}</h3>
+
+      <div class="account-info">
+        <div>
+          <span>{{ 'SETTINGS.PLAN' | translate }}</span>
+          <strong>{{ profile()?.plan || 'free' }}</strong>
+        </div>
+
+        <div>
+          <span>{{ 'SETTINGS.CURRENCY' | translate }}</span>
+          <strong>{{ profile()?.currency || 'MAD' }}</strong>
+        </div>
+      </div>
+
+      <div class="danger-zone">
+        <h4>{{ 'SETTINGS.DANGER_ZONE' | translate }}</h4>
+        <p>{{ 'SETTINGS.DELETE_HINT' | translate }}</p>
+
+        <button class="danger-btn" type="button" disabled>
+          {{ 'SETTINGS.DELETE_ACCOUNT' | translate }}
+        </button>
+
+        <small>{{ 'SETTINGS.DELETE_COMING_SOON' | translate }}</small>
+      </div>
+    </article>
+  </div>
+</section>
