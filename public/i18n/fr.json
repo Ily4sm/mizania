@@ -96,5 +96,26 @@
     "EMPTY": "Aucune transaction pour le moment.",
     "TITLE_FIELD": "Titre",
     "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salaire..."
+  },
+  "RECURRING": {
+    "TITLE": "Éléments fixes",
+    "SUBTITLE": "Enregistrez vos dépenses ou revenus habituels et ajoutez-les rapidement chaque mois.",
+    "CREATE": "Nouvel élément fixe",
+    "EDIT": "Modifier l’élément fixe",
+    "TYPE": "Type",
+    "EXPENSE": "Dépense",
+    "INCOME": "Revenu",
+    "TITLE_FIELD": "Titre",
+    "TITLE_PLACEHOLDER": "Ex: Wi-Fi, loyer, salaire...",
+    "AMOUNT": "Montant",
+    "CATEGORY": "Catégorie",
+    "NO_CATEGORY": "Sans catégorie",
+    "ICON": "Icône",
+    "NOTE": "Note",
+    "ACTIVE": "Actif",
+    "INACTIVE": "Inactif",
+    "SAVED_ITEMS": "Éléments enregistrés",
+    "EMPTY": "Aucun élément fixe pour le moment.",
+    "ADD_TRANSACTION": "Ajouter comme transaction"
   }
 }

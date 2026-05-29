@@ -1,0 +1,159 @@
+<section class="recurring-page">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">{{ 'RECURRING.TITLE' | translate }}</h2>
+      <p class="page-subtitle">{{ 'RECURRING.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="recurring-grid">
+    <article class="card form-card">
+      <h3>
+        @if (editingItemId()) {
+          {{ 'RECURRING.EDIT' | translate }}
+        } @else {
+          {{ 'RECURRING.CREATE' | translate }}
+        }
+      </h3>
+
+      <form class="recurring-form" [formGroup]="form" (ngSubmit)="submit()">
+        <label class="field">
+          <span>{{ 'RECURRING.TYPE' | translate }}</span>
+          <select class="input" formControlName="type" (change)="onTypeChange($event)">
+            <option value="expense">{{ 'RECURRING.EXPENSE' | translate }}</option>
+            <option value="income">{{ 'RECURRING.INCOME' | translate }}</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'RECURRING.TITLE_FIELD' | translate }}</span>
+          <input
+            class="input"
+            type="text"
+            formControlName="title"
+            [placeholder]="'RECURRING.TITLE_PLACEHOLDER' | translate"
+          />
+        </label>
+
+        <label class="field">
+          <span>{{ 'RECURRING.AMOUNT' | translate }}</span>
+          <input class="input" type="number" min="0" step="0.01" formControlName="amount" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'RECURRING.CATEGORY' | translate }}</span>
+          <select class="input" formControlName="category_id">
+            <option value="">{{ 'RECURRING.NO_CATEGORY' | translate }}</option>
+
+            @for (category of filteredCategories(); track category.id) {
+              <option [value]="category.id">
+                {{ category.icon }} {{ category.name }}
+              </option>
+            }
+          </select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'RECURRING.ICON' | translate }}</span>
+          <input class="input" type="text" formControlName="icon" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'RECURRING.NOTE' | translate }}</span>
+          <input class="input" type="text" formControlName="note" />
+        </label>
+
+        @if (editingItemId()) {
+          <label class="checkbox-field">
+            <input type="checkbox" formControlName="is_active" />
+            <span>{{ 'RECURRING.ACTIVE' | translate }}</span>
+          </label>
+        }
+
+        @if (alert()) {
+          <div
+            class="page-alert"
+            [class.success]="alert()?.type === 'success'"
+            [class.error]="alert()?.type === 'error'"
+          >
+            <p>{{ alert()?.message }}</p>
+            <span></span>
+          </div>
+        }
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">
+            @if (editingItemId()) {
+              {{ 'ACTIONS.SAVE' | translate }}
+            } @else {
+              {{ 'ACTIONS.ADD' | translate }}
+            }
+          </button>
+
+          @if (editingItemId()) {
+            <button class="btn" type="button" (click)="resetForm()">
+              {{ 'ACTIONS.CANCEL' | translate }}
+            </button>
+          }
+        </div>
+      </form>
+    </article>
+
+    <article class="card list-card">
+      <h3>{{ 'RECURRING.SAVED_ITEMS' | translate }}</h3>
+
+      @if (recurringItemService.loading()) {
+        <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
+      } @else if (recurringItemService.recurringItems().length === 0) {
+        <p class="muted">{{ 'RECURRING.EMPTY' | translate }}</p>
+      } @else {
+        <div class="recurring-list">
+          @for (item of recurringItemService.recurringItems(); track item.id) {
+            <div class="recurring-item" [class.income]="item.type === 'income'">
+              <div class="recurring-main">
+                <div class="recurring-icon">{{ item.icon }}</div>
+
+                <div>
+                  <strong>{{ item.title }}</strong>
+                  <small>
+                    {{ getCategoryLabel(item) }}
+                    @if (!item.is_active) {
+                      • {{ 'RECURRING.INACTIVE' | translate }}
+                    }
+                  </small>
+                </div>
+              </div>
+
+              <div class="recurring-side">
+                <strong>
+                  <bdi class="money" dir="ltr">
+                    {{ item.type === 'income' ? '+' : '-' }}
+                    {{ formatMoney(item.amount) }}
+                  </bdi>
+                </strong>
+
+                @if (item.note) {
+                  <small>{{ item.note }}</small>
+                }
+              </div>
+
+              <div class="item-actions">
+                <button type="button" class="primary-action" (click)="addAsTransaction(item)">
+                  {{ 'RECURRING.ADD_TRANSACTION' | translate }}
+                </button>
+
+                <button type="button" (click)="editItem(item)">
+                  {{ 'ACTIONS.EDIT' | translate }}
+                </button>
+
+                <button type="button" class="danger" (click)="deleteItem(item)">
+                  {{ 'ACTIONS.DELETE' | translate }}
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </article>
+  </div>
+</section>

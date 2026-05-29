@@ -96,5 +96,26 @@
     "EMPTY": "No transactions yet.",
     "TITLE_FIELD": "Title",
     "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salary..."
+  },
+  "RECURRING": {
+    "TITLE": "Fixed items",
+    "SUBTITLE": "Save your usual expenses or income and add them quickly every month.",
+    "CREATE": "New fixed item",
+    "EDIT": "Edit fixed item",
+    "TYPE": "Type",
+    "EXPENSE": "Expense",
+    "INCOME": "Income",
+    "TITLE_FIELD": "Title",
+    "TITLE_PLACEHOLDER": "Ex: Wi-Fi, rent, salary...",
+    "AMOUNT": "Amount",
+    "CATEGORY": "Category",
+    "NO_CATEGORY": "No category",
+    "ICON": "Icon",
+    "NOTE": "Note",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "SAVED_ITEMS": "Saved items",
+    "EMPTY": "No fixed items yet.",
+    "ADD_TRANSACTION": "Add as transaction"
   }
 }
