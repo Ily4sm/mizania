@@ -1,0 +1,15 @@
+<header class="navbar">
+  <div>
+    <p class="eyebrow">{{ 'APP.NAME' | translate }}</p>
+    <h1>{{ 'APP.TAGLINE' | translate }}</h1>
+  </div>
+
+  <div class="actions">
+    <app-language-switcher />
+    <app-theme-toggle />
+
+    <button class="logout-btn" type="button" (click)="logout()">
+      {{ 'ACTIONS.LOGOUT' | translate }}
+    </button>
+  </div>
+</header>

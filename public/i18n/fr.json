@@ -10,14 +10,22 @@
     "RECURRING": "Éléments fixes",
     "SETTINGS": "Paramètres"
   },
+  "COMMON": {
+    "LOADING": "Chargement..."
+  },
   "ACTIONS": {
     "ADD": "Ajouter",
     "LOGIN": "Se connecter",
     "REGISTER": "Créer un compte",
-    "LOGOUT": "Se déconnecter"
+    "LOGOUT": "Se déconnecter",
+    "SAVE": "Enregistrer",
+    "CANCEL": "Annuler",
+    "EDIT": "Modifier",
+    "DELETE": "Supprimer"
   },
   "DASHBOARD": {
-    "TITLE": "Bonjour, Ilyas",
+    "TITLE_PREFIX": "Bonjour, ",
+    "TITLE": "Bonjour, {{name}}",
     "SUBTITLE": "Voici l’état de votre mois.",
     "INCOME": "Revenus",
     "EXPENSES": "Dépenses",
@@ -25,7 +33,15 @@
     "SAFE_DAILY": "Dépense sûre par jour",
     "HEALTH": "Santé du budget",
     "GOOD": "Mois équilibré",
-    "QUICK_ACTIONS": "Actions rapides"
+    "QUICK_ACTIONS": "Actions rapides",
+    "INCOME_NOTE": "+12% vs le mois dernier",
+    "EXPENSES_NOTE": "64% du revenu",
+    "REMAINING_NOTE": "Bonne marge",
+    "DAYS_LEFT": "12 jours restants",
+    "COFFEE": "Café ☕",
+    "TAXI": "Taxi 🚕",
+    "PHONE_BILL": "Facture téléphone 📱",
+    "LUNCH": "Déjeuner 🍔"
   },
   "AUTH": {
     "LOGIN_TITLE": "Bon retour",
@@ -39,5 +55,21 @@
     "VERIFY_SUBTITLE": "Nous vous avons envoyé un lien de confirmation.",
     "FORGOT_TITLE": "Mot de passe oublié",
     "FORGOT_SUBTITLE": "Entrez votre email pour recevoir un lien de réinitialisation."
+  },
+  "CATEGORIES": {
+    "TITLE": "Catégories",
+    "SUBTITLE": "Organisez vos revenus et dépenses avec vos propres catégories.",
+    "CREATE": "Nouvelle catégorie",
+    "EDIT": "Modifier la catégorie",
+    "NAME": "Nom",
+    "TYPE": "Type",
+    "ICON": "Icône",
+    "COLOR": "Couleur",
+    "EXPENSE": "Dépense",
+    "INCOME": "Revenu",
+    "EXPENSE_CATEGORIES": "Catégories de dépenses",
+    "INCOME_CATEGORIES": "Catégories de revenus",
+    "EMPTY_EXPENSE": "Aucune catégorie de dépense pour le moment.",
+    "EMPTY_INCOME": "Aucune catégorie de revenu pour le moment."
   }
 }

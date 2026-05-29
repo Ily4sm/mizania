@@ -42,8 +42,16 @@ export class AuthService {
     });
   }
 
+  getSupabaseClient(): SupabaseClient {
+    if (!this.supabase) {
+      throw new Error('Supabase client is only available in the browser.');
+    }
+
+    return this.supabase;
+  }
+
   async register(payload: RegisterPayload): Promise<void> {
-    const client = this.getClient();
+    const client = this.getSupabaseClient();
 
     const { error } = await client.auth.signUp({
       email: payload.email,
@@ -62,7 +70,7 @@ export class AuthService {
   }
 
   async login(payload: LoginPayload): Promise<void> {
-    const client = this.getClient();
+    const client = this.getSupabaseClient();
 
     const { error } = await client.auth.signInWithPassword({
       email: payload.email,
@@ -75,7 +83,7 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
-    const client = this.getClient();
+    const client = this.getSupabaseClient();
     const { error } = await client.auth.signOut();
 
     if (error) {
@@ -91,7 +99,7 @@ export class AuthService {
       return null;
     }
 
-    const client = this.getClient();
+    const client = this.getSupabaseClient();
     const { data, error } = await client.auth.getSession();
 
     if (error) {
@@ -110,13 +118,5 @@ export class AuthService {
     } finally {
       this.loading.set(false);
     }
-  }
-
-  private getClient(): SupabaseClient {
-    if (!this.supabase) {
-      throw new Error('Supabase client is only available in the browser.');
-    }
-
-    return this.supabase;
   }
 }

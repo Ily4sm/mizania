@@ -10,14 +10,38 @@
     "RECURRING": "Fixed items",
     "SETTINGS": "Settings"
   },
-  "ACTIONS": {
+  "COMMON": {
+  "LOADING": "Loading..."
+},
+"ACTIONS": {
     "ADD": "Add",
     "LOGIN": "Login",
     "REGISTER": "Create account",
-    "LOGOUT": "Logout"
+    "LOGOUT": "Logout",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "EDIT": "Edit",
+    "DELETE": "Delete"
+  },
+  "CATEGORIES": {
+    "TITLE": "Categories",
+    "SUBTITLE": "Organize your income and expenses with your own categories.",
+    "CREATE": "New category",
+    "EDIT": "Edit category",
+    "NAME": "Name",
+    "TYPE": "Type",
+    "ICON": "Icon",
+    "COLOR": "Color",
+    "EXPENSE": "Expense",
+    "INCOME": "Income",
+    "EXPENSE_CATEGORIES": "Expense categories",
+    "INCOME_CATEGORIES": "Income categories",
+    "EMPTY_EXPENSE": "No expense categories yet.",
+    "EMPTY_INCOME": "No income categories yet."
   },
   "DASHBOARD": {
-    "TITLE": "Hello, Ilyas",
+    "TITLE_PREFIX": "Hello, ",
+    "TITLE": "Hello, {{name}}",
     "SUBTITLE": "Here is how your month is going.",
     "INCOME": "Income",
     "EXPENSES": "Expenses",
@@ -25,7 +49,15 @@
     "SAFE_DAILY": "Safe daily spending",
     "HEALTH": "Budget health",
     "GOOD": "Balanced month",
-    "QUICK_ACTIONS": "Quick actions"
+    "QUICK_ACTIONS": "Quick actions",
+    "INCOME_NOTE": "+12% vs last month",
+    "EXPENSES_NOTE": "64% of income",
+    "REMAINING_NOTE": "Good margin",
+    "DAYS_LEFT": "12 days left",
+    "COFFEE": "Coffee ☕",
+    "TAXI": "Taxi 🚕",
+    "PHONE_BILL": "Phone bill 📱",
+    "LUNCH": "Lunch 🍔"
   },
   "AUTH": {
     "LOGIN_TITLE": "Welcome back",

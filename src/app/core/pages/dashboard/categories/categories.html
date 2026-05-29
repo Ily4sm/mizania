@@ -1,0 +1,150 @@
+<section class="categories-page">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">{{ 'CATEGORIES.TITLE' | translate }}</h2>
+      <p class="page-subtitle">{{ 'CATEGORIES.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="categories-grid">
+    <article class="card form-card">
+      <h3>
+        @if (editingCategoryId()) {
+          {{ 'CATEGORIES.EDIT' | translate }}
+        } @else {
+          {{ 'CATEGORIES.CREATE' | translate }}
+        }
+      </h3>
+
+      <form [formGroup]="form" (ngSubmit)="submit()" class="category-form">
+        <label class="field">
+          <span>{{ 'CATEGORIES.NAME' | translate }}</span>
+          <input class="input" type="text" formControlName="name" />
+        </label>
+
+        <label class="field">
+          <span>{{ 'CATEGORIES.TYPE' | translate }}</span>
+          <select class="input" formControlName="type">
+            <option value="expense">{{ 'CATEGORIES.EXPENSE' | translate }}</option>
+            <option value="income">{{ 'CATEGORIES.INCOME' | translate }}</option>
+          </select>
+        </label>
+
+        <div class="mini-grid">
+          <label class="field">
+            <span>{{ 'CATEGORIES.ICON' | translate }}</span>
+            <input class="input" type="text" formControlName="icon" />
+          </label>
+
+          <label class="field">
+            <span>{{ 'CATEGORIES.COLOR' | translate }}</span>
+            <input class="input color-input" type="color" formControlName="color" />
+          </label>
+        </div>
+
+        @if (alert()) {
+            <div class="page-alert" [class.success]="alert()?.type === 'success'" [class.error]="alert()?.type === 'error'">
+                <p>{{ alert()?.message }}</p>
+                <span></span>
+            </div>
+        }
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">
+            @if (editingCategoryId()) {
+              {{ 'ACTIONS.SAVE' | translate }}
+            } @else {
+              {{ 'ACTIONS.ADD' | translate }}
+            }
+          </button>
+
+          @if (editingCategoryId()) {
+            <button class="btn" type="button" (click)="resetForm()">
+              {{ 'ACTIONS.CANCEL' | translate }}
+            </button>
+          }
+        </div>
+      </form>
+    </article>
+
+    <div class="lists">
+      <article class="card list-card">
+        <h3>{{ 'CATEGORIES.EXPENSE_CATEGORIES' | translate }}</h3>
+
+        @if (categoryService.loading()) {
+          <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
+        } @else if (expenseCategories().length === 0) {
+          <p class="muted">{{ 'CATEGORIES.EMPTY_EXPENSE' | translate }}</p>
+        } @else {
+          <div class="category-list">
+            @for (category of expenseCategories(); track category.id) {
+              <div class="category-item">
+                <div class="category-main">
+                  <span
+                    class="category-icon"
+                    [style.background]="category.color"
+                  >
+                    {{ category.icon }}
+                  </span>
+
+                  <div>
+                    <strong>{{ category.name }}</strong>
+                    <small>{{ 'CATEGORIES.EXPENSE' | translate }}</small>
+                  </div>
+                </div>
+
+                <div class="item-actions">
+                  <button type="button" (click)="editCategory(category)">
+                    {{ 'ACTIONS.EDIT' | translate }}
+                  </button>
+                  <button type="button" class="danger" (click)="deleteCategory(category)">
+                    {{ 'ACTIONS.DELETE' | translate }}
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </article>
+
+      <article class="card list-card">
+        <h3>{{ 'CATEGORIES.INCOME_CATEGORIES' | translate }}</h3>
+
+        @if (categoryService.loading()) {
+          <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
+        } @else if (incomeCategories().length === 0) {
+          <p class="muted">{{ 'CATEGORIES.EMPTY_INCOME' | translate }}</p>
+        } @else {
+          <div class="category-list">
+            @for (category of incomeCategories(); track category.id) {
+              <div class="category-item">
+                <div class="category-main">
+                  <span
+                    class="category-icon"
+                    [style.background]="category.color"
+                  >
+                    {{ category.icon }}
+                  </span>
+
+                  <div>
+                    <strong>{{ category.name }}</strong>
+                    <small>{{ 'CATEGORIES.INCOME' | translate }}</small>
+                  </div>
+                </div>
+
+                <div class="item-actions">
+                  <button type="button" (click)="editCategory(category)">
+                    {{ 'ACTIONS.EDIT' | translate }}
+                  </button>
+                  <button type="button" class="danger" (click)="deleteCategory(category)">
+                    {{ 'ACTIONS.DELETE' | translate }}
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </article>
+    </div>
+  </div>
+</section>

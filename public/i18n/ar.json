@@ -10,14 +10,38 @@
     "RECURRING": "المصاريف الثابتة",
     "SETTINGS": "الإعدادات"
   },
+ "COMMON": {
+    "LOADING": "جاري التحميل..."
+  },
   "ACTIONS": {
     "ADD": "إضافة",
     "LOGIN": "تسجيل الدخول",
     "REGISTER": "إنشاء حساب",
-    "LOGOUT": "تسجيل الخروج"
+    "LOGOUT": "تسجيل الخروج",
+    "SAVE": "حفظ",
+    "CANCEL": "إلغاء",
+    "EDIT": "تعديل",
+    "DELETE": "حذف"
+  },
+  "CATEGORIES": {
+    "TITLE": "الفئات",
+    "SUBTITLE": "نظم مداخيلك ومصاريفك باستعمال فئاتك الخاصة.",
+    "CREATE": "فئة جديدة",
+    "EDIT": "تعديل الفئة",
+    "NAME": "الاسم",
+    "TYPE": "النوع",
+    "ICON": "الأيقونة",
+    "COLOR": "اللون",
+    "EXPENSE": "مصروف",
+    "INCOME": "دخل",
+    "EXPENSE_CATEGORIES": "فئات المصاريف",
+    "INCOME_CATEGORIES": "فئات المداخيل",
+    "EMPTY_EXPENSE": "لا توجد فئات مصاريف حاليا.",
+    "EMPTY_INCOME": "لا توجد فئات مداخيل حاليا."
   },
   "DASHBOARD": {
-    "TITLE": "مرحبا، إلياس",
+    "TITLE_PREFIX": "مرحبا، ",
+    "TITLE": "مرحبا، {{name}}",
     "SUBTITLE": "هذه نظرة على وضع ميزانيتك هذا الشهر.",
     "INCOME": "الدخل",
     "EXPENSES": "المصاريف",
@@ -25,7 +49,15 @@
     "SAFE_DAILY": "المبلغ الآمن يوميا",
     "HEALTH": "صحة الميزانية",
     "GOOD": "شهر متوازن",
-    "QUICK_ACTIONS": "إجراءات سريعة"
+    "QUICK_ACTIONS": "إجراءات سريعة",
+    "INCOME_NOTE": "مقارنة بالشهر الماضي",
+    "EXPENSES_NOTE": "من الدخل",
+    "REMAINING_NOTE": "هامش جيد",
+    "DAYS_LEFT": "يوم متبقي",
+    "COFFEE": "قهوة ☕",
+    "TAXI": "طاكسي 🚕",
+    "PHONE_BILL": "فاتورة الهاتف 📱",
+    "LUNCH": "غداء 🍔"
   },
   "AUTH": {
     "LOGIN_TITLE": "مرحبا بعودتك",
