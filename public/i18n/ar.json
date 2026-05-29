@@ -50,7 +50,13 @@
     "DANGER_ZONE": "منطقة حساسة",
     "DELETE_HINT": "حذف الحساب سيؤدي إلى إزالة بياناتك من Mizania.",
     "DELETE_ACCOUNT": "حذف الحساب",
-    "DELETE_COMING_SOON": "سيتم تفعيل هذا الخيار بعد إعداد مسار حذف آمن."
+    "DELETE_COMING_SOON": "سيتم تفعيل هذا الخيار بعد إعداد مسار حذف آمن.",
+    "DELETE_ACCOUNT_TITLE": "حذف الحساب",
+    "DELETE_ACCOUNT_DESCRIPTION": "سيؤدي هذا الإجراء إلى حذف حسابك وجميع بياناتك نهائيًا.",
+    "DELETE_ACCOUNT_BUTTON": "حذف حسابي",
+    "DELETE_ACCOUNT_CONFIRM_TITLE": "تأكيد الحذف",
+    "DELETE_ACCOUNT_CONFIRM_MESSAGE": "للتأكيد، اكتب DELETE في الحقل أسفله.",
+    "DELETE_ACCOUNT_ERROR": "تعذر حذف الحساب. يرجى المحاولة مرة أخرى."
   },
 
   "ACTIONS": {

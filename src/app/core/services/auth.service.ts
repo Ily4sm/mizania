@@ -94,6 +94,38 @@ export class AuthService {
     this.user.set(null);
   }
 
+  async deleteAccount(): Promise<void> {
+    if (!this.supabase) {
+      throw new Error('Supabase client is not available in this environment.');
+    }
+
+    const supabase = this.supabase;
+
+    const {
+      data: { session },
+      error: sessionError,
+    } = await supabase.auth.getSession();
+
+    if (sessionError || !session) {
+      throw new Error('No active session found.');
+    }
+
+    const { error } = await supabase.functions.invoke('delete-account', {
+      body: {
+        confirmation: 'DELETE',
+      },
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+      },
+    });
+
+    if (error) {
+      throw new Error(error.message || 'Failed to delete account.');
+    }
+
+    await supabase.auth.signOut();
+  }
+
   async getSession(): Promise<Session | null> {
     if (!this.isBrowser) {
       return null;

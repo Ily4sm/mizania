@@ -4,6 +4,9 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { AppLanguage, LanguageService } from '../../../services/language.service';
 import { ProfileService } from '../../../services/profile.service';
 import { ThemeMode, ThemeService } from '../../../services/theme.service';
+import { FormsModule } from '@angular/forms';
+import {Router} from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 type AlertType = 'success' | 'error';
 
@@ -15,11 +18,47 @@ interface PageAlert {
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, FormsModule],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
 })
 export class Settings implements OnInit {
+  showDeleteConfirm = false;
+  deleteConfirmationText = '';
+  isDeletingAccount = false;
+  deleteAccountError = '';
+
+  openDeleteAccountConfirm(): void {
+    this.showDeleteConfirm = true;
+    this.deleteConfirmationText = '';
+    this.deleteAccountError = '';
+  }
+
+  closeDeleteAccountConfirm(): void {
+    if (this.isDeletingAccount) return;
+
+    this.showDeleteConfirm = false;
+    this.deleteConfirmationText = '';
+    this.deleteAccountError = '';
+  }
+
+  async confirmDeleteAccount(): Promise<void> {
+    if (this.deleteConfirmationText !== 'DELETE') return;
+
+    this.isDeletingAccount = true;
+    this.deleteAccountError = '';
+
+    try {
+      await this.authService.deleteAccount();
+      await this.router.navigate(['/auth/login']);
+    } catch (error) {
+      console.error(error);
+      this.deleteAccountError = 'SETTINGS.DELETE_ACCOUNT_ERROR';
+      this.isDeletingAccount = false;
+    }
+  }
+  private authService = inject(AuthService);
+  private router = inject(Router);
   private readonly fb = inject(FormBuilder);
   private readonly profileService = inject(ProfileService);
   private readonly languageService = inject(LanguageService);

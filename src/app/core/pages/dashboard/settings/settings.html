@@ -84,16 +84,56 @@
         </div>
       </div>
 
-      <div class="danger-zone">
-        <h4>{{ 'SETTINGS.DANGER_ZONE' | translate }}</h4>
-        <p>{{ 'SETTINGS.DELETE_HINT' | translate }}</p>
+      <section class="danger-zone">
+          <div>
+            <h2>{{ 'SETTINGS.DELETE_ACCOUNT_TITLE' | translate }}</h2>
+            <p>{{ 'SETTINGS.DELETE_ACCOUNT_DESCRIPTION' | translate }}</p>
+          </div>
 
-        <button class="danger-btn" type="button" disabled>
-          {{ 'SETTINGS.DELETE_ACCOUNT' | translate }}
-        </button>
+          <button type="button" class="danger-btn" (click)="openDeleteAccountConfirm()">
+            {{ 'SETTINGS.DELETE_ACCOUNT_BUTTON' | translate }}
+          </button>
+        </section>
 
-        <small>{{ 'SETTINGS.DELETE_COMING_SOON' | translate }}</small>
-      </div>
+        @if (showDeleteConfirm) {
+          <div class="modal-backdrop">
+            <div class="confirm-modal">
+              <h3>{{ 'SETTINGS.DELETE_ACCOUNT_CONFIRM_TITLE' | translate }}</h3>
+
+              <p>{{ 'SETTINGS.DELETE_ACCOUNT_CONFIRM_MESSAGE' | translate }}</p>
+
+              <input
+                type="text"
+                [(ngModel)]="deleteConfirmationText"
+                placeholder="DELETE"
+                autocomplete="off"
+              />
+
+              @if (deleteAccountError) {
+                <p class="delete-error">{{ deleteAccountError | translate }}</p>
+              }
+
+              <div class="modal-actions">
+                <button type="button" class="ghost-btn" (click)="closeDeleteAccountConfirm()">
+                  {{ 'ACTIONS.CANCEL' | translate }}
+                </button>
+
+                <button
+                  type="button"
+                  class="danger-btn"
+                  [disabled]="deleteConfirmationText !== 'DELETE' || isDeletingAccount"
+                  (click)="confirmDeleteAccount()"
+                >
+                  @if (isDeletingAccount) {
+                    {{ 'COMMON.LOADING' | translate }}
+                  } @else {
+                    {{ 'SETTINGS.DELETE_ACCOUNT_BUTTON' | translate }}
+                  }
+                </button>
+              </div>
+            </div>
+          </div>
+        }
     </article>
   </div>
 </section>

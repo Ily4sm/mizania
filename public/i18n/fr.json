@@ -154,6 +154,12 @@
     "DANGER_ZONE": "Zone dangereuse",
     "DELETE_HINT": "La suppression du compte retirera vos données de Mizania.",
     "DELETE_ACCOUNT": "Supprimer le compte",
-    "DELETE_COMING_SOON": "Cette action sera activée après la mise en place du flux de suppression sécurisé."
+    "DELETE_COMING_SOON": "Cette action sera activée après la mise en place du flux de suppression sécurisé.",
+    "DELETE_ACCOUNT_TITLE": "Supprimer le compte",
+    "DELETE_ACCOUNT_DESCRIPTION": "Cette action supprimera définitivement votre compte et toutes vos données.",
+    "DELETE_ACCOUNT_BUTTON": "Supprimer mon compte",
+    "DELETE_ACCOUNT_CONFIRM_TITLE": "Confirmation de suppression",
+    "DELETE_ACCOUNT_CONFIRM_MESSAGE": "Pour confirmer, écrivez DELETE dans le champ ci-dessous.",
+    "DELETE_ACCOUNT_ERROR": "Impossible de supprimer le compte. Veuillez réessayer."
   }
 }
