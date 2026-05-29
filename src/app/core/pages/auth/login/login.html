@@ -1,0 +1,29 @@
+<section>
+  <h1 class="page-title">{{ 'AUTH.LOGIN_TITLE' | translate }}</h1>
+  <p class="page-subtitle">{{ 'AUTH.LOGIN_SUBTITLE' | translate }}</p>
+
+  <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+    <label class="field">
+      <span>{{ 'AUTH.EMAIL' | translate }}</span>
+      <input class="input" type="email" formControlName="email" />
+    </label>
+
+    <label class="field">
+      <span>{{ 'AUTH.PASSWORD' | translate }}</span>
+      <input class="input" type="password" formControlName="password" />
+    </label>
+
+    @if (errorMessage()) {
+      <p class="error-message">{{ errorMessage() }}</p>
+    }
+
+    <button class="btn btn-primary" type="submit" [disabled]="loading()">
+      {{ loading() ? 'Loading...' : ('ACTIONS.LOGIN' | translate) }}
+    </button>
+  </form>
+
+  <p class="auth-link">
+    No account?
+    <a routerLink="/auth/register">Create one</a>
+  </p>
+</section>

@@ -1,0 +1,30 @@
+<section class="verify-page">
+  @if (checking()) {
+    <div class="status-icon loading">⏳</div>
+
+    <h1 class="page-title">Confirmation en cours...</h1>
+    <p class="page-subtitle">
+      Nous vérifions votre email. Cela ne prendra qu’un instant.
+    </p>
+  } @else if (verified()) {
+    <div class="status-icon success">✅</div>
+
+    <h1 class="page-title">Email vérifié</h1>
+    <p class="page-subtitle">
+      Votre compte est confirmé. Redirection vers votre tableau de bord...
+    </p>
+  } @else {
+    <div class="status-icon info">📩</div>
+
+    <h1 class="page-title">{{ 'AUTH.VERIFY_TITLE' | translate }}</h1>
+    <p class="page-subtitle">
+      Si vous venez de créer votre compte, ouvrez le lien reçu par email.
+      Si vous l’avez déjà confirmé, connectez-vous.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" routerLink="/auth/login">Se connecter</a>
+      <a class="btn" routerLink="/auth/register">Créer un compte</a>
+    </div>
+  }
+</section>

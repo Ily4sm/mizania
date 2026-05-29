@@ -1,0 +1,38 @@
+<section>
+  <h1 class="page-title">{{ 'AUTH.REGISTER_TITLE' | translate }}</h1>
+  <p class="page-subtitle">{{ 'AUTH.REGISTER_SUBTITLE' | translate }}</p>
+
+  <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+    <label class="field">
+      <span>{{ 'AUTH.FULL_NAME' | translate }}</span>
+      <input class="input" type="text" formControlName="fullName" />
+    </label>
+
+    <label class="field">
+      <span>{{ 'AUTH.EMAIL' | translate }}</span>
+      <input class="input" type="email" formControlName="email" />
+    </label>
+
+    <label class="field">
+      <span>{{ 'AUTH.PASSWORD' | translate }}</span>
+      <input class="input" type="password" formControlName="password" />
+    </label>
+
+    @if (errorMessage()) {
+      <p class="error-message">{{ errorMessage() }}</p>
+    }
+
+    @if (successMessage()) {
+      <p class="success-message">{{ successMessage() }}</p>
+    }
+
+    <button class="btn btn-primary" type="submit" [disabled]="loading()">
+      {{ loading() ? 'Loading...' : ('ACTIONS.REGISTER' | translate) }}
+    </button>
+  </form>
+
+  <p class="auth-link">
+    Already have an account?
+    <a routerLink="/auth/login">Login</a>
+  </p>
+</section>
