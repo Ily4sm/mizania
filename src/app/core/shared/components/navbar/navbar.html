@@ -9,7 +9,8 @@
     <app-theme-toggle />
 
     <button class="logout-btn" type="button" (click)="logout()">
-      {{ 'ACTIONS.LOGOUT' | translate }}
+      <lucide-icon [img]="icons.logout" size="18"></lucide-icon>
+      <span>{{ 'ACTIONS.LOGOUT' | translate }}</span>
     </button>
   </div>
 </header>

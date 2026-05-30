@@ -33,6 +33,20 @@ h1 {
   color: var(--text);
   font-weight: 900;
   box-shadow: var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: var(--surface-soft);
+}
+
+:host-context([dir='rtl']) {
+  .logout-btn {
+    flex-direction: row-reverse;
+  }
 }
 
 @media (max-width: 640px) {
@@ -48,5 +62,9 @@ h1 {
   .logout-btn {
     padding: 10px 12px;
     font-size: 0.85rem;
+  }
+
+  .logout-btn span {
+    display: none;
   }
 }

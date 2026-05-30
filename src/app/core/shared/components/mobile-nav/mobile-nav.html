@@ -1,0 +1,25 @@
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" aria-label="Dashboard">
+    <lucide-icon [img]="icons.dashboard" size="20"></lucide-icon>
+  </a>
+
+  <a routerLink="/budgets" routerLinkActive="active" aria-label="Budgets">
+    <lucide-icon [img]="icons.budgets" size="20"></lucide-icon>
+  </a>
+
+  <a routerLink="/transactions" routerLinkActive="active" aria-label="Transactions">
+    <lucide-icon [img]="icons.transactions" size="20"></lucide-icon>
+  </a>
+
+  <a routerLink="/categories" routerLinkActive="active" aria-label="Categories">
+    <lucide-icon [img]="icons.categories" size="20"></lucide-icon>
+  </a>
+
+  <a routerLink="/recurring-items" routerLinkActive="active" aria-label="Fixed items">
+    <lucide-icon [img]="icons.recurring" size="20"></lucide-icon>
+  </a>
+
+  <a routerLink="/settings" routerLinkActive="active" aria-label="Settings">
+    <lucide-icon [img]="icons.settings" size="20"></lucide-icon>
+  </a>
+</nav>

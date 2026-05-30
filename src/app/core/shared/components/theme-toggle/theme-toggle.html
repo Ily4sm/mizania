@@ -1,0 +1,17 @@
+<button
+  type="button"
+  class="theme-switch"
+  [class.dark]="isDark"
+  (click)="toggleTheme()"
+  aria-label="Toggle theme"
+>
+  <span class="switch-track">
+    <span class="switch-thumb">
+      @if (isDark) {
+        <lucide-icon [img]="icons.moon" size="10" strokeWidth="2.5"></lucide-icon>
+      } @else {
+        <lucide-icon [img]="icons.sun" size="10" strokeWidth="2.5"></lucide-icon>
+      }
+    </span>
+  </span>
+</button>

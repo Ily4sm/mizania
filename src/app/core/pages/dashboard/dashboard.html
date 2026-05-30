@@ -15,6 +15,10 @@
 
   <div class="stats-grid">
     <article class="stat-card card">
+      <div class="stat-icon income">
+        <lucide-icon [img]="icons.income" size="20"></lucide-icon>
+      </div>
+
       <span>{{ 'DASHBOARD.INCOME' | translate }}</span>
       <strong>
         <bdi class="money" dir="ltr">{{ formatMoney(totalIncome()) }}</bdi>
@@ -23,6 +27,10 @@
     </article>
 
     <article class="stat-card card">
+      <div class="stat-icon expenses">
+        <lucide-icon [img]="icons.expenses" size="20"></lucide-icon>
+      </div>
+
       <span>{{ 'DASHBOARD.EXPENSES' | translate }}</span>
       <strong>
         <bdi class="money" dir="ltr">{{ formatMoney(totalExpenses()) }}</bdi>
@@ -31,6 +39,10 @@
     </article>
 
     <article class="stat-card card">
+      <div class="stat-icon remaining">
+        <lucide-icon [img]="icons.remaining" size="20"></lucide-icon>
+      </div>
+
       <span>{{ 'DASHBOARD.REMAINING' | translate }}</span>
       <strong>
         <bdi class="money" dir="ltr">{{ formatMoney(remaining()) }}</bdi>
@@ -39,6 +51,10 @@
     </article>
 
     <article class="stat-card card highlight">
+      <div class="stat-icon safe">
+        <lucide-icon [img]="icons.safeDaily" size="20"></lucide-icon>
+      </div>
+
       <span>{{ 'DASHBOARD.SAFE_DAILY' | translate }}</span>
       <strong>
         <bdi class="money" dir="ltr">{{ formatMoney(safeDailySpending()) }}</bdi>
@@ -85,6 +101,7 @@
       </div>
 
       <div class="circle">
+        <lucide-icon [img]="icons.health" size="28"></lucide-icon>
         <bdi class="money" dir="ltr">{{ budgetHealthScore() }}%</bdi>
       </div>
     </article>
@@ -95,7 +112,10 @@
       @if (transactionService.loading()) {
         <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
       } @else if (recentTransactions().length === 0) {
-        <p class="muted">{{ 'DASHBOARD.NO_TRANSACTIONS' | translate }}</p>
+        <div class="empty-state">
+          <lucide-icon [img]="icons.empty" size="26"></lucide-icon>
+          <p class="muted">{{ 'DASHBOARD.NO_TRANSACTIONS' | translate }}</p>
+        </div>
       } @else {
         <div class="recent-list">
           @for (transaction of recentTransactions(); track transaction.id) {

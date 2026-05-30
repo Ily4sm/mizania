@@ -19,6 +19,37 @@
 
 .stat-card {
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin-bottom: 0.85rem;
+  border-radius: 0.95rem;
+  display: grid;
+  place-items: center;
+}
+
+.stat-icon.income {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.stat-icon.expenses {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.stat-icon.remaining {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.stat-icon.safe {
+  color: white;
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .stat-card span {
@@ -82,14 +113,17 @@
 }
 
 .circle {
-  width: 130px;
-  height: 130px;
+  width: 136px;
+  height: 136px;
   border-radius: 999px;
   display: grid;
   place-items: center;
+  align-content: center;
+  gap: 0.35rem;
   border: 12px solid color-mix(in srgb, var(--primary) 70%, var(--border));
+  color: var(--primary);
   font-weight: 900;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
 }
 
 .recent-card {
@@ -135,6 +169,19 @@
   color: var(--primary);
 }
 
+.empty-state {
+  min-height: 120px;
+  border: 1px dashed var(--border);
+  border-radius: 18px;
+  background: var(--surface-soft);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 .muted {
   color: var(--muted);
   margin-bottom: 0;
@@ -145,6 +192,35 @@
   unicode-bidi: isolate;
   display: inline-block;
   white-space: nowrap;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.wide-chart {
+  min-width: 0;
+}
+
+:host-context([dir='rtl']) {
+  .hero,
+  .budget-health,
+  .recent-item {
+    text-align: right;
+  }
+}
+
+@media (min-width: 1180px) {
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .wide-chart {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -175,38 +251,9 @@
     align-items: flex-start;
     flex-direction: column;
   }
-}
 
-.charts-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 1180px) {
-  .charts-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-  }
-}
-
-.charts-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-.wide-chart {
-  min-width: 0;
-}
-
-@media (min-width: 1180px) {
-  .charts-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: stretch;
-  }
-
-  .wide-chart {
-    grid-column: 1 / -1;
+  .circle {
+    width: 120px;
+    height: 120px;
   }
 }

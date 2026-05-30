@@ -1,0 +1,79 @@
+.theme-switch {
+  width: 48px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.switch-track {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.22);
+  transition: 0.2s ease;
+}
+
+.switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #f59e0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.22);
+  transition: 0.22s ease;
+  padding: 0;
+}
+
+.theme-switch.dark {
+  .switch-track {
+    background: rgba(16, 185, 129, 0.28);
+  }
+
+  .switch-thumb {
+    left: 20px;
+    background: #0f172a;
+    color: #93c5fd;
+  }
+}
+
+.theme-switch:hover {
+  background: var(--surface-soft);
+}
+
+.theme-switch:focus-visible {
+  outline: none;
+  box-shadow:
+    var(--shadow),
+    0 0 0 3px rgba(16, 185, 129, 0.16);
+}
+
+:host-context([dir='rtl']) {
+  .switch-thumb {
+    left: auto;
+    right: 2px;
+  }
+
+  .theme-switch.dark .switch-thumb {
+    left: auto;
+    right: 20px;
+  }
+}
+
+.switch-thumb lucide-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

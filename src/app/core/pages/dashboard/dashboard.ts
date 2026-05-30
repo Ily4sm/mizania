@@ -1,8 +1,17 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
+import {
+  ArrowDownRight,
+  ArrowUpRight,
+  CalendarDays,
+  HeartPulse,
+  LucideAngularModule,
+  PiggyBank,
+  Wallet,
+} from 'lucide-angular';
+import { Transaction } from '../../models/transaction.model';
 import { ProfileService } from '../../services/profile.service';
 import { TransactionService } from '../../services/transaction.service';
-import { Transaction } from '../../models/transaction.model';
 import {
   ExpenseCategoryChart,
   ExpenseCategoryChartItem,
@@ -18,6 +27,7 @@ import {
   standalone: true,
   imports: [
     TranslatePipe,
+    LucideAngularModule,
     ExpenseCategoryChart,
     IncomeExpenseChart,
     MonthlyTrendChart,
@@ -28,6 +38,15 @@ import {
 export class Dashboard implements OnInit {
   readonly profileService = inject(ProfileService);
   readonly transactionService = inject(TransactionService);
+
+  readonly icons = {
+    income: ArrowUpRight,
+    expenses: ArrowDownRight,
+    remaining: Wallet,
+    safeDaily: CalendarDays,
+    health: HeartPulse,
+    empty: PiggyBank,
+  };
 
   expenseCategoryChartData: ExpenseCategoryChartItem[] = [];
   monthlyTrendChartData: MonthlyTrendChartPoint[] = [];
@@ -153,7 +172,7 @@ export class Dashboard implements OnInit {
 
   getTransactionSubtitle(transaction: Transaction): string {
     if (transaction.categories) {
-      return `${transaction.categories.icon} ${transaction.categories.name}`;
+      return transaction.categories.name;
     }
 
     return 'No category';

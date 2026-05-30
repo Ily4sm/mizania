@@ -1,0 +1,44 @@
+<aside class="sidebar">
+  <div class="brand">
+    <div class="logo">
+      <lucide-icon [img]="icons.wallet" size="24" strokeWidth="2.5"></lucide-icon>
+    </div>
+
+    <div>
+      <strong>Mizania</strong>
+      <span>Budget manager</span>
+    </div>
+  </div>
+
+  <nav>
+    <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <lucide-icon [img]="icons.dashboard" size="19"></lucide-icon>
+      {{ 'NAV.DASHBOARD' | translate }}
+    </a>
+
+    <a routerLink="/budgets" routerLinkActive="active">
+      <lucide-icon [img]="icons.budgets" size="19"></lucide-icon>
+      {{ 'NAV.BUDGETS' | translate }}
+    </a>
+
+    <a routerLink="/transactions" routerLinkActive="active">
+      <lucide-icon [img]="icons.transactions" size="19"></lucide-icon>
+      {{ 'NAV.TRANSACTIONS' | translate }}
+    </a>
+
+    <a routerLink="/categories" routerLinkActive="active">
+      <lucide-icon [img]="icons.categories" size="19"></lucide-icon>
+      {{ 'NAV.CATEGORIES' | translate }}
+    </a>
+
+    <a routerLink="/recurring-items" routerLinkActive="active">
+      <lucide-icon [img]="icons.recurring" size="19"></lucide-icon>
+      {{ 'NAV.RECURRING' | translate }}
+    </a>
+
+    <a routerLink="/settings" routerLinkActive="active">
+      <lucide-icon [img]="icons.settings" size="19"></lucide-icon>
+      {{ 'NAV.SETTINGS' | translate }}
+    </a>
+  </nav>
+</aside>
