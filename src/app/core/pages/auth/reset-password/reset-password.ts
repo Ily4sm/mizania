@@ -1,19 +1,26 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { Eye, EyeOff, LockKeyhole, LucideAngularModule, Mail, UserPlus } from 'lucide-angular';
+import {
+  CircleCheck,
+  Eye,
+  EyeOff,
+  LockKeyhole,
+  LucideAngularModule,
+  ShieldCheck,
+} from 'lucide-angular';
 import { AuthService } from '../../../services/auth.service';
 import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-reset-password',
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, TranslatePipe, LucideAngularModule],
-  templateUrl: './register.html',
-  styleUrl: './register.scss',
+  templateUrl: './reset-password.html',
+  styleUrl: './reset-password.scss',
 })
-export class Register {
+export class ResetPassword implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
@@ -21,21 +28,27 @@ export class Register {
   private readonly translateService = inject(TranslateService);
 
   readonly icons = {
-    userPlus: UserPlus,
-    mail: Mail,
+    shield: ShieldCheck,
     lock: LockKeyhole,
+    success: CircleCheck,
     eye: Eye,
     eyeOff: EyeOff,
   };
 
   loading = signal(false);
+  checking = signal(true);
+  hasSession = signal(false);
   showPassword = signal(false);
+  showConfirmPassword = signal(false);
 
   form = this.fb.nonNullable.group({
-    fullName: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
   });
+
+  async ngOnInit(): Promise<void> {
+    await this.checkResetSession();
+  }
 
   async submit(): Promise<void> {
     if (this.form.invalid) {
@@ -49,22 +62,32 @@ export class Register {
       return;
     }
 
+    const value = this.form.getRawValue();
+
+    if (value.password !== value.confirmPassword) {
+      this.toastService.error(
+        this.t('AUTH.PASSWORDS_DONT_MATCH_TITLE'),
+        this.t('AUTH.PASSWORDS_DONT_MATCH_MESSAGE')
+      );
+
+      return;
+    }
+
     this.loading.set(true);
 
     try {
-      await this.authService.register(this.form.getRawValue());
+      await this.authService.updatePassword(value.password);
 
       this.toastService.success(
-        this.t('AUTH.REGISTER_SUCCESS_TITLE'),
-        this.t('AUTH.REGISTER_SUCCESS_MESSAGE')
+        this.t('AUTH.PASSWORD_UPDATED_TITLE'),
+        this.t('AUTH.PASSWORD_UPDATED_MESSAGE')
       );
 
-      setTimeout(() => {
-        this.router.navigateByUrl('/auth/verify-email');
-      }, 900);
+      await this.authService.logout();
+      await this.router.navigateByUrl('/auth/login');
     } catch (error) {
       this.toastService.error(
-        this.t('AUTH.REGISTER_FAILED_TITLE'),
+        this.t('AUTH.PASSWORD_UPDATE_FAILED_TITLE'),
         this.getErrorMessage(error)
       );
     } finally {
@@ -76,6 +99,22 @@ export class Register {
     this.showPassword.update((value) => !value);
   }
 
+  toggleConfirmPassword(): void {
+    this.showConfirmPassword.update((value) => !value);
+  }
+
+  private async checkResetSession(): Promise<void> {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
+      const session = await this.authService.getSession();
+
+      this.hasSession.set(!!session);
+    } finally {
+      this.checking.set(false);
+    }
+  }
+
   private t(key: string): string {
     return this.translateService.instant(key);
   }
@@ -85,6 +124,6 @@ export class Register {
       return error.message;
     }
 
-    return this.t('AUTH.REGISTER_FAILED_MESSAGE');
+    return this.t('COMMON.SOMETHING_WENT_WRONG');
   }
 }

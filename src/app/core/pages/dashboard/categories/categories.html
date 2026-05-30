@@ -24,10 +24,11 @@
 
         <label class="field">
           <span>{{ 'CATEGORIES.TYPE' | translate }}</span>
-          <select class="input" formControlName="type">
-            <option value="expense">{{ 'CATEGORIES.EXPENSE' | translate }}</option>
-            <option value="income">{{ 'CATEGORIES.INCOME' | translate }}</option>
-          </select>
+          <app-select
+            formControlName="type"
+            [options]="typeOptions"
+            [placeholder]="'CATEGORIES.TYPE' | translate"
+          ></app-select>
         </label>
 
         <div class="mini-grid">
@@ -41,10 +42,22 @@
             />
           </label>
 
-          <label class="field">
+          <div class="field">
             <span>{{ 'CATEGORIES.COLOR' | translate }}</span>
-            <input class="input color-input" type="color" formControlName="color" />
-          </label>
+
+            <div class="color-palette">
+              @for (color of colorOptions; track color) {
+                <button
+                  type="button"
+                  class="color-dot"
+                  [class.active]="selectedColor === color"
+                  [style.background]="color"
+                  (click)="selectColor(color)"
+                  [attr.aria-label]="color"
+                ></button>
+              }
+            </div>
+          </div>
         </div>
 
         <div class="form-actions">
@@ -96,7 +109,12 @@
                   <button type="button" (click)="editCategory(category)">
                     {{ 'ACTIONS.EDIT' | translate }}
                   </button>
-                  <button type="button" class="danger" (click)="deleteCategory(category)">
+
+                  <button
+                    type="button"
+                    class="danger"
+                    (click)="deleteCategory(category)"
+                  >
                     {{ 'ACTIONS.DELETE' | translate }}
                   </button>
                 </div>
@@ -136,7 +154,12 @@
                   <button type="button" (click)="editCategory(category)">
                     {{ 'ACTIONS.EDIT' | translate }}
                   </button>
-                  <button type="button" class="danger" (click)="deleteCategory(category)">
+
+                  <button
+                    type="button"
+                    class="danger"
+                    (click)="deleteCategory(category)"
+                  >
                     {{ 'ACTIONS.DELETE' | translate }}
                   </button>
                 </div>

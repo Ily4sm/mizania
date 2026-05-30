@@ -3,13 +3,14 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Category, CategoryType } from '../../../models/category.model';
 import { CategoryService } from '../../../services/category.service';
-import { ToastService } from '../../../shared/services/toast.service';
 import { ConfirmService } from '../../../shared/services/confirm.service';
+import { ToastService } from '../../../shared/services/toast.service';
+import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
   templateUrl: './categories.html',
   styleUrl: './categories.scss',
 })
@@ -22,6 +23,16 @@ export class Categories implements OnInit {
   readonly categoryService = inject(CategoryService);
 
   editingCategoryId = signal<string | null>(null);
+
+  readonly colorOptions = [
+    '#10b981',
+    '#f59e0b',
+    '#3b82f6',
+    '#8b5cf6',
+    '#ef4444',
+    '#ec4899',
+    '#64748b',
+  ];
 
   incomeCategories = computed(() =>
     this.categoryService.categories().filter((category) => category.type === 'income')
@@ -40,6 +51,27 @@ export class Categories implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.categoryService.loadCategories();
+  }
+
+  get typeOptions(): AppSelectOption[] {
+    return [
+      {
+        label: this.t('CATEGORIES.EXPENSE'),
+        value: 'expense',
+      },
+      {
+        label: this.t('CATEGORIES.INCOME'),
+        value: 'income',
+      },
+    ];
+  }
+
+  get selectedColor(): string {
+    return this.form.controls.color.value;
+  }
+
+  selectColor(color: string): void {
+    this.form.patchValue({ color });
   }
 
   async submit(): Promise<void> {
@@ -103,9 +135,7 @@ export class Categories implements OnInit {
       danger: true,
     });
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
 
     try {
       await this.categoryService.deleteCategory(category.id);
@@ -140,9 +170,7 @@ export class Categories implements OnInit {
   getCategoryBadge(category: Category): string {
     const cleanName = category.name.trim();
 
-    if (!cleanName) {
-      return category.type === 'income' ? '+' : '-';
-    }
+    if (!cleanName) return category.type === 'income' ? '+' : '-';
 
     return cleanName.charAt(0).toUpperCase();
   }
@@ -152,9 +180,7 @@ export class Categories implements OnInit {
   }
 
   private getErrorMessage(error: unknown): string {
-    if (error instanceof Error) {
-      return error.message;
-    }
+    if (error instanceof Error) return error.message;
 
     return this.t('COMMON.SOMETHING_WENT_WRONG');
   }

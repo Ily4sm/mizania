@@ -19,10 +19,12 @@
       <form class="transaction-form" [formGroup]="form" (ngSubmit)="submit()">
         <label class="field">
           <span>{{ 'TRANSACTIONS.TYPE' | translate }}</span>
-          <select class="input" formControlName="type" (change)="onTypeChange($event)">
-            <option value="expense">{{ 'TRANSACTIONS.EXPENSE' | translate }}</option>
-            <option value="income">{{ 'TRANSACTIONS.INCOME' | translate }}</option>
-          </select>
+          <app-select
+            formControlName="type"
+            [options]="typeOptions"
+            [placeholder]="'TRANSACTIONS.TYPE' | translate"
+            (selectionChange)="onTypeChange($event)"
+          ></app-select>
         </label>
 
         <label class="field">
@@ -42,15 +44,11 @@
 
         <label class="field">
           <span>{{ 'TRANSACTIONS.CATEGORY' | translate }}</span>
-          <select class="input" formControlName="category_id">
-            <option value="">{{ 'TRANSACTIONS.NO_CATEGORY' | translate }}</option>
-
-            @for (category of filteredCategories(); track category.id) {
-              <option [value]="category.id">
-                {{ category.name }}
-              </option>
-            }
-          </select>
+          <app-select
+            formControlName="category_id"
+            [options]="categoryOptions"
+            [placeholder]="'TRANSACTIONS.NO_CATEGORY' | translate"
+          ></app-select>
         </label>
 
         <label class="field">

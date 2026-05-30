@@ -29,15 +29,14 @@
       <form class="budget-form" [formGroup]="form" (ngSubmit)="submit()">
         <label class="field">
           <span>{{ 'BUDGETS.CATEGORY' | translate }}</span>
-          <select class="input" formControlName="category_id">
-            <option value="">{{ 'BUDGETS.CHOOSE_CATEGORY' | translate }}</option>
-
-            @for (category of expenseCategories(); track category.id) {
-              <option [value]="category.id">
-                {{ getCategoryName(category) }}
-              </option>
-            }
-          </select>
+          <label class="field">
+            <span>{{ 'BUDGETS.CATEGORY' | translate }}</span>
+            <app-select
+              formControlName="category_id"
+              [options]="categoryOptions"
+              [placeholder]="'BUDGETS.CHOOSE_CATEGORY' | translate"
+            ></app-select>
+          </label>
         </label>
 
         <label class="field">

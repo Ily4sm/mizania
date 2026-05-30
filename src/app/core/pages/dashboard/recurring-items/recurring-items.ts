@@ -4,14 +4,15 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RecurringItem } from '../../../models/recurring-item.model';
 import { TransactionType } from '../../../models/transaction.model';
 import { CategoryService } from '../../../services/category.service';
+import { ConfirmService } from '../../../shared/services/confirm.service';
 import { RecurringItemService } from '../../../services/recurring-item.service';
 import { ToastService } from '../../../shared/services/toast.service';
-import { ConfirmService } from '../../../shared/services/confirm.service';
+import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
 
 @Component({
   selector: 'app-recurring-items',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
   templateUrl: './recurring-items.html',
   styleUrl: './recurring-items.scss',
 })
@@ -50,8 +51,34 @@ export class RecurringItems implements OnInit {
     ]);
   }
 
-  onTypeChange(event: Event): void {
-    const type = (event.target as HTMLSelectElement).value as TransactionType;
+  get typeOptions(): AppSelectOption[] {
+    return [
+      {
+        label: this.t('RECURRING.EXPENSE'),
+        value: 'expense',
+      },
+      {
+        label: this.t('RECURRING.INCOME'),
+        value: 'income',
+      },
+    ];
+  }
+
+  get categoryOptions(): AppSelectOption[] {
+    return [
+      {
+        label: this.t('RECURRING.NO_CATEGORY'),
+        value: '',
+      },
+      ...this.filteredCategories().map((category) => ({
+        label: category.name,
+        value: category.id,
+      })),
+    ];
+  }
+
+  onTypeChange(value: string): void {
+    const type = value as TransactionType;
     this.selectedType.set(type);
     this.form.patchValue({ category_id: '' });
   }
@@ -133,9 +160,7 @@ export class RecurringItems implements OnInit {
       danger: true,
     });
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
 
     try {
       await this.recurringItemService.deleteRecurringItem(item.id);
@@ -188,9 +213,7 @@ export class RecurringItems implements OnInit {
   }
 
   getCategoryLabel(item: RecurringItem): string {
-    if (!item.categories) {
-      return this.t('RECURRING.NO_CATEGORY');
-    }
+    if (!item.categories) return this.t('RECURRING.NO_CATEGORY');
 
     return item.categories.name;
   }
@@ -198,9 +221,7 @@ export class RecurringItems implements OnInit {
   getItemBadge(item: RecurringItem): string {
     const title = item.title.trim();
 
-    if (!title) {
-      return item.type === 'income' ? '+' : '-';
-    }
+    if (!title) return item.type === 'income' ? '+' : '-';
 
     return title.charAt(0).toUpperCase();
   }
@@ -214,9 +235,7 @@ export class RecurringItems implements OnInit {
   }
 
   private getErrorMessage(error: unknown): string {
-    if (error instanceof Error) {
-      return error.message;
-    }
+    if (error instanceof Error) return error.message;
 
     return this.t('COMMON.SOMETHING_WENT_WRONG');
   }

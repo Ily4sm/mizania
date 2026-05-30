@@ -1,38 +1,72 @@
-<section>
-  <h1 class="page-title">{{ 'AUTH.REGISTER_TITLE' | translate }}</h1>
-  <p class="page-subtitle">{{ 'AUTH.REGISTER_SUBTITLE' | translate }}</p>
+<section class="auth-page">
+  <div class="auth-card card">
+    <div class="auth-icon">
+      <lucide-icon [img]="icons.userPlus" size="28" strokeWidth="2.4"></lucide-icon>
+    </div>
 
-  <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
-    <label class="field">
-      <span>{{ 'AUTH.FULL_NAME' | translate }}</span>
-      <input class="input" type="text" formControlName="fullName" />
-    </label>
+    <div class="auth-heading">
+      <p class="eyebrow">{{ 'APP.NAME' | translate }}</p>
+      <h1 class="page-title">{{ 'AUTH.REGISTER_TITLE' | translate }}</h1>
+      <p class="page-subtitle">{{ 'AUTH.REGISTER_SUBTITLE' | translate }}</p>
+    </div>
 
-    <label class="field">
-      <span>{{ 'AUTH.EMAIL' | translate }}</span>
-      <input class="input" type="email" formControlName="email" />
-    </label>
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()">
+      <label class="field">
+        <span>{{ 'AUTH.FULL_NAME' | translate }}</span>
+        <input class="input" type="text" formControlName="fullName" autocomplete="name" />
+      </label>
 
-    <label class="field">
-      <span>{{ 'AUTH.PASSWORD' | translate }}</span>
-      <input class="input" type="password" formControlName="password" />
-    </label>
+      <label class="field">
+        <span>{{ 'AUTH.EMAIL' | translate }}</span>
 
-    @if (errorMessage()) {
-      <p class="error-message">{{ errorMessage() }}</p>
-    }
+        <div class="input-wrap">
+          <lucide-icon [img]="icons.mail" size="18"></lucide-icon>
+          <input class="input" type="email" formControlName="email" autocomplete="email" />
+        </div>
+      </label>
 
-    @if (successMessage()) {
-      <p class="success-message">{{ successMessage() }}</p>
-    }
+      <label class="field">
+        <span>{{ 'AUTH.PASSWORD' | translate }}</span>
 
-    <button class="btn btn-primary" type="submit" [disabled]="loading()">
-      {{ loading() ? 'Loading...' : ('ACTIONS.REGISTER' | translate) }}
-    </button>
-  </form>
+        <div class="input-wrap">
+          <lucide-icon [img]="icons.lock" size="18"></lucide-icon>
 
-  <p class="auth-link">
-    Already have an account?
-    <a routerLink="/auth/login">Login</a>
-  </p>
+          <input
+            class="input"
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="new-password"
+          />
+
+          <button
+            class="icon-btn"
+            type="button"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+          >
+            @if (showPassword()) {
+              <lucide-icon [img]="icons.eyeOff" size="18"></lucide-icon>
+            } @else {
+              <lucide-icon [img]="icons.eye" size="18"></lucide-icon>
+            }
+          </button>
+        </div>
+
+        <small>{{ 'AUTH.PASSWORD_HINT' | translate }}</small>
+      </label>
+
+      <button class="btn btn-primary submit-btn" type="submit" [disabled]="loading()">
+        @if (loading()) {
+          {{ 'COMMON.LOADING' | translate }}
+        } @else {
+          {{ 'ACTIONS.REGISTER' | translate }}
+        }
+      </button>
+    </form>
+
+    <p class="auth-link">
+      {{ 'AUTH.HAVE_ACCOUNT' | translate }}
+      <a routerLink="/auth/login">{{ 'ACTIONS.LOGIN' | translate }}</a>
+    </p>
+  </div>
 </section>

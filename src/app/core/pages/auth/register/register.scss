@@ -1,50 +1,140 @@
+.auth-page {
+  display: grid;
+  place-items: center;
+}
+
+.auth-card {
+  width: min(100%, 520px);
+  padding: 2rem;
+}
+
+.auth-icon {
+  width: 3.4rem;
+  height: 3.4rem;
+  margin-bottom: 1.2rem;
+  border-radius: 1.2rem;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 18px 40px rgba(16, 185, 129, 0.22);
+}
+
+.auth-heading {
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--primary);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
 .auth-form {
   display: grid;
-  gap: 14px;
-  margin-top: 24px;
+  gap: 1rem;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 0.5rem;
+
+  span {
+    color: var(--muted);
+    font-weight: 800;
+    font-size: 0.9rem;
+  }
+
+  small {
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
 }
 
-.field span {
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  > lucide-icon {
+    position: absolute;
+    left: 1rem;
+    color: var(--muted);
+    pointer-events: none;
+  }
+
+  .input {
+    padding-left: 2.8rem;
+  }
+}
+
+.icon-btn {
+  position: absolute;
+  right: 0.65rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
   color: var(--muted);
-  font-weight: 800;
-  font-size: 0.9rem;
+  display: grid;
+  place-items: center;
+
+  &:hover {
+    background: var(--surface-soft);
+    color: var(--text);
+  }
 }
 
-.error-message,
-.success-message {
-  margin: 0;
-  padding: 12px 14px;
-  border-radius: 14px;
-  font-weight: 800;
-}
-
-.error-message {
-  background: color-mix(in srgb, var(--danger) 12%, transparent);
-  color: var(--danger);
-}
-
-.success-message {
-  background: color-mix(in srgb, var(--primary) 14%, transparent);
-  color: var(--primary);
+.submit-btn {
+  margin-top: 0.25rem;
+  width: 100%;
 }
 
 .auth-link {
-  margin-top: 18px;
+  margin: 1.25rem 0 0;
   color: var(--muted);
   text-align: center;
-}
 
-a {
-  color: var(--primary);
-  font-weight: 900;
+  a {
+    color: var(--primary);
+    font-weight: 900;
+  }
 }
 
 button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+:host-context([dir='rtl']) {
+  .auth-card,
+  .auth-heading {
+    text-align: right;
+  }
+
+  .input-wrap {
+    > lucide-icon {
+      left: auto;
+      right: 1rem;
+    }
+
+    .input {
+      padding-left: 1rem;
+      padding-right: 2.8rem;
+    }
+  }
+
+  .icon-btn {
+    right: auto;
+    left: 0.65rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .auth-card {
+    padding: 1.35rem;
+    border-radius: 1.4rem;
+  }
 }

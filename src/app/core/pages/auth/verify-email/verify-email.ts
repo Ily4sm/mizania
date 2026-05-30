@@ -1,18 +1,25 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { CircleCheck, Clock3, LucideAngularModule, MailCheck } from 'lucide-angular';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-verify-email',
   standalone: true,
-  imports: [RouterLink, TranslatePipe],
+  imports: [RouterLink, TranslatePipe, LucideAngularModule],
   templateUrl: './verify-email.html',
   styleUrl: './verify-email.scss',
 })
 export class VerifyEmail implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+
+  readonly icons = {
+    loading: Clock3,
+    success: CircleCheck,
+    mail: MailCheck,
+  };
 
   checking = signal(true);
   verified = signal(false);

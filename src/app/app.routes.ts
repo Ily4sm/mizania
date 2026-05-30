@@ -38,6 +38,13 @@ export const routes: Routes = [
             (m) => m.ForgotPassword
           ),
       },
+      {
+        path: 'reset-password',
+        loadComponent: () =>
+          import('./core/pages/auth/reset-password/reset-password').then(
+            (m) => m.ResetPassword
+          ),
+      },
     ],
   },
   {
@@ -64,8 +71,7 @@ export const routes: Routes = [
         path: 'transactions',
         loadComponent: () =>
           import('./core/pages/dashboard/transactions/transactions').then(
-            (m) => m.Transactions
-          ),
+            (m) => m.Transactions),
       },
       {
         path: 'categories',

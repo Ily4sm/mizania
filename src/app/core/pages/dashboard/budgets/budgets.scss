@@ -1,110 +1,49 @@
 .budgets-page {
   display: grid;
-  gap: 20px;
+  gap: 1rem;
 }
 
 .page-header {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  gap: 1rem;
   align-items: flex-start;
 }
 
 .month-picker {
-  min-width: 220px;
+  width: min(100%, 220px);
   display: grid;
-  gap: 8px;
+  gap: 0.4rem;
 }
 
 .month-picker span,
 .field span {
   color: var(--muted);
-  font-weight: 800;
-  font-size: 0.9rem;
+  font-weight: 850;
+  font-size: 0.82rem;
 }
 
 .budgets-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 18px;
+  grid-template-columns: minmax(280px, 340px) 1fr;
+  gap: 1rem;
   align-items: start;
-}
-
-.form-card,
-.list-card {
-  padding: 24px;
-}
-
-.form-card h3,
-.list-card h3 {
-  margin-top: 0;
 }
 
 .budget-form {
   display: grid;
-  gap: 14px;
+  gap: 0.8rem;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 0.4rem;
 }
 
 .form-actions {
   display: flex;
-  gap: 10px;
+  gap: 0.65rem;
   flex-wrap: wrap;
-}
-
-.page-alert {
-  position: relative;
-  overflow: hidden;
-  margin: 0;
-  border-radius: 16px;
-  padding: 13px 14px;
-  font-weight: 900;
-}
-
-.page-alert p {
-  margin: 0;
-}
-
-.page-alert.success {
-  background: color-mix(in srgb, var(--primary) 14%, transparent);
-  color: var(--primary);
-}
-
-.page-alert.error {
-  background: color-mix(in srgb, var(--danger) 12%, transparent);
-  color: var(--danger);
-}
-
-.page-alert span {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  width: 100%;
-  transform-origin: left;
-  animation: alert-progress 3.5s linear forwards;
-}
-
-.page-alert.success span {
-  background: var(--primary);
-}
-
-.page-alert.error span {
-  background: var(--danger);
-}
-
-@keyframes alert-progress {
-  from {
-    transform: scaleX(1);
-  }
-
-  to {
-    transform: scaleX(0);
-  }
 }
 
 .muted {
@@ -114,31 +53,33 @@
 
 .budget-list {
   display: grid;
-  gap: 14px;
+  gap: 0.85rem;
 }
 
 .budget-item {
   display: grid;
-  gap: 16px;
-  padding: 18px;
+  gap: 0.85rem;
+  padding: 1rem;
   border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--surface-soft);
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 82%, transparent), transparent),
+    var(--surface-soft);
 }
 
 .budget-item.warning {
-  border-color: color-mix(in srgb, var(--warning) 55%, var(--border));
+  border-color: color-mix(in srgb, var(--warning) 42%, var(--border));
 }
 
 .budget-item.danger {
-  border-color: color-mix(in srgb, var(--danger) 55%, var(--border));
+  border-color: color-mix(in srgb, var(--danger) 42%, var(--border));
 }
 
 .budget-top {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
+  gap: 0.85rem;
 }
 
 .budget-top strong {
@@ -148,15 +89,37 @@
 .budget-top small {
   display: block;
   color: var(--muted);
-  margin-top: 4px;
+  margin-top: 0.18rem;
+  font-size: 0.8rem;
 }
 
 .budget-top .money {
+  font-weight: 950;
+  font-size: 1rem;
+}
+
+.budget-category-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.budget-category-badge {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.75rem;
+  display: inline-grid;
+  place-items: center;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.82rem;
   font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
 }
 
 .progress-track {
-  height: 10px;
+  height: 0.48rem;
   border-radius: 999px;
   background: var(--surface);
   overflow: hidden;
@@ -179,17 +142,17 @@
 .budget-numbers {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 0.6rem;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
 }
 
 .budget-numbers span {
   display: grid;
-  gap: 6px;
-  padding: 10px;
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  gap: 0.25rem;
+  padding: 0.65rem;
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
 }
 
 .budget-numbers .money {
@@ -207,21 +170,50 @@
 
 .item-actions {
   display: flex;
-  gap: 8px;
+  gap: 0.55rem;
   flex-wrap: wrap;
 }
 
-.item-actions button {
+.item-actions button,
+.item-actions .danger-btn {
   border: 0;
-  border-radius: 999px;
-  padding: 9px 12px;
+  border-radius: 0.85rem;
+  padding: 0.58rem 0.8rem;
   background: var(--surface);
   color: var(--text);
-  font-weight: 800;
+  font-weight: 850;
 }
 
 .item-actions .danger-btn {
   color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 7%, var(--surface));
+}
+
+[dir='rtl'] .budgets-page {
+  text-align: right;
+}
+
+[dir='rtl'] .budget-category-name {
+  flex-direction: row-reverse;
+}
+
+[dir='rtl'] .progress-track {
+  direction: rtl;
+}
+
+[dir='rtl'] .progress-fill {
+  margin-inline-start: auto;
+}
+
+[dir='rtl'] .budget-numbers {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir='rtl'] .budget-numbers .money {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
 }
 
 @media (max-width: 1050px) {
@@ -239,83 +231,17 @@
     width: 100%;
   }
 
+  .budget-list {
+    gap: 0.75rem;
+  }
+
+  .budget-item {
+    padding: 0.85rem;
+    border-radius: 1rem;
+  }
+
   .budget-numbers {
     grid-template-columns: 1fr;
+    gap: 0.45rem;
   }
-}
-
-.budget-category-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-[dir='rtl'] .budget-category-name {
-  flex-direction: row-reverse;
-}
-
-[dir='rtl'] .budgets-page {
-  text-align: right;
-}
-
-[dir='rtl'] .budget-top {
-  flex-direction: row;
-}
-
-[dir='rtl'] .budget-top > div {
-  text-align: right;
-}
-
-[dir='rtl'] .budget-top > .money {
-  margin-inline-start: auto;
-  text-align: left;
-}
-
-[dir='rtl'] .budget-category-name {
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-}
-
-[dir='rtl'] .progress-track {
-  direction: rtl;
-}
-
-[dir='rtl'] .progress-fill {
-  margin-inline-start: auto;
-}
-
-[dir='rtl'] .budget-numbers {
-  direction: rtl;
-  text-align: right;
-}
-
-[dir='rtl'] .budget-numbers span {
-  align-items: flex-start;
-}
-
-[dir='rtl'] .budget-numbers .money {
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: left;
-}
-
-[dir='rtl'] .item-actions {
-  justify-content: flex-start;
-}
-
-.category-icon,
-.transaction-icon,
-.recurring-icon,
-.budget-category-badge {
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.8rem;
-  display: inline-grid;
-  place-items: center;
-  background: #10b981;
-  font-size: 0.85rem;
 }

@@ -4,14 +4,15 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Category } from '../../../models/category.model';
 import { Transaction, TransactionType } from '../../../models/transaction.model';
 import { CategoryService } from '../../../services/category.service';
-import { TransactionService } from '../../../services/transaction.service';
-import { ToastService } from '../../../shared/services/toast.service';
 import { ConfirmService } from '../../../shared/services/confirm.service';
+import { ToastService } from '../../../shared/services/toast.service';
+import { TransactionService } from '../../../services/transaction.service';
+import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
 
 @Component({
   selector: 'app-transactions',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
   templateUrl: './transactions.html',
   styleUrl: './transactions.scss',
 })
@@ -49,8 +50,34 @@ export class Transactions implements OnInit {
     ]);
   }
 
-  onTypeChange(event: Event): void {
-    const type = (event.target as HTMLSelectElement).value as TransactionType;
+  get typeOptions(): AppSelectOption[] {
+    return [
+      {
+        label: this.t('TRANSACTIONS.EXPENSE'),
+        value: 'expense',
+      },
+      {
+        label: this.t('TRANSACTIONS.INCOME'),
+        value: 'income',
+      },
+    ];
+  }
+
+  get categoryOptions(): AppSelectOption[] {
+    return [
+      {
+        label: this.t('TRANSACTIONS.NO_CATEGORY'),
+        value: '',
+      },
+      ...this.filteredCategories().map((category) => ({
+        label: category.name,
+        value: category.id,
+      })),
+    ];
+  }
+
+  onTypeChange(value: string): void {
+    const type = value as TransactionType;
     this.selectedType.set(type);
     this.form.patchValue({ category_id: '' });
   }
@@ -120,7 +147,7 @@ export class Transactions implements OnInit {
     });
   }
 
- async deleteTransaction(transaction: Transaction): Promise<void> {
+  async deleteTransaction(transaction: Transaction): Promise<void> {
     const confirmed = await this.confirmService.confirm({
       title: this.t('TRANSACTIONS.DELETE_DIALOG_TITLE'),
       message: this.t('TRANSACTIONS.DELETE_CONFIRM'),
@@ -129,9 +156,7 @@ export class Transactions implements OnInit {
       danger: true,
     });
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
 
     try {
       await this.transactionService.deleteTransaction(transaction.id);
@@ -167,9 +192,7 @@ export class Transactions implements OnInit {
   }
 
   getCategoryLabel(transaction: Transaction): string {
-    if (!transaction.categories) {
-      return this.t('TRANSACTIONS.NO_CATEGORY');
-    }
+    if (!transaction.categories) return this.t('TRANSACTIONS.NO_CATEGORY');
 
     return transaction.categories.name;
   }
@@ -190,10 +213,6 @@ export class Transactions implements OnInit {
     return `${Math.round(Number(value)).toLocaleString('fr-FR')} DH`;
   }
 
-  trackByCategory(_index: number, category: Category): string {
-    return category.id;
-  }
-
   private getTodayDate(): string {
     return new Date().toISOString().slice(0, 10);
   }
@@ -203,9 +222,7 @@ export class Transactions implements OnInit {
   }
 
   private getErrorMessage(error: unknown): string {
-    if (error instanceof Error) {
-      return error.message;
-    }
+    if (error instanceof Error) return error.message;
 
     return this.t('COMMON.SOMETHING_WENT_WRONG');
   }

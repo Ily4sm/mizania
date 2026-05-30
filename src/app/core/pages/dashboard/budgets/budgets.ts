@@ -4,15 +4,16 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Category } from '../../../models/category.model';
 import { BudgetProgress, MonthlyBudget } from '../../../models/monthly-budget.model';
 import { CategoryService } from '../../../services/category.service';
+import { ConfirmService } from '../../../shared/services/confirm.service';
 import { MonthlyBudgetService } from '../../../services/monthly-budget.service';
 import { TransactionService } from '../../../services/transaction.service';
 import { ToastService } from '../../../shared/services/toast.service';
-import { ConfirmService } from '../../../shared/services/confirm.service';
+import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
 
 @Component({
   selector: 'app-budgets',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
   templateUrl: './budgets.html',
   styleUrl: './budgets.scss',
 })
@@ -49,6 +50,19 @@ export class Budgets implements OnInit {
       this.transactionService.loadTransactions(),
       this.budgetService.loadBudgets(this.selectedMonth()),
     ]);
+  }
+
+  get categoryOptions(): AppSelectOption[] {
+    return [
+      {
+        label: this.t('BUDGETS.CHOOSE_CATEGORY'),
+        value: '',
+      },
+      ...this.expenseCategories().map((category) => ({
+        label: category.name,
+        value: category.id,
+      })),
+    ];
   }
 
   async onMonthChange(event: Event): Promise<void> {
@@ -125,9 +139,7 @@ export class Budgets implements OnInit {
       danger: true,
     });
 
-    if (!confirmed) {
-      return;
-    }
+    if (!confirmed) return;
 
     try {
       await this.budgetService.deleteBudget(budget.id, this.selectedMonth());
@@ -169,21 +181,14 @@ export class Budgets implements OnInit {
   getCategoryBadge(category?: { name?: string | null } | null): string {
     const name = category?.name?.trim();
 
-    if (!name) {
-      return 'B';
-    }
+    if (!name) return 'B';
 
     return name.charAt(0).toUpperCase();
   }
 
   getStatusLabel(progress: BudgetProgress): string {
-    if (progress.status === 'danger') {
-      return 'BUDGETS.STATUS_DANGER';
-    }
-
-    if (progress.status === 'warning') {
-      return 'BUDGETS.STATUS_WARNING';
-    }
+    if (progress.status === 'danger') return 'BUDGETS.STATUS_DANGER';
+    if (progress.status === 'warning') return 'BUDGETS.STATUS_WARNING';
 
     return 'BUDGETS.STATUS_SAFE';
   }
@@ -193,9 +198,7 @@ export class Budgets implements OnInit {
   }
 
   private getErrorMessage(error: unknown): string {
-    if (error instanceof Error) {
-      return error.message;
-    }
+    if (error instanceof Error) return error.message;
 
     return this.t('COMMON.SOMETHING_WENT_WRONG');
   }

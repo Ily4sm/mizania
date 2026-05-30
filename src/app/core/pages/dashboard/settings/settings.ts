@@ -7,11 +7,12 @@ import { AppLanguage, LanguageService } from '../../../services/language.service
 import { ProfileService } from '../../../services/profile.service';
 import { ThemeMode, ThemeService } from '../../../services/theme.service';
 import { ToastService } from '../../../shared/services/toast.service';
+import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, FormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe, FormsModule, AppSelect],
   templateUrl: './settings.html',
   styleUrl: './settings.scss',
 })
@@ -44,9 +45,7 @@ export class Settings implements OnInit {
   async ngOnInit(): Promise<void> {
     const profile = await this.profileService.loadMyProfile();
 
-    if (!profile) {
-      return;
-    }
+    if (!profile) return;
 
     const activeLanguage = this.languageService.language();
 
@@ -57,6 +56,29 @@ export class Settings implements OnInit {
       theme: profile.theme,
       currency: profile.currency,
     });
+  }
+
+  get languageOptions(): AppSelectOption[] {
+    return [
+      { label: 'Français', value: 'fr' },
+      { label: 'English', value: 'en' },
+      { label: 'العربية', value: 'ar' },
+    ];
+  }
+
+  get themeOptions(): AppSelectOption[] {
+    return [
+      { label: this.t('SETTINGS.LIGHT'), value: 'light' },
+      { label: this.t('SETTINGS.DARK'), value: 'dark' },
+    ];
+  }
+
+  get currencyOptions(): AppSelectOption[] {
+    return [
+      { label: 'MAD - Moroccan Dirham', value: 'MAD' },
+      { label: 'EUR - Euro', value: 'EUR' },
+      { label: 'USD - US Dollar', value: 'USD' },
+    ];
   }
 
   async submit(): Promise<void> {
@@ -148,9 +170,7 @@ export class Settings implements OnInit {
   }
 
   private getErrorMessage(error: unknown): string {
-    if (error instanceof Error) {
-      return error.message;
-    }
+    if (error instanceof Error) return error.message;
 
     return this.t('COMMON.SOMETHING_WENT_WRONG');
   }

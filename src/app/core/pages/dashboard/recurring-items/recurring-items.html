@@ -19,10 +19,12 @@
       <form class="recurring-form" [formGroup]="form" (ngSubmit)="submit()">
         <label class="field">
           <span>{{ 'RECURRING.TYPE' | translate }}</span>
-          <select class="input" formControlName="type" (change)="onTypeChange($event)">
-            <option value="expense">{{ 'RECURRING.EXPENSE' | translate }}</option>
-            <option value="income">{{ 'RECURRING.INCOME' | translate }}</option>
-          </select>
+          <app-select
+            formControlName="type"
+            [options]="typeOptions"
+            [placeholder]="'RECURRING.TYPE' | translate"
+            (selectionChange)="onTypeChange($event)"
+          ></app-select>
         </label>
 
         <label class="field">
@@ -37,20 +39,22 @@
 
         <label class="field">
           <span>{{ 'RECURRING.AMOUNT' | translate }}</span>
-          <input class="input" type="number" min="0" step="0.01" formControlName="amount" />
+          <input
+            class="input"
+            type="number"
+            min="0"
+            step="0.01"
+            formControlName="amount"
+          />
         </label>
 
         <label class="field">
           <span>{{ 'RECURRING.CATEGORY' | translate }}</span>
-          <select class="input" formControlName="category_id">
-            <option value="">{{ 'RECURRING.NO_CATEGORY' | translate }}</option>
-
-            @for (category of filteredCategories(); track category.id) {
-              <option [value]="category.id">
-                {{ category.name }}
-              </option>
-            }
-          </select>
+          <app-select
+            formControlName="category_id"
+            [options]="categoryOptions"
+            [placeholder]="'RECURRING.NO_CATEGORY' | translate"
+          ></app-select>
         </label>
 
         <label class="field">
@@ -134,7 +138,11 @@
               </div>
 
               <div class="item-actions">
-                <button type="button" class="primary-action" (click)="addAsTransaction(item)">
+                <button
+                  type="button"
+                  class="primary-action"
+                  (click)="addAsTransaction(item)"
+                >
                   {{ 'RECURRING.ADD_TRANSACTION' | translate }}
                 </button>
 

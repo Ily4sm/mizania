@@ -82,6 +82,30 @@ export class AuthService {
     }
   }
 
+  async sendPasswordResetEmail(email: string): Promise<void> {
+    const client = this.getSupabaseClient();
+
+    const { error } = await client.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth/reset-password`,
+    });
+
+    if (error) {
+      throw error;
+    }
+  }
+
+  async updatePassword(newPassword: string): Promise<void> {
+    const client = this.getSupabaseClient();
+
+    const { error } = await client.auth.updateUser({
+      password: newPassword,
+    });
+
+    if (error) {
+      throw error;
+    }
+  }
+
   async logout(): Promise<void> {
     const client = this.getSupabaseClient();
     const { error } = await client.auth.signOut();

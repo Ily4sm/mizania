@@ -24,28 +24,29 @@
 
         <label class="field">
           <span>{{ 'SETTINGS.LANGUAGE' | translate }}</span>
-          <select class="input" formControlName="preferred_language">
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-          </select>
+          <app-select
+            formControlName="preferred_language"
+            [options]="languageOptions"
+            [placeholder]="'SETTINGS.LANGUAGE' | translate"
+          ></app-select>
         </label>
 
         <label class="field">
           <span>{{ 'SETTINGS.THEME' | translate }}</span>
-          <select class="input" formControlName="theme">
-            <option value="light">{{ 'SETTINGS.LIGHT' | translate }}</option>
-            <option value="dark">{{ 'SETTINGS.DARK' | translate }}</option>
-          </select>
+          <app-select
+            formControlName="theme"
+            [options]="themeOptions"
+            [placeholder]="'SETTINGS.THEME' | translate"
+          ></app-select>
         </label>
 
         <label class="field">
           <span>{{ 'SETTINGS.CURRENCY' | translate }}</span>
-          <select class="input" formControlName="currency">
-            <option value="MAD">MAD - Moroccan Dirham</option>
-            <option value="EUR">EUR - Euro</option>
-            <option value="USD">USD - US Dollar</option>
-          </select>
+          <app-select
+            formControlName="currency"
+            [options]="currencyOptions"
+            [placeholder]="'SETTINGS.CURRENCY' | translate"
+          ></app-select>
         </label>
 
         <button class="btn btn-primary" type="submit" [disabled]="loading()">
