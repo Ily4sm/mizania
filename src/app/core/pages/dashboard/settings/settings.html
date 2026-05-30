@@ -48,17 +48,6 @@
           </select>
         </label>
 
-        @if (alert()) {
-          <div
-            class="page-alert"
-            [class.success]="alert()?.type === 'success'"
-            [class.error]="alert()?.type === 'error'"
-          >
-            <p>{{ alert()?.message }}</p>
-            <span></span>
-          </div>
-        }
-
         <button class="btn btn-primary" type="submit" [disabled]="loading()">
           @if (loading()) {
             {{ 'COMMON.SAVING' | translate }}
@@ -85,55 +74,55 @@
       </div>
 
       <section class="danger-zone">
-          <div>
-            <h2>{{ 'SETTINGS.DELETE_ACCOUNT_TITLE' | translate }}</h2>
-            <p>{{ 'SETTINGS.DELETE_ACCOUNT_DESCRIPTION' | translate }}</p>
-          </div>
+        <div>
+          <h2>{{ 'SETTINGS.DELETE_ACCOUNT_TITLE' | translate }}</h2>
+          <p>{{ 'SETTINGS.DELETE_ACCOUNT_DESCRIPTION' | translate }}</p>
+        </div>
 
-          <button type="button" class="danger-btn" (click)="openDeleteAccountConfirm()">
-            {{ 'SETTINGS.DELETE_ACCOUNT_BUTTON' | translate }}
-          </button>
-        </section>
+        <button type="button" class="danger-btn" (click)="openDeleteAccountConfirm()">
+          {{ 'SETTINGS.DELETE_ACCOUNT_BUTTON' | translate }}
+        </button>
+      </section>
 
-        @if (showDeleteConfirm) {
-          <div class="modal-backdrop">
-            <div class="confirm-modal">
-              <h3>{{ 'SETTINGS.DELETE_ACCOUNT_CONFIRM_TITLE' | translate }}</h3>
+      @if (showDeleteConfirm) {
+        <div class="modal-backdrop">
+          <div class="confirm-modal">
+            <h3>{{ 'SETTINGS.DELETE_ACCOUNT_CONFIRM_TITLE' | translate }}</h3>
 
-              <p>{{ 'SETTINGS.DELETE_ACCOUNT_CONFIRM_MESSAGE' | translate }}</p>
+            <p>{{ 'SETTINGS.DELETE_ACCOUNT_CONFIRM_MESSAGE' | translate }}</p>
 
-              <input
-                type="text"
-                [(ngModel)]="deleteConfirmationText"
-                placeholder="DELETE"
-                autocomplete="off"
-              />
+            <input
+              type="text"
+              [(ngModel)]="deleteConfirmationText"
+              placeholder="DELETE"
+              autocomplete="off"
+            />
 
-              @if (deleteAccountError) {
-                <p class="delete-error">{{ deleteAccountError | translate }}</p>
-              }
+            @if (deleteAccountError) {
+              <p class="delete-error">{{ deleteAccountError | translate }}</p>
+            }
 
-              <div class="modal-actions">
-                <button type="button" class="ghost-btn" (click)="closeDeleteAccountConfirm()">
-                  {{ 'ACTIONS.CANCEL' | translate }}
-                </button>
+            <div class="modal-actions">
+              <button type="button" class="ghost-btn" (click)="closeDeleteAccountConfirm()">
+                {{ 'ACTIONS.CANCEL' | translate }}
+              </button>
 
-                <button
-                  type="button"
-                  class="danger-btn"
-                  [disabled]="deleteConfirmationText !== 'DELETE' || isDeletingAccount"
-                  (click)="confirmDeleteAccount()"
-                >
-                  @if (isDeletingAccount) {
-                    {{ 'COMMON.LOADING' | translate }}
-                  } @else {
-                    {{ 'SETTINGS.DELETE_ACCOUNT_BUTTON' | translate }}
-                  }
-                </button>
-              </div>
+              <button
+                type="button"
+                class="danger-btn"
+                [disabled]="deleteConfirmationText !== 'DELETE' || isDeletingAccount"
+                (click)="confirmDeleteAccount()"
+              >
+                @if (isDeletingAccount) {
+                  {{ 'COMMON.LOADING' | translate }}
+                } @else {
+                  {{ 'SETTINGS.DELETE_ACCOUNT_BUTTON' | translate }}
+                }
+              </button>
             </div>
           </div>
-        }
+        </div>
+      }
     </article>
   </div>
 </section>

@@ -1,17 +1,12 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
-import { CategoryService } from '../../../services/category.service';
-import { RecurringItemService } from '../../../services/recurring-item.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { RecurringItem } from '../../../models/recurring-item.model';
 import { TransactionType } from '../../../models/transaction.model';
-
-type AlertType = 'success' | 'error';
-
-interface PageAlert {
-  type: AlertType;
-  message: string;
-}
+import { CategoryService } from '../../../services/category.service';
+import { RecurringItemService } from '../../../services/recurring-item.service';
+import { ToastService } from '../../../shared/services/toast.service';
+import { ConfirmService } from '../../../shared/services/confirm.service';
 
 @Component({
   selector: 'app-recurring-items',
@@ -22,14 +17,14 @@ interface PageAlert {
 })
 export class RecurringItems implements OnInit {
   private readonly fb = inject(FormBuilder);
+  private readonly toastService = inject(ToastService);
+  private readonly translateService = inject(TranslateService);
+  private readonly confirmService = inject(ConfirmService);
 
   readonly categoryService = inject(CategoryService);
   readonly recurringItemService = inject(RecurringItemService);
 
-  private alertTimeoutId: number | null = null;
-
   editingItemId = signal<string | null>(null);
-  alert = signal<PageAlert | null>(null);
   selectedType = signal<TransactionType>('expense');
 
   filteredCategories = computed(() =>
@@ -43,7 +38,7 @@ export class RecurringItems implements OnInit {
     title: ['', [Validators.required, Validators.minLength(2)]],
     amount: [0, [Validators.required, Validators.min(0.01)]],
     category_id: [''],
-    icon: ['🔁', [Validators.required]],
+    icon: ['repeat', [Validators.required]],
     note: [''],
     is_active: [true],
   });
@@ -64,43 +59,53 @@ export class RecurringItems implements OnInit {
   async submit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.showAlert('error', 'Please fill all required fields correctly.');
+
+      this.toastService.error(
+        this.t('COMMON.INVALID_FORM_TITLE'),
+        this.t('COMMON.INVALID_FORM_MESSAGE')
+      );
+
       return;
     }
 
     try {
       const formValue = this.form.getRawValue();
-
       const editingId = this.editingItemId();
+
+      const payload = {
+        type: formValue.type,
+        title: formValue.title.trim(),
+        amount: Number(formValue.amount),
+        category_id: formValue.category_id || null,
+        icon: formValue.icon.trim() || 'repeat',
+        note: formValue.note.trim() || null,
+      };
 
       if (editingId) {
         await this.recurringItemService.updateRecurringItem(editingId, {
-          type: formValue.type,
-          title: formValue.title,
-          amount: Number(formValue.amount),
-          category_id: formValue.category_id || null,
-          icon: formValue.icon,
-          note: formValue.note.trim() || null,
+          ...payload,
           is_active: formValue.is_active,
         });
 
-        this.showAlert('success', 'Fixed item updated successfully.');
+        this.toastService.success(
+          this.t('RECURRING.UPDATED_TOAST_TITLE'),
+          this.t('RECURRING.UPDATED_TOAST_MESSAGE')
+        );
       } else {
-        await this.recurringItemService.createRecurringItem({
-          type: formValue.type,
-          title: formValue.title,
-          amount: Number(formValue.amount),
-          category_id: formValue.category_id || null,
-          icon: formValue.icon,
-          note: formValue.note.trim() || null,
-        });
+        await this.recurringItemService.createRecurringItem(payload);
 
-        this.showAlert('success', 'Fixed item created successfully.');
+        this.toastService.success(
+          this.t('RECURRING.CREATED_TOAST_TITLE'),
+          this.t('RECURRING.CREATED_TOAST_MESSAGE')
+        );
       }
 
       this.resetForm();
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('RECURRING.SAVE_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
@@ -113,14 +118,20 @@ export class RecurringItems implements OnInit {
       title: item.title,
       amount: Number(item.amount),
       category_id: item.category_id ?? '',
-      icon: item.icon,
+      icon: item.icon || 'repeat',
       note: item.note ?? '',
       is_active: item.is_active,
     });
   }
 
   async deleteItem(item: RecurringItem): Promise<void> {
-    const confirmed = confirm(`Delete fixed item "${item.title}"?`);
+    const confirmed = await this.confirmService.confirm({
+      title: this.t('RECURRING.DELETE_DIALOG_TITLE'),
+      message: `${this.t('RECURRING.DELETE_CONFIRM')} "${item.title}"?`,
+      confirmText: this.t('ACTIONS.DELETE'),
+      cancelText: this.t('ACTIONS.CANCEL'),
+      danger: true,
+    });
 
     if (!confirmed) {
       return;
@@ -128,22 +139,36 @@ export class RecurringItems implements OnInit {
 
     try {
       await this.recurringItemService.deleteRecurringItem(item.id);
-      this.showAlert('success', 'Fixed item deleted successfully.');
+
+      this.toastService.success(
+        this.t('RECURRING.DELETED_TOAST_TITLE'),
+        this.t('RECURRING.DELETED_TOAST_MESSAGE')
+      );
 
       if (this.editingItemId() === item.id) {
         this.resetForm();
       }
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('RECURRING.DELETE_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
   async addAsTransaction(item: RecurringItem): Promise<void> {
     try {
       await this.recurringItemService.addAsTransaction(item);
-      this.showAlert('success', 'Added as transaction successfully.');
+
+      this.toastService.success(
+        this.t('RECURRING.ADDED_TRANSACTION_TOAST_TITLE'),
+        this.t('RECURRING.ADDED_TRANSACTION_TOAST_MESSAGE')
+      );
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('RECURRING.ADD_TRANSACTION_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
@@ -156,7 +181,7 @@ export class RecurringItems implements OnInit {
       title: '',
       amount: 0,
       category_id: '',
-      icon: '🔁',
+      icon: 'repeat',
       note: '',
       is_active: true,
     });
@@ -164,27 +189,28 @@ export class RecurringItems implements OnInit {
 
   getCategoryLabel(item: RecurringItem): string {
     if (!item.categories) {
-      return 'No category';
+      return this.t('RECURRING.NO_CATEGORY');
     }
 
-    return `${item.categories.icon} ${item.categories.name}`;
+    return item.categories.name;
+  }
+
+  getItemBadge(item: RecurringItem): string {
+    const title = item.title.trim();
+
+    if (!title) {
+      return item.type === 'income' ? '+' : '-';
+    }
+
+    return title.charAt(0).toUpperCase();
   }
 
   formatMoney(value: number): string {
     return `${Math.round(Number(value)).toLocaleString('fr-FR')} DH`;
   }
 
-  private showAlert(type: AlertType, message: string): void {
-    if (this.alertTimeoutId) {
-      window.clearTimeout(this.alertTimeoutId);
-    }
-
-    this.alert.set({ type, message });
-
-    this.alertTimeoutId = window.setTimeout(() => {
-      this.alert.set(null);
-      this.alertTimeoutId = null;
-    }, 3500);
+  private t(key: string): string {
+    return this.translateService.instant(key);
   }
 
   private getErrorMessage(error: unknown): string {
@@ -192,6 +218,6 @@ export class RecurringItems implements OnInit {
       return error.message;
     }
 
-    return 'Something went wrong.';
+    return this.t('COMMON.SOMETHING_WENT_WRONG');
   }
 }

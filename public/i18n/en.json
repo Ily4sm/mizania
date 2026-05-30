@@ -12,6 +12,7 @@
     "SETTINGS": "Settings"
   },
   "BUDGETS": {
+    "DELETE_DIALOG_TITLE": "Delete budget",
     "TITLE": "Monthly budgets",
     "SUBTITLE": "Set category limits and track your spending for the month.",
     "MONTH": "Month",
@@ -26,11 +27,23 @@
     "REMAINING": "Remaining",
     "STATUS_SAFE": "Budget under control",
     "STATUS_WARNING": "Warning, limit almost reached",
-    "STATUS_DANGER": "Limit exceeded"
+    "STATUS_DANGER": "Limit exceeded",
+    "CREATED_TOAST_TITLE": "Budget created",
+    "CREATED_TOAST_MESSAGE": "The budget was added successfully.",
+    "UPDATED_TOAST_TITLE": "Budget updated",
+    "UPDATED_TOAST_MESSAGE": "The budget was updated successfully.",
+    "DELETED_TOAST_TITLE": "Budget deleted",
+    "DELETED_TOAST_MESSAGE": "The budget was deleted successfully.",
+    "SAVE_FAILED_TOAST_TITLE": "Save failed",
+    "DELETE_FAILED_TOAST_TITLE": "Delete failed",
+    "DELETE_CONFIRM": "Delete this budget?"
   },
   "COMMON": {
     "LOADING": "Loading...",
-    "SAVING": "Saving..."
+    "SAVING": "Saving...",
+    "SOMETHING_WENT_WRONG": "Something went wrong.",
+    "INVALID_FORM_TITLE": "Invalid form",
+    "INVALID_FORM_MESSAGE": "Please fill all required fields correctly."
   },
   "SETTINGS": {
     "TITLE": "Settings",
@@ -55,7 +68,15 @@
     "DELETE_ACCOUNT_BUTTON": "Delete my account",
     "DELETE_ACCOUNT_CONFIRM_TITLE": "Delete confirmation",
     "DELETE_ACCOUNT_CONFIRM_MESSAGE": "To confirm, type DELETE in the field below.",
-    "DELETE_ACCOUNT_ERROR": "Unable to delete account. Please try again."
+    "DELETE_ACCOUNT_ERROR": "Unable to delete account. Please try again.",
+    "INVALID_FORM_TITLE": "Invalid form",
+    "INVALID_FORM_MESSAGE": "Please fill all required fields correctly.",
+    "SAVED_TOAST_TITLE": "Settings saved",
+    "SAVED_TOAST_MESSAGE": "Your preferences were updated successfully.",
+    "SAVE_FAILED_TOAST_TITLE": "Save failed",
+    "ACCOUNT_DELETED_TOAST_TITLE": "Account deleted",
+    "ACCOUNT_DELETED_TOAST_MESSAGE": "Your account and data were deleted successfully.",
+    "DELETE_FAILED_TOAST_TITLE": "Delete failed"
   },
 
 "ACTIONS": {
@@ -82,7 +103,17 @@
     "EXPENSE_CATEGORIES": "Expense categories",
     "INCOME_CATEGORIES": "Income categories",
     "EMPTY_EXPENSE": "No expense categories yet.",
-    "EMPTY_INCOME": "No income categories yet."
+    "EMPTY_INCOME": "No income categories yet.",
+    "CREATED_TOAST_TITLE": "Category created",
+    "CREATED_TOAST_MESSAGE": "The category was added successfully.",
+    "UPDATED_TOAST_TITLE": "Category updated",
+    "UPDATED_TOAST_MESSAGE": "The category was updated successfully.",
+    "DELETED_TOAST_TITLE": "Category deleted",
+    "DELETED_TOAST_MESSAGE": "The category was deleted successfully.",
+    "SAVE_FAILED_TOAST_TITLE": "Save failed",
+    "DELETE_FAILED_TOAST_TITLE": "Delete failed",
+    "DELETE_CONFIRM": "Delete category",
+    "DELETE_DIALOG_TITLE": "Delete category"
   },
   "DASHBOARD": {
     "TITLE_PREFIX": "Hello, ",
@@ -159,9 +190,20 @@
     "RECENT": "Recent transactions",
     "EMPTY": "No transactions yet.",
     "TITLE_FIELD": "Title",
-    "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salary..."
+    "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salary...",
+    "CREATED_TOAST_TITLE": "Transaction created",
+    "CREATED_TOAST_MESSAGE": "The transaction was added successfully.",
+    "UPDATED_TOAST_TITLE": "Transaction updated",
+    "UPDATED_TOAST_MESSAGE": "The transaction was updated successfully.",
+    "DELETED_TOAST_TITLE": "Transaction deleted",
+    "DELETED_TOAST_MESSAGE": "The transaction was deleted successfully.",
+    "SAVE_FAILED_TOAST_TITLE": "Save failed",
+    "DELETE_FAILED_TOAST_TITLE": "Delete failed",
+    "DELETE_CONFIRM": "Delete this transaction?",
+    "DELETE_DIALOG_TITLE": "Delete transaction"
   },
   "RECURRING": {
+    "DELETE_DIALOG_TITLE": "Delete fixed item",
     "TITLE": "Fixed items",
     "SUBTITLE": "Save your usual expenses or income and add them quickly every month.",
     "CREATE": "New fixed item",
@@ -180,6 +222,18 @@
     "INACTIVE": "Inactive",
     "SAVED_ITEMS": "Saved items",
     "EMPTY": "No fixed items yet.",
-    "ADD_TRANSACTION": "Add as transaction"
+    "ADD_TRANSACTION": "Add as transaction",
+    "CREATED_TOAST_TITLE": "Fixed item created",
+    "CREATED_TOAST_MESSAGE": "The fixed item was added successfully.",
+    "UPDATED_TOAST_TITLE": "Fixed item updated",
+    "UPDATED_TOAST_MESSAGE": "The fixed item was updated successfully.",
+    "DELETED_TOAST_TITLE": "Fixed item deleted",
+    "DELETED_TOAST_MESSAGE": "The fixed item was deleted successfully.",
+    "ADDED_TRANSACTION_TOAST_TITLE": "Transaction added",
+    "ADDED_TRANSACTION_TOAST_MESSAGE": "The fixed item was added as a transaction.",
+    "ADD_TRANSACTION_FAILED_TOAST_TITLE": "Add failed",
+    "SAVE_FAILED_TOAST_TITLE": "Save failed",
+    "DELETE_FAILED_TOAST_TITLE": "Delete failed",
+    "DELETE_CONFIRM": "Delete fixed item"
   }
 }

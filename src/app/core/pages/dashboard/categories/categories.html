@@ -33,7 +33,12 @@
         <div class="mini-grid">
           <label class="field">
             <span>{{ 'CATEGORIES.ICON' | translate }}</span>
-            <input class="input" type="text" formControlName="icon" />
+            <input
+              class="input"
+              type="text"
+              formControlName="icon"
+              placeholder="tag, food, transport..."
+            />
           </label>
 
           <label class="field">
@@ -41,13 +46,6 @@
             <input class="input color-input" type="color" formControlName="color" />
           </label>
         </div>
-
-        @if (alert()) {
-            <div class="page-alert" [class.success]="alert()?.type === 'success'" [class.error]="alert()?.type === 'error'">
-                <p>{{ alert()?.message }}</p>
-                <span></span>
-            </div>
-        }
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit">
@@ -83,8 +81,9 @@
                   <span
                     class="category-icon"
                     [style.background]="category.color"
+                    aria-hidden="true"
                   >
-                    {{ category.icon }}
+                    {{ getCategoryBadge(category) }}
                   </span>
 
                   <div>
@@ -122,8 +121,9 @@
                   <span
                     class="category-icon"
                     [style.background]="category.color"
+                    aria-hidden="true"
                   >
-                    {{ category.icon }}
+                    {{ getCategoryBadge(category) }}
                   </span>
 
                   <div>

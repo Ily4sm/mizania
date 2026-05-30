@@ -26,12 +26,24 @@
     "REMAINING": "المتبقي",
     "STATUS_SAFE": "الميزانية تحت السيطرة",
     "STATUS_WARNING": "انتبه، الحد قريب",
-    "STATUS_DANGER": "تم تجاوز الحد"
+    "STATUS_DANGER": "تم تجاوز الحد",
+    "CREATED_TOAST_TITLE": "تم إنشاء الميزانية",
+    "CREATED_TOAST_MESSAGE": "تمت إضافة الميزانية بنجاح.",
+    "UPDATED_TOAST_TITLE": "تم تعديل الميزانية",
+    "UPDATED_TOAST_MESSAGE": "تم تحديث الميزانية بنجاح.",
+    "DELETED_TOAST_TITLE": "تم حذف الميزانية",
+    "DELETED_TOAST_MESSAGE": "تم حذف الميزانية بنجاح.",
+    "SAVE_FAILED_TOAST_TITLE": "فشل الحفظ",
+    "DELETE_FAILED_TOAST_TITLE": "فشل الحذف",
+    "DELETE_CONFIRM": "هل تريد حذف هذه الميزانية؟"
   },
  
   "COMMON": {
     "LOADING": "جاري التحميل...",
-    "SAVING": "جاري الحفظ..."
+    "SAVING": "جاري الحفظ...",
+    "SOMETHING_WENT_WRONG": "حدث خطأ ما.",
+    "INVALID_FORM_TITLE": "النموذج غير صحيح",
+    "INVALID_FORM_MESSAGE": "يرجى ملء جميع الحقول المطلوبة بشكل صحيح."
   },
   "SETTINGS": {
     "TITLE": "الإعدادات",
@@ -56,7 +68,15 @@
     "DELETE_ACCOUNT_BUTTON": "حذف حسابي",
     "DELETE_ACCOUNT_CONFIRM_TITLE": "تأكيد الحذف",
     "DELETE_ACCOUNT_CONFIRM_MESSAGE": "للتأكيد، اكتب DELETE في الحقل أسفله.",
-    "DELETE_ACCOUNT_ERROR": "تعذر حذف الحساب. يرجى المحاولة مرة أخرى."
+    "DELETE_ACCOUNT_ERROR": "تعذر حذف الحساب. يرجى المحاولة مرة أخرى.",
+    "INVALID_FORM_TITLE": "النموذج غير صحيح",
+    "INVALID_FORM_MESSAGE": "يرجى ملء جميع الحقول المطلوبة بشكل صحيح.",
+    "SAVED_TOAST_TITLE": "تم حفظ الإعدادات",
+    "SAVED_TOAST_MESSAGE": "تم تحديث تفضيلاتك بنجاح.",
+    "SAVE_FAILED_TOAST_TITLE": "فشل الحفظ",
+    "ACCOUNT_DELETED_TOAST_TITLE": "تم حذف الحساب",
+    "ACCOUNT_DELETED_TOAST_MESSAGE": "تم حذف حسابك وبياناتك بنجاح.",
+    "DELETE_FAILED_TOAST_TITLE": "فشل الحذف"
   },
 
   "ACTIONS": {
@@ -83,7 +103,17 @@
     "EXPENSE_CATEGORIES": "فئات المصاريف",
     "INCOME_CATEGORIES": "فئات المداخيل",
     "EMPTY_EXPENSE": "لا توجد فئات مصاريف حاليا.",
-    "EMPTY_INCOME": "لا توجد فئات مداخيل حاليا."
+    "EMPTY_INCOME": "لا توجد فئات مداخيل حاليا.",
+    "CREATED_TOAST_TITLE": "تم إنشاء الفئة",
+    "CREATED_TOAST_MESSAGE": "تمت إضافة الفئة بنجاح.",
+    "UPDATED_TOAST_TITLE": "تم تعديل الفئة",
+    "UPDATED_TOAST_MESSAGE": "تم تحديث الفئة بنجاح.",
+    "DELETED_TOAST_TITLE": "تم حذف الفئة",
+    "DELETED_TOAST_MESSAGE": "تم حذف الفئة بنجاح.",
+    "SAVE_FAILED_TOAST_TITLE": "فشل الحفظ",
+    "DELETE_FAILED_TOAST_TITLE": "فشل الحذف",
+    "DELETE_CONFIRM": "حذف الفئة",
+    "DELETE_DIALOG_TITLE": "حذف الفئة"
   },
   "DASHBOARD": {
     "TITLE_PREFIX": "مرحبا، ",
@@ -160,9 +190,20 @@
     "RECENT": "آخر المعاملات",
     "EMPTY": "لا توجد معاملات حاليا.",
     "TITLE_FIELD": "العنوان",
-    "TITLE_PLACEHOLDER": "مثال: مشروب، طاكسي، راتب..."
+    "TITLE_PLACEHOLDER": "مثال: مشروب، طاكسي، راتب...",
+    "CREATED_TOAST_TITLE": "تم إنشاء المعاملة",
+    "CREATED_TOAST_MESSAGE": "تمت إضافة المعاملة بنجاح.",
+    "UPDATED_TOAST_TITLE": "تم تعديل المعاملة",
+    "UPDATED_TOAST_MESSAGE": "تم تحديث المعاملة بنجاح.",
+    "DELETED_TOAST_TITLE": "تم حذف المعاملة",
+    "DELETED_TOAST_MESSAGE": "تم حذف المعاملة بنجاح.",
+    "SAVE_FAILED_TOAST_TITLE": "فشل الحفظ",
+    "DELETE_FAILED_TOAST_TITLE": "فشل الحذف",
+    "DELETE_CONFIRM": "هل تريد حذف هذه المعاملة؟",
+    "DELETE_DIALOG_TITLE": "حذف المعاملة"
   },
   "RECURRING": {
+    "DELETE_DIALOG_TITLE": "حذف العنصر الثابت",
     "TITLE": "العناصر الثابتة",
     "SUBTITLE": "احفظ مصاريفك أو مداخيلك المعتادة وأضفها بسرعة كل شهر.",
     "CREATE": "عنصر ثابت جديد",
@@ -181,6 +222,18 @@
     "INACTIVE": "غير نشط",
     "SAVED_ITEMS": "العناصر المحفوظة",
     "EMPTY": "لا توجد عناصر ثابتة حاليا.",
-    "ADD_TRANSACTION": "إضافة كمعاملة"
+    "ADD_TRANSACTION": "إضافة كمعاملة",
+    "CREATED_TOAST_TITLE": "تم إنشاء العنصر الثابت",
+    "CREATED_TOAST_MESSAGE": "تمت إضافة العنصر الثابت بنجاح.",
+    "UPDATED_TOAST_TITLE": "تم تعديل العنصر الثابت",
+    "UPDATED_TOAST_MESSAGE": "تم تحديث العنصر الثابت بنجاح.",
+    "DELETED_TOAST_TITLE": "تم حذف العنصر الثابت",
+    "DELETED_TOAST_MESSAGE": "تم حذف العنصر الثابت بنجاح.",
+    "ADDED_TRANSACTION_TOAST_TITLE": "تمت إضافة المعاملة",
+    "ADDED_TRANSACTION_TOAST_MESSAGE": "تمت إضافة العنصر الثابت كمعاملة.",
+    "ADD_TRANSACTION_FAILED_TOAST_TITLE": "فشل الإضافة",
+    "SAVE_FAILED_TOAST_TITLE": "فشل الحفظ",
+    "DELETE_FAILED_TOAST_TITLE": "فشل الحذف",
+    "DELETE_CONFIRM": "حذف العنصر الثابت"
   }
 }

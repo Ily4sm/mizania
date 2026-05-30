@@ -1,0 +1,149 @@
+.confirm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2900;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  animation: fadeIn 0.16s ease-out both;
+}
+
+.confirm-modal {
+  width: min(100%, 430px);
+  padding: 1.2rem;
+  border-radius: 1.4rem;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.32);
+  animation: popIn 0.18s ease-out both;
+}
+
+:host-context(.dark) .confirm-modal,
+:host-context([data-theme='dark']) .confirm-modal,
+:host-context(html.dark) .confirm-modal,
+:host-context(body.dark) .confirm-modal {
+  background: #0f172a;
+  border-color: rgba(148, 163, 184, 0.28);
+}
+
+.icon-wrap {
+  width: 2.6rem;
+  height: 2.6rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  font-weight: 900;
+  font-size: 1.2rem;
+
+  &.danger {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+  }
+}
+
+.confirm-content {
+  h2 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.15rem;
+  }
+
+  p {
+    margin: 0.55rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+}
+
+.confirm-actions {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.ghost-btn,
+.confirm-btn {
+  border: none;
+  border-radius: 0.9rem;
+  padding: 0.78rem 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ghost-btn {
+  background: var(--soft-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+
+  &:hover {
+    filter: brightness(0.98);
+  }
+}
+
+.confirm-btn {
+  background: #2563eb;
+  color: white;
+
+  &.danger {
+    background: #ef4444;
+  }
+
+  &:hover {
+    filter: brightness(0.96);
+  }
+}
+
+:host-context([dir='rtl']) {
+  .confirm-modal {
+    direction: rtl;
+    text-align: right;
+  }
+
+  .confirm-actions {
+    justify-content: flex-start;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.4rem) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 560px) {
+  .confirm-modal {
+    border-radius: 1.2rem;
+  }
+
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+
+  .ghost-btn,
+  .confirm-btn {
+    width: 100%;
+  }
+}

@@ -47,7 +47,7 @@
 
             @for (category of filteredCategories(); track category.id) {
               <option [value]="category.id">
-                {{ category.icon }} {{ category.name }}
+                {{ category.name }}
               </option>
             }
           </select>
@@ -55,7 +55,12 @@
 
         <label class="field">
           <span>{{ 'RECURRING.ICON' | translate }}</span>
-          <input class="input" type="text" formControlName="icon" />
+          <input
+            class="input"
+            type="text"
+            formControlName="icon"
+            placeholder="repeat, rent, salary..."
+          />
         </label>
 
         <label class="field">
@@ -68,17 +73,6 @@
             <input type="checkbox" formControlName="is_active" />
             <span>{{ 'RECURRING.ACTIVE' | translate }}</span>
           </label>
-        }
-
-        @if (alert()) {
-          <div
-            class="page-alert"
-            [class.success]="alert()?.type === 'success'"
-            [class.error]="alert()?.type === 'error'"
-          >
-            <p>{{ alert()?.message }}</p>
-            <span></span>
-          </div>
         }
 
         <div class="form-actions">
@@ -111,7 +105,9 @@
           @for (item of recurringItemService.recurringItems(); track item.id) {
             <div class="recurring-item" [class.income]="item.type === 'income'">
               <div class="recurring-main">
-                <div class="recurring-icon">{{ item.icon }}</div>
+                <div class="recurring-icon" aria-hidden="true">
+                  {{ getItemBadge(item) }}
+                </div>
 
                 <div>
                   <strong>{{ item.title }}</strong>

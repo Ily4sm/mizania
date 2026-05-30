@@ -1,36 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { LanguageService, AppLanguage } from '../../../services/language.service';
+import { AppLanguage, LanguageService } from '../../../services/language.service';
 
 @Component({
   selector: 'app-language-switcher',
   standalone: true,
-  template: `
-    <select
-      class="language-select"
-      [value]="languageService.language()"
-      (change)="changeLanguage($event)"
-    >
-      <option value="fr">FR</option>
-      <option value="en">EN</option>
-      <option value="ar">AR</option>
-    </select>
-  `,
-  styles: `
-    .language-select {
-      height: 42px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: var(--surface);
-      color: var(--text);
-      padding: 0 12px;
-      font-weight: 800;
-      outline: none;
-      box-shadow: var(--shadow);
-    }
-  `,
+  templateUrl: './language-switcher.html',
+  styleUrl: './language-switcher.scss',
 })
 export class LanguageSwitcher {
-  languageService = inject(LanguageService);
+  readonly languageService = inject(LanguageService);
 
   changeLanguage(event: Event): void {
     const value = (event.target as HTMLSelectElement).value as AppLanguage;

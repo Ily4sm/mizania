@@ -302,3 +302,20 @@
 [dir='rtl'] .item-actions {
   justify-content: flex-start;
 }
+
+.category-icon,
+.transaction-icon,
+.recurring-icon,
+.budget-category-badge {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.8rem;
+  display: inline-grid;
+  place-items: center;
+  background: #10b981;
+  font-size: 0.85rem;
+}

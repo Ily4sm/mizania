@@ -1,18 +1,13 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Category } from '../../../models/category.model';
 import { BudgetProgress, MonthlyBudget } from '../../../models/monthly-budget.model';
 import { CategoryService } from '../../../services/category.service';
 import { MonthlyBudgetService } from '../../../services/monthly-budget.service';
 import { TransactionService } from '../../../services/transaction.service';
-
-type AlertType = 'success' | 'error';
-
-interface PageAlert {
-  type: AlertType;
-  message: string;
-}
+import { ToastService } from '../../../shared/services/toast.service';
+import { ConfirmService } from '../../../shared/services/confirm.service';
 
 @Component({
   selector: 'app-budgets',
@@ -23,16 +18,16 @@ interface PageAlert {
 })
 export class Budgets implements OnInit {
   private readonly fb = inject(FormBuilder);
+  private readonly toastService = inject(ToastService);
+  private readonly translateService = inject(TranslateService);
+  private readonly confirmService = inject(ConfirmService);
 
   readonly categoryService = inject(CategoryService);
   readonly budgetService = inject(MonthlyBudgetService);
   readonly transactionService = inject(TransactionService);
 
-  private alertTimeoutId: number | null = null;
-
   editingBudgetId = signal<string | null>(null);
   selectedMonth = signal(this.budgetService.getCurrentMonth());
-  alert = signal<PageAlert | null>(null);
 
   expenseCategories = computed(() =>
     this.categoryService.categories().filter((category) => category.type === 'expense')
@@ -66,7 +61,12 @@ export class Budgets implements OnInit {
   async submit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.showAlert('error', 'Please fill all required fields correctly.');
+
+      this.toastService.error(
+        this.t('COMMON.INVALID_FORM_TITLE'),
+        this.t('COMMON.INVALID_FORM_MESSAGE')
+      );
+
       return;
     }
 
@@ -82,16 +82,27 @@ export class Budgets implements OnInit {
 
       if (editingId) {
         await this.budgetService.updateBudget(editingId, payload);
-        this.showAlert('success', 'Budget updated successfully.');
+
+        this.toastService.success(
+          this.t('BUDGETS.UPDATED_TOAST_TITLE'),
+          this.t('BUDGETS.UPDATED_TOAST_MESSAGE')
+        );
       } else {
         await this.budgetService.createBudget(payload);
-        this.showAlert('success', 'Budget created successfully.');
+
+        this.toastService.success(
+          this.t('BUDGETS.CREATED_TOAST_TITLE'),
+          this.t('BUDGETS.CREATED_TOAST_MESSAGE')
+        );
       }
 
       this.selectedMonth.set(payload.month);
       this.resetForm();
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('BUDGETS.SAVE_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
@@ -106,7 +117,13 @@ export class Budgets implements OnInit {
   }
 
   async deleteBudget(budget: MonthlyBudget): Promise<void> {
-    const confirmed = confirm('Delete this budget?');
+    const confirmed = await this.confirmService.confirm({
+      title: this.t('BUDGETS.DELETE_DIALOG_TITLE'),
+      message: this.t('BUDGETS.DELETE_CONFIRM'),
+      confirmText: this.t('ACTIONS.DELETE'),
+      cancelText: this.t('ACTIONS.CANCEL'),
+      danger: true,
+    });
 
     if (!confirmed) {
       return;
@@ -114,13 +131,20 @@ export class Budgets implements OnInit {
 
     try {
       await this.budgetService.deleteBudget(budget.id, this.selectedMonth());
-      this.showAlert('success', 'Budget deleted successfully.');
+
+      this.toastService.success(
+        this.t('BUDGETS.DELETED_TOAST_TITLE'),
+        this.t('BUDGETS.DELETED_TOAST_MESSAGE')
+      );
 
       if (this.editingBudgetId() === budget.id) {
         this.resetForm();
       }
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('BUDGETS.DELETE_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
@@ -139,7 +163,17 @@ export class Budgets implements OnInit {
   }
 
   getCategoryName(category: Category): string {
-    return `${category.icon} ${category.name}`;
+    return category.name;
+  }
+
+  getCategoryBadge(category?: { name?: string | null } | null): string {
+    const name = category?.name?.trim();
+
+    if (!name) {
+      return 'B';
+    }
+
+    return name.charAt(0).toUpperCase();
   }
 
   getStatusLabel(progress: BudgetProgress): string {
@@ -154,17 +188,8 @@ export class Budgets implements OnInit {
     return 'BUDGETS.STATUS_SAFE';
   }
 
-  private showAlert(type: AlertType, message: string): void {
-    if (this.alertTimeoutId) {
-      window.clearTimeout(this.alertTimeoutId);
-    }
-
-    this.alert.set({ type, message });
-
-    this.alertTimeoutId = window.setTimeout(() => {
-      this.alert.set(null);
-      this.alertTimeoutId = null;
-    }, 3500);
+  private t(key: string): string {
+    return this.translateService.instant(key);
   }
 
   private getErrorMessage(error: unknown): string {
@@ -172,6 +197,6 @@ export class Budgets implements OnInit {
       return error.message;
     }
 
-    return 'Something went wrong.';
+    return this.t('COMMON.SOMETHING_WENT_WRONG');
   }
 }

@@ -215,3 +215,13 @@
     flex: 1;
   }
 }
+
+.category-icon,
+.transaction-icon,
+.recurring-icon,
+.budget-category-badge {
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}

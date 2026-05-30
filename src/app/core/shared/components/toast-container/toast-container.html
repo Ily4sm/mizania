@@ -1,0 +1,25 @@
+<div class="toast-wrapper" aria-live="polite" aria-atomic="true">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <article class="toast" [class]="toast.type">
+      <div class="toast-icon">
+        {{ getIcon(toast.type) }}
+      </div>
+
+      <div class="toast-content">
+        <strong>{{ toast.title }}</strong>
+
+        @if (toast.message) {
+          <p>{{ toast.message }}</p>
+        }
+
+        <div class="progress">
+          <span [style.animation-duration.ms]="toast.duration"></span>
+        </div>
+      </div>
+
+      <button type="button" class="close-btn" (click)="remove(toast.id)" aria-label="Close">
+        ×
+      </button>
+    </article>
+  }
+</div>

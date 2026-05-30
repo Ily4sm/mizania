@@ -1,17 +1,12 @@
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Category } from '../../../models/category.model';
 import { Transaction, TransactionType } from '../../../models/transaction.model';
 import { CategoryService } from '../../../services/category.service';
 import { TransactionService } from '../../../services/transaction.service';
-
-type AlertType = 'success' | 'error';
-
-interface PageAlert {
-  type: AlertType;
-  message: string;
-}
+import { ToastService } from '../../../shared/services/toast.service';
+import { ConfirmService } from '../../../shared/services/confirm.service';
 
 @Component({
   selector: 'app-transactions',
@@ -22,14 +17,14 @@ interface PageAlert {
 })
 export class Transactions implements OnInit {
   private readonly fb = inject(FormBuilder);
+  private readonly toastService = inject(ToastService);
+  private readonly translateService = inject(TranslateService);
+  private readonly confirmService = inject(ConfirmService);
 
   readonly transactionService = inject(TransactionService);
   readonly categoryService = inject(CategoryService);
 
-  private alertTimeoutId: number | null = null;
-
   editingTransactionId = signal<string | null>(null);
-  alert = signal<PageAlert | null>(null);
   selectedType = signal<TransactionType>('expense');
 
   filteredCategories = computed(() =>
@@ -63,7 +58,12 @@ export class Transactions implements OnInit {
   async submit(): Promise<void> {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      this.showAlert('error', 'Please fill all required fields correctly.');
+
+      this.toastService.error(
+        this.t('COMMON.INVALID_FORM_TITLE'),
+        this.t('COMMON.INVALID_FORM_MESSAGE')
+      );
+
       return;
     }
 
@@ -83,15 +83,26 @@ export class Transactions implements OnInit {
 
       if (editingId) {
         await this.transactionService.updateTransaction(editingId, payload);
-        this.showAlert('success', 'Transaction updated successfully.');
+
+        this.toastService.success(
+          this.t('TRANSACTIONS.UPDATED_TOAST_TITLE'),
+          this.t('TRANSACTIONS.UPDATED_TOAST_MESSAGE')
+        );
       } else {
         await this.transactionService.createTransaction(payload);
-        this.showAlert('success', 'Transaction created successfully.');
+
+        this.toastService.success(
+          this.t('TRANSACTIONS.CREATED_TOAST_TITLE'),
+          this.t('TRANSACTIONS.CREATED_TOAST_MESSAGE')
+        );
       }
 
       this.resetForm();
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('TRANSACTIONS.SAVE_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
@@ -107,19 +118,16 @@ export class Transactions implements OnInit {
       transaction_date: transaction.transaction_date,
       note: transaction.note ?? '',
     });
-
-    this.form.patchValue({
-      type: transaction.type,
-      title: transaction.title,
-      amount: Number(transaction.amount),
-      category_id: transaction.category_id ?? '',
-      transaction_date: transaction.transaction_date,
-      note: transaction.note ?? '',
-    });
   }
 
-  async deleteTransaction(transaction: Transaction): Promise<void> {
-    const confirmed = confirm(`Delete this transaction?`);
+ async deleteTransaction(transaction: Transaction): Promise<void> {
+    const confirmed = await this.confirmService.confirm({
+      title: this.t('TRANSACTIONS.DELETE_DIALOG_TITLE'),
+      message: this.t('TRANSACTIONS.DELETE_CONFIRM'),
+      confirmText: this.t('ACTIONS.DELETE'),
+      cancelText: this.t('ACTIONS.CANCEL'),
+      danger: true,
+    });
 
     if (!confirmed) {
       return;
@@ -127,13 +135,20 @@ export class Transactions implements OnInit {
 
     try {
       await this.transactionService.deleteTransaction(transaction.id);
-      this.showAlert('success', 'Transaction deleted successfully.');
+
+      this.toastService.success(
+        this.t('TRANSACTIONS.DELETED_TOAST_TITLE'),
+        this.t('TRANSACTIONS.DELETED_TOAST_MESSAGE')
+      );
 
       if (this.editingTransactionId() === transaction.id) {
         this.resetForm();
       }
     } catch (error) {
-      this.showAlert('error', this.getErrorMessage(error));
+      this.toastService.error(
+        this.t('TRANSACTIONS.DELETE_FAILED_TOAST_TITLE'),
+        this.getErrorMessage(error)
+      );
     }
   }
 
@@ -153,31 +168,38 @@ export class Transactions implements OnInit {
 
   getCategoryLabel(transaction: Transaction): string {
     if (!transaction.categories) {
-      return 'No category';
+      return this.t('TRANSACTIONS.NO_CATEGORY');
     }
 
-    return `${transaction.categories.icon} ${transaction.categories.name}`;
+    return transaction.categories.name;
+  }
+
+  getTransactionBadge(transaction: Transaction): string {
+    if (transaction.categories?.name) {
+      return transaction.categories.name.charAt(0).toUpperCase();
+    }
+
+    return transaction.type === 'income' ? '+' : '-';
+  }
+
+  getCategoryBadge(category: Category): string {
+    return category.name.trim().charAt(0).toUpperCase();
+  }
+
+  formatMoney(value: number): string {
+    return `${Math.round(Number(value)).toLocaleString('fr-FR')} DH`;
   }
 
   trackByCategory(_index: number, category: Category): string {
     return category.id;
   }
 
-  private showAlert(type: AlertType, message: string): void {
-    if (this.alertTimeoutId) {
-      window.clearTimeout(this.alertTimeoutId);
-    }
-
-    this.alert.set({ type, message });
-
-    this.alertTimeoutId = window.setTimeout(() => {
-      this.alert.set(null);
-      this.alertTimeoutId = null;
-    }, 3500);
-  }
-
   private getTodayDate(): string {
     return new Date().toISOString().slice(0, 10);
+  }
+
+  private t(key: string): string {
+    return this.translateService.instant(key);
   }
 
   private getErrorMessage(error: unknown): string {
@@ -185,6 +207,6 @@ export class Transactions implements OnInit {
       return error.message;
     }
 
-    return 'Something went wrong.';
+    return this.t('COMMON.SOMETHING_WENT_WRONG');
   }
 }

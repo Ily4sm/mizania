@@ -26,13 +26,13 @@
         </label>
 
         <label class="field">
-        <span>{{ 'TRANSACTIONS.TITLE_FIELD' | translate }}</span>
-        <input
+          <span>{{ 'TRANSACTIONS.TITLE_FIELD' | translate }}</span>
+          <input
             class="input"
             type="text"
             formControlName="title"
             [placeholder]="'TRANSACTIONS.TITLE_PLACEHOLDER' | translate"
-        />
+          />
         </label>
 
         <label class="field">
@@ -47,7 +47,7 @@
 
             @for (category of filteredCategories(); track category.id) {
               <option [value]="category.id">
-                {{ category.icon }} {{ category.name }}
+                {{ category.name }}
               </option>
             }
           </select>
@@ -62,17 +62,6 @@
           <span>{{ 'TRANSACTIONS.NOTE' | translate }}</span>
           <input class="input" type="text" formControlName="note" />
         </label>
-
-        @if (alert()) {
-          <div
-            class="page-alert"
-            [class.success]="alert()?.type === 'success'"
-            [class.error]="alert()?.type === 'error'"
-          >
-            <p>{{ alert()?.message }}</p>
-            <span></span>
-          </div>
-        }
 
         <div class="form-actions">
           <button class="btn btn-primary" type="submit">
@@ -104,12 +93,8 @@
           @for (transaction of transactionService.transactions(); track transaction.id) {
             <div class="transaction-item" [class.income]="transaction.type === 'income'">
               <div class="transaction-main">
-                <div class="transaction-icon">
-                  @if (transaction.categories) {
-                    {{ transaction.categories.icon }}
-                  } @else {
-                    💸
-                  }
+                <div class="transaction-icon" aria-hidden="true">
+                  {{ getTransactionBadge(transaction) }}
                 </div>
 
                 <div>
@@ -125,7 +110,7 @@
                 <strong class="money">
                   <bdi dir="ltr">
                     {{ transaction.type === 'income' ? '+' : '-' }}
-                    {{ transaction.amount }} DH
+                    {{ formatMoney(transaction.amount) }}
                   </bdi>
                 </strong>
 

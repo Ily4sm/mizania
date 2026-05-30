@@ -12,6 +12,7 @@
     "SETTINGS": "Paramètres"
   },
   "BUDGETS": {
+    "DELETE_DIALOG_TITLE": "Supprimer le budget",
     "TITLE": "Budgets mensuels",
     "SUBTITLE": "Définissez des limites par catégorie et suivez vos dépenses du mois.",
     "MONTH": "Mois",
@@ -26,11 +27,23 @@
     "REMAINING": "Restant",
     "STATUS_SAFE": "Budget maîtrisé",
     "STATUS_WARNING": "Attention, limite bientôt atteinte",
-    "STATUS_DANGER": "Limite dépassée"
+    "STATUS_DANGER": "Limite dépassée",
+    "CREATED_TOAST_TITLE": "Budget créé",
+    "CREATED_TOAST_MESSAGE": "Le budget a été ajouté avec succès.",
+    "UPDATED_TOAST_TITLE": "Budget modifié",
+    "UPDATED_TOAST_MESSAGE": "Le budget a été mis à jour avec succès.",
+    "DELETED_TOAST_TITLE": "Budget supprimé",
+    "DELETED_TOAST_MESSAGE": "Le budget a été supprimé avec succès.",
+    "SAVE_FAILED_TOAST_TITLE": "Échec de l'enregistrement",
+    "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression",
+    "DELETE_CONFIRM": "Supprimer ce budget ?"
   },
   "COMMON": {
     "LOADING": "Chargement...",
-    "SAVING": "Enregistrement..."
+    "SAVING": "Enregistrement...",
+    "SOMETHING_WENT_WRONG": "Une erreur est survenue.",
+    "INVALID_FORM_TITLE": "Formulaire invalide",
+    "INVALID_FORM_MESSAGE": "Veuillez remplir correctement tous les champs obligatoires."
   },
   "ACTIONS": {
     "ADD": "Ajouter",
@@ -115,7 +128,17 @@
     "EXPENSE_CATEGORIES": "Catégories de dépenses",
     "INCOME_CATEGORIES": "Catégories de revenus",
     "EMPTY_EXPENSE": "Aucune catégorie de dépense pour le moment.",
-    "EMPTY_INCOME": "Aucune catégorie de revenu pour le moment."
+    "EMPTY_INCOME": "Aucune catégorie de revenu pour le moment.",
+    "CREATED_TOAST_TITLE": "Catégorie créée",
+    "CREATED_TOAST_MESSAGE": "La catégorie a été ajoutée avec succès.",
+    "UPDATED_TOAST_TITLE": "Catégorie modifiée",
+    "UPDATED_TOAST_MESSAGE": "La catégorie a été mise à jour avec succès.",
+    "DELETED_TOAST_TITLE": "Catégorie supprimée",
+    "DELETED_TOAST_MESSAGE": "La catégorie a été supprimée avec succès.",
+    "SAVE_FAILED_TOAST_TITLE": "Échec de l'enregistrement",
+    "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression",
+    "DELETE_CONFIRM": "Supprimer la catégorie",
+    "DELETE_DIALOG_TITLE": "Supprimer la catégorie"
   },
   "TRANSACTIONS": {
     "TITLE": "Transactions",
@@ -133,9 +156,20 @@
     "RECENT": "Transactions récentes",
     "EMPTY": "Aucune transaction pour le moment.",
     "TITLE_FIELD": "Titre",
-    "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salaire..."
+    "TITLE_PLACEHOLDER": "Ex: Soda, Taxi, Salaire...",
+    "CREATED_TOAST_TITLE": "Transaction créée",
+    "CREATED_TOAST_MESSAGE": "La transaction a été ajoutée avec succès.",
+    "UPDATED_TOAST_TITLE": "Transaction modifiée",
+    "UPDATED_TOAST_MESSAGE": "La transaction a été mise à jour avec succès.",
+    "DELETED_TOAST_TITLE": "Transaction supprimée",
+    "DELETED_TOAST_MESSAGE": "La transaction a été supprimée avec succès.",
+    "SAVE_FAILED_TOAST_TITLE": "Échec de l'enregistrement",
+    "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression",
+    "DELETE_CONFIRM": "Supprimer cette transaction ?",
+    "DELETE_DIALOG_TITLE": "Supprimer la transaction"
   },
   "RECURRING": {
+    "DELETE_DIALOG_TITLE": "Supprimer l’élément fixe",
     "TITLE": "Éléments fixes",
     "SUBTITLE": "Enregistrez vos dépenses ou revenus habituels et ajoutez-les rapidement chaque mois.",
     "CREATE": "Nouvel élément fixe",
@@ -154,7 +188,19 @@
     "INACTIVE": "Inactif",
     "SAVED_ITEMS": "Éléments enregistrés",
     "EMPTY": "Aucun élément fixe pour le moment.",
-    "ADD_TRANSACTION": "Ajouter comme transaction"
+    "ADD_TRANSACTION": "Ajouter comme transaction",
+    "CREATED_TOAST_TITLE": "Élément fixe créé",
+    "CREATED_TOAST_MESSAGE": "L’élément fixe a été ajouté avec succès.",
+    "UPDATED_TOAST_TITLE": "Élément fixe modifié",
+    "UPDATED_TOAST_MESSAGE": "L’élément fixe a été mis à jour avec succès.",
+    "DELETED_TOAST_TITLE": "Élément fixe supprimé",
+    "DELETED_TOAST_MESSAGE": "L’élément fixe a été supprimé avec succès.",
+    "ADDED_TRANSACTION_TOAST_TITLE": "Transaction ajoutée",
+    "ADDED_TRANSACTION_TOAST_MESSAGE": "L’élément fixe a été ajouté comme transaction.",
+    "ADD_TRANSACTION_FAILED_TOAST_TITLE": "Échec de l'ajout",
+    "SAVE_FAILED_TOAST_TITLE": "Échec de l'enregistrement",
+    "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression",
+    "DELETE_CONFIRM": "Supprimer l’élément fixe"
   },
   "SETTINGS": {
     "TITLE": "Paramètres",
@@ -179,6 +225,14 @@
     "DELETE_ACCOUNT_BUTTON": "Supprimer mon compte",
     "DELETE_ACCOUNT_CONFIRM_TITLE": "Confirmation de suppression",
     "DELETE_ACCOUNT_CONFIRM_MESSAGE": "Pour confirmer, écrivez DELETE dans le champ ci-dessous.",
-    "DELETE_ACCOUNT_ERROR": "Impossible de supprimer le compte. Veuillez réessayer."
+    "DELETE_ACCOUNT_ERROR": "Impossible de supprimer le compte. Veuillez réessayer.",
+    "INVALID_FORM_TITLE": "Formulaire invalide",
+    "INVALID_FORM_MESSAGE": "Veuillez remplir correctement tous les champs obligatoires.",
+    "SAVED_TOAST_TITLE": "Paramètres enregistrés",
+    "SAVED_TOAST_MESSAGE": "Vos préférences ont été mises à jour avec succès.",
+    "SAVE_FAILED_TOAST_TITLE": "Échec de l'enregistrement",
+    "ACCOUNT_DELETED_TOAST_TITLE": "Compte supprimé",
+    "ACCOUNT_DELETED_TOAST_MESSAGE": "Votre compte et vos données ont été supprimés avec succès.",
+    "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression"
   }
 }

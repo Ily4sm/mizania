@@ -56,17 +56,6 @@
           />
         </label>
 
-        @if (alert()) {
-          <div
-            class="page-alert"
-            [class.success]="alert()?.type === 'success'"
-            [class.error]="alert()?.type === 'error'"
-          >
-            <p>{{ alert()?.message }}</p>
-            <span></span>
-          </div>
-        }
-
         <div class="form-actions">
           <button class="btn btn-primary" type="submit">
             @if (editingBudgetId()) {
@@ -95,11 +84,17 @@
       } @else {
         <div class="budget-list">
           @for (progress of budgetProgress(); track progress.budget.id) {
-            <div class="budget-item" [class.warning]="progress.status === 'warning'" [class.danger]="progress.status === 'danger'">
+            <div
+              class="budget-item"
+              [class.warning]="progress.status === 'warning'"
+              [class.danger]="progress.status === 'danger'"
+            >
               <div class="budget-top">
                 <div>
                   <strong class="budget-category-name">
-                    <span>{{ progress.budget.categories?.icon }}</span>
+                    <span class="budget-category-badge" aria-hidden="true">
+                      {{ getCategoryBadge(progress.budget.categories) }}
+                    </span>
                     <span>{{ progress.budget.categories?.name }}</span>
                   </strong>
                   <small>{{ getStatusLabel(progress) | translate }}</small>

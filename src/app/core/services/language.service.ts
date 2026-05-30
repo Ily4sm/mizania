@@ -11,15 +11,16 @@ export class LanguageService {
   private readonly storageKey = 'mizania-language';
   private readonly isBrowser: boolean;
 
-  language = signal<AppLanguage>('fr');
+  readonly language = signal<AppLanguage>('fr');
 
   constructor(
-    private translate: TranslateService,
+    private readonly translate: TranslateService,
     @Inject(PLATFORM_ID) platformId: object
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
 
     this.translate.addLangs(['fr', 'en', 'ar']);
+    this.translate.setFallbackLang('fr');
 
     const initialLanguage = this.getInitialLanguage();
     this.setLanguage(initialLanguage);
@@ -34,7 +35,23 @@ export class LanguageService {
       document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
     }
 
-    this.translate.use(language);
+    this.translate.use(language).subscribe({
+      error: (error) => {
+        console.error(`Failed to load language file: ${language}`, error);
+
+        if (language !== 'fr') {
+          this.language.set('fr');
+
+          if (this.isBrowser) {
+            localStorage.setItem(this.storageKey, 'fr');
+            document.documentElement.lang = 'fr';
+            document.documentElement.dir = 'ltr';
+          }
+
+          this.translate.use('fr').subscribe();
+        }
+      },
+    });
   }
 
   private getInitialLanguage(): AppLanguage {

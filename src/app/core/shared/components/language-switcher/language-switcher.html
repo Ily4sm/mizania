@@ -1,0 +1,10 @@
+<select
+  class="language-select"
+  [value]="languageService.language()"
+  (change)="changeLanguage($event)"
+  aria-label="Language"
+>
+  <option value="fr">FR</option>
+  <option value="en">EN</option>
+  <option value="ar">AR</option>
+</select>
