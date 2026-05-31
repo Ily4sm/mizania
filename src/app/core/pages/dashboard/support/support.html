@@ -1,0 +1,104 @@
+<section class="support-page">
+  <div class="page-header">
+    <div>
+      <h2 class="page-title">{{ 'SUPPORT.TITLE' | translate }}</h2>
+      <p class="page-subtitle">{{ 'SUPPORT.SUBTITLE' | translate }}</p>
+    </div>
+  </div>
+
+  <div class="support-grid">
+    <article class="card support-card">
+      <div class="support-intro">
+        <div class="support-icon">
+          <lucide-icon [img]="icons.message" size="24"></lucide-icon>
+        </div>
+
+        <div>
+          <h3>{{ 'SUPPORT.FORM_TITLE' | translate }}</h3>
+          <p>{{ 'SUPPORT.FORM_DESCRIPTION' | translate }}</p>
+        </div>
+      </div>
+
+      <form class="support-form" [formGroup]="form" (ngSubmit)="submit()">
+        <label class="field">
+          <span>{{ 'SUPPORT.TYPE' | translate }}</span>
+          <app-select
+            formControlName="type"
+            [options]="typeOptions"
+            [placeholder]="'SUPPORT.TYPE' | translate"
+          ></app-select>
+        </label>
+
+        <label class="field">
+          <span>{{ 'SUPPORT.SUBJECT' | translate }}</span>
+          <input
+            class="input"
+            type="text"
+            formControlName="subject"
+            [placeholder]="'SUPPORT.SUBJECT_PLACEHOLDER' | translate"
+          />
+        </label>
+
+        <label class="field">
+          <span>{{ 'SUPPORT.MESSAGE' | translate }}</span>
+          <textarea
+            class="input textarea"
+            formControlName="message"
+            [placeholder]="'SUPPORT.MESSAGE_PLACEHOLDER' | translate"
+          ></textarea>
+        </label>
+
+        <label class="field">
+          <span>{{ 'SUPPORT.EMAIL' | translate }}</span>
+          <div class="input-with-icon">
+            <lucide-icon [img]="icons.mail" size="17"></lucide-icon>
+            <input
+              type="email"
+              formControlName="email"
+              [placeholder]="'SUPPORT.EMAIL_PLACEHOLDER' | translate"
+            />
+          </div>
+        </label>
+
+        <button class="btn btn-primary" type="submit" [disabled]="loading()">
+          @if (loading()) {
+            {{ 'COMMON.SAVING' | translate }}
+          } @else {
+            <lucide-icon [img]="icons.send" size="16"></lucide-icon>
+            {{ 'SUPPORT.SEND' | translate }}
+          }
+        </button>
+      </form>
+    </article>
+
+    <aside class="card support-side">
+      <h3>{{ 'SUPPORT.SIDE_TITLE' | translate }}</h3>
+
+      <div class="support-tips">
+        <article>
+          <lucide-icon [img]="icons.suggestion" size="20"></lucide-icon>
+          <div>
+            <strong>{{ 'SUPPORT.TIP_1_TITLE' | translate }}</strong>
+            <p>{{ 'SUPPORT.TIP_1_TEXT' | translate }}</p>
+          </div>
+        </article>
+
+        <article>
+          <lucide-icon [img]="icons.problem" size="20"></lucide-icon>
+          <div>
+            <strong>{{ 'SUPPORT.TIP_2_TITLE' | translate }}</strong>
+            <p>{{ 'SUPPORT.TIP_2_TEXT' | translate }}</p>
+          </div>
+        </article>
+
+        <article>
+          <lucide-icon [img]="icons.question" size="20"></lucide-icon>
+          <div>
+            <strong>{{ 'SUPPORT.TIP_3_TITLE' | translate }}</strong>
+            <p>{{ 'SUPPORT.TIP_3_TEXT' | translate }}</p>
+          </div>
+        </article>
+      </div>
+    </aside>
+  </div>
+</section>

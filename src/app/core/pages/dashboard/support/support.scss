@@ -1,0 +1,157 @@
+.support-page {
+  display: grid;
+  gap: 1rem;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 1rem;
+  align-items: start;
+}
+
+.support-card,
+.support-side {
+  padding: 1.2rem;
+}
+
+.support-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.support-icon {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  box-shadow: 0 14px 30px rgba(16, 185, 129, 0.2);
+}
+
+.support-intro h3,
+.support-side h3 {
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.04em;
+}
+
+.support-intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 0.9rem;
+}
+
+.support-form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field span {
+  color: var(--muted);
+  font-weight: 850;
+  font-size: 0.82rem;
+}
+
+.textarea {
+  min-height: 8rem;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.input-with-icon {
+  min-height: 2.85rem;
+  border: 1px solid var(--border);
+  border-radius: 0.95rem;
+  padding: 0 0.85rem;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--muted);
+}
+
+.input-with-icon input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+
+.support-form .btn {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.support-tips {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.support-tips article {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+}
+
+.support-tips lucide-icon {
+  color: var(--primary);
+  flex: 0 0 auto;
+}
+
+.support-tips strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.support-tips p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+:host-context([dir='rtl']) {
+  .support-page {
+    text-align: right;
+  }
+
+  .support-intro,
+  .support-tips article,
+  .input-with-icon {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 900px) {
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .support-card,
+  .support-side {
+    padding: 1rem;
+  }
+
+  .support-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

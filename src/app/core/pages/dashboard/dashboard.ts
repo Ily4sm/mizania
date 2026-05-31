@@ -1,4 +1,5 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
   ArrowDownRight,
@@ -51,6 +52,8 @@ export class Dashboard implements OnInit {
   expenseCategoryChartData: ExpenseCategoryChartItem[] = [];
   monthlyTrendChartData: MonthlyTrendChartPoint[] = [];
 
+  readonly languageService = inject(LanguageService);
+
   readonly currentMonthTransactions = computed(() => {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -84,21 +87,42 @@ export class Dashboard implements OnInit {
 
   readonly remaining = computed(() => this.totalIncome() - this.totalExpenses());
 
-  readonly daysLeft = computed(() => {
+  readonly daysInCurrentMonth = computed(() => {
     const now = new Date();
-    const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-
-    return Math.max(lastDayOfMonth.getDate() - now.getDate() + 1, 1);
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
   });
 
-  readonly safeDailySpending = computed(() => {
-    const remaining = this.remaining();
+  readonly currentDateLabel = computed(() =>
+    new Intl.DateTimeFormat(this.getDateLocale(), {
+      weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date())
+  );
 
-    if (remaining <= 0) {
+  private getDateLocale(): string {
+    const language = this.languageService.language();
+
+    if (language === 'ar') {
+      return 'ar-MA';
+    }
+
+    if (language === 'en') {
+      return 'en-US';
+    }
+
+    return 'fr-FR';
+  }
+
+  readonly safeDailySpending = computed(() => {
+    const income = this.totalIncome();
+
+    if (income <= 0) {
       return 0;
     }
 
-    return remaining / this.daysLeft();
+    return income / this.daysInCurrentMonth();
   });
 
   readonly budgetHealthScore = computed(() => {

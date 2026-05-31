@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import {
+  LifeBuoy,
   LayoutDashboard,
   ChartColumn,
   ReceiptText,
@@ -27,5 +28,6 @@ export class Sidebar {
     categories: Tags,
     recurring: Repeat,
     settings: Settings,
+    support: LifeBuoy,
   };
 }

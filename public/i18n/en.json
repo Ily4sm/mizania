@@ -9,7 +9,8 @@
     "CATEGORIES": "Categories",
     "BUDGETS": "Budgets",
     "RECURRING": "Fixed items",
-    "SETTINGS": "Settings"
+    "SETTINGS": "Settings",
+    "SUPPORT": "Support"
   },
   "BUDGETS": {
     "DELETE_DIALOG_TITLE": "Delete budget",
@@ -37,6 +38,33 @@
     "SAVE_FAILED_TOAST_TITLE": "Save failed",
     "DELETE_FAILED_TOAST_TITLE": "Delete failed",
     "DELETE_CONFIRM": "Delete this budget?"
+  },
+  "SUPPORT": {
+    "TITLE": "Support",
+    "SUBTITLE": "Send a suggestion, report a problem, or ask a question.",
+    "FORM_TITLE": "Contact support",
+    "FORM_DESCRIPTION": "Your message will be sent directly to the Mizania developer.",
+    "TYPE": "Message type",
+    "TYPE_SUGGESTION": "Suggestion",
+    "TYPE_PROBLEM": "Problem",
+    "TYPE_QUESTION": "Question",
+    "SUBJECT": "Subject",
+    "SUBJECT_PLACEHOLDER": "Example: Improve the dashboard",
+    "MESSAGE": "Message",
+    "MESSAGE_PLACEHOLDER": "Explain your suggestion or problem clearly...",
+    "EMAIL": "Contact email",
+    "EMAIL_PLACEHOLDER": "your@email.com",
+    "SEND": "Send message",
+    "SIDE_TITLE": "What can you send?",
+    "TIP_1_TITLE": "Suggestions",
+    "TIP_1_TEXT": "Ideas to improve the app experience or add useful features.",
+    "TIP_2_TITLE": "Problems",
+    "TIP_2_TEXT": "Bugs, display issues, broken actions, or confusing behavior.",
+    "TIP_3_TITLE": "Questions",
+    "TIP_3_TEXT": "Anything you want to understand about Mizania.",
+    "SENT_TOAST_TITLE": "Message sent",
+    "SENT_TOAST_MESSAGE": "Thanks. Your message was sent successfully.",
+    "FAILED_TOAST_TITLE": "Sending failed"
   },
   "COMMON": {
     "LOADING": "Loading...",
@@ -122,7 +150,7 @@
     "INCOME": "Income",
     "EXPENSES": "Expenses",
     "REMAINING": "Remaining",
-    "SAFE_DAILY": "Safe daily spending",
+    "SAFE_DAILY": "Average daily income",
     "HEALTH": "Budget health",
     "GOOD": "Balanced month",
     "QUICK_ACTIONS": "Quick actions",
@@ -159,7 +187,9 @@
     "TOTAL_EXPENSES_6_MONTHS": "Expenses over 6 months",
     "NO_MONTHLY_TREND_DATA": "No trend to display",
     "NO_MONTHLY_TREND_DATA_HINT": "Add transactions across different months to see the trend.",
-    "TOP_CATEGORY": "Top category"
+    "TOP_CATEGORY": "Top category",
+    "DAILY_INCOME_HINT": "Based on",
+    "DAYS_IN_MONTH": "days this month"
   },
   "AUTH": {
     "LOGIN_TITLE": "Welcome back",

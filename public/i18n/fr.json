@@ -9,7 +9,8 @@
     "CATEGORIES": "Catégories",
     "BUDGETS": "Budgets",
     "RECURRING": "Éléments fixes",
-    "SETTINGS": "Paramètres"
+    "SETTINGS": "Paramètres",
+    "SUPPORT": "Support"
   },
   "BUDGETS": {
     "DELETE_DIALOG_TITLE": "Supprimer le budget",
@@ -38,6 +39,33 @@
     "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression",
     "DELETE_CONFIRM": "Supprimer ce budget ?"
   },
+  "SUPPORT": {
+    "TITLE": "Support",
+    "SUBTITLE": "Envoyez une suggestion, signalez un problème ou posez une question.",
+    "FORM_TITLE": "Contacter le support",
+    "FORM_DESCRIPTION": "Votre message sera envoyé directement au développeur de Mizania.",
+    "TYPE": "Type de message",
+    "TYPE_SUGGESTION": "Suggestion",
+    "TYPE_PROBLEM": "Problème",
+    "TYPE_QUESTION": "Question",
+    "SUBJECT": "Sujet",
+    "SUBJECT_PLACEHOLDER": "Exemple : améliorer le tableau de bord",
+    "MESSAGE": "Message",
+    "MESSAGE_PLACEHOLDER": "Expliquez clairement votre suggestion ou votre problème...",
+    "EMAIL": "Email de contact",
+    "EMAIL_PLACEHOLDER": "votre@email.com",
+    "SEND": "Envoyer le message",
+    "SIDE_TITLE": "Que pouvez-vous envoyer ?",
+    "TIP_1_TITLE": "Suggestions",
+    "TIP_1_TEXT": "Des idées pour améliorer l’expérience ou ajouter des fonctionnalités utiles.",
+    "TIP_2_TITLE": "Problèmes",
+    "TIP_2_TEXT": "Bugs, problèmes d’affichage, actions qui ne marchent pas ou comportements confus.",
+    "TIP_3_TITLE": "Questions",
+    "TIP_3_TEXT": "Tout ce que vous souhaitez comprendre à propos de Mizania.",
+    "SENT_TOAST_TITLE": "Message envoyé",
+    "SENT_TOAST_MESSAGE": "Merci. Votre message a été envoyé avec succès.",
+    "FAILED_TOAST_TITLE": "Échec de l’envoi"
+  },
   "COMMON": {
     "LOADING": "Chargement...",
     "SAVING": "Enregistrement...",
@@ -62,7 +90,6 @@
     "INCOME": "Revenus",
     "EXPENSES": "Dépenses",
     "REMAINING": "Restant",
-    "SAFE_DAILY": "Dépense sûre par jour",
     "HEALTH": "Santé du budget",
     "GOOD": "Mois équilibré",
     "QUICK_ACTIONS": "Actions rapides",
@@ -99,7 +126,10 @@
     "TOTAL_EXPENSES_6_MONTHS": "Dépenses sur 6 mois",
     "NO_MONTHLY_TREND_DATA": "Aucune évolution à afficher",
     "NO_MONTHLY_TREND_DATA_HINT": "Ajoutez des transactions sur plusieurs mois pour voir l’évolution.",
-    "TOP_CATEGORY": "Catégorie principale"
+    "TOP_CATEGORY": "Catégorie principale",
+    "DAILY_INCOME_HINT": "Basé sur",
+    "DAYS_IN_MONTH": "jours ce mois-ci",
+    "SAFE_DAILY": "Revenu moyen / jour"
   },
   "AUTH": {
     "LOGIN_TITLE": "Bon retour",

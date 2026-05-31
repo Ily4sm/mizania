@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import {
-  ChartNoAxesCombined,
-  Gauge,
+  ChartColumn,
+  LayoutDashboard,
+  LifeBuoy,
   LucideAngularModule,
   ReceiptText,
-  Repeat2,
+  Repeat,
   Settings,
   Tags,
 } from 'lucide-angular';
@@ -19,11 +20,12 @@ import {
 })
 export class MobileNav {
   readonly icons = {
-    dashboard: Gauge,
-    budgets: ChartNoAxesCombined,
+    dashboard: LayoutDashboard,
+    budgets: ChartColumn,
     transactions: ReceiptText,
     categories: Tags,
-    recurring: Repeat2,
+    recurring: Repeat,
     settings: Settings,
+    support: LifeBuoy,
   };
 }

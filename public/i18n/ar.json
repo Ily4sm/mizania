@@ -9,7 +9,8 @@
     "CATEGORIES": "الفئات",
     "BUDGETS": "الميزانيات",
     "RECURRING": "المصاريف الثابتة",
-    "SETTINGS": "الإعدادات"
+    "SETTINGS": "الإعدادات",
+    "SUPPORT": "الدعم"
   },
   "BUDGETS": {
     "TITLE": "الميزانيات الشهرية",
@@ -36,6 +37,34 @@
     "SAVE_FAILED_TOAST_TITLE": "فشل الحفظ",
     "DELETE_FAILED_TOAST_TITLE": "فشل الحذف",
     "DELETE_CONFIRM": "هل تريد حذف هذه الميزانية؟"
+  },
+
+  "SUPPORT": {
+    "TITLE": "الدعم",
+    "SUBTITLE": "أرسل اقتراحا أو بلّغ عن مشكلة أو اطرح سؤالا.",
+    "FORM_TITLE": "تواصل مع الدعم",
+    "FORM_DESCRIPTION": "سيتم إرسال رسالتك مباشرة إلى مطور Mizania.",
+    "TYPE": "نوع الرسالة",
+    "TYPE_SUGGESTION": "اقتراح",
+    "TYPE_PROBLEM": "مشكلة",
+    "TYPE_QUESTION": "سؤال",
+    "SUBJECT": "الموضوع",
+    "SUBJECT_PLACEHOLDER": "مثال: تحسين لوحة التحكم",
+    "MESSAGE": "الرسالة",
+    "MESSAGE_PLACEHOLDER": "اشرح اقتراحك أو مشكلتك بوضوح...",
+    "EMAIL": "بريد التواصل",
+    "EMAIL_PLACEHOLDER": "your@email.com",
+    "SEND": "إرسال الرسالة",
+    "SIDE_TITLE": "ماذا يمكنك أن ترسل؟",
+    "TIP_1_TITLE": "اقتراحات",
+    "TIP_1_TEXT": "أفكار لتحسين تجربة التطبيق أو إضافة مزايا مفيدة.",
+    "TIP_2_TITLE": "مشاكل",
+    "TIP_2_TEXT": "أخطاء، مشاكل في العرض، أزرار لا تعمل أو سلوك غير واضح.",
+    "TIP_3_TITLE": "أسئلة",
+    "TIP_3_TEXT": "أي شيء تريد فهمه حول Mizania.",
+    "SENT_TOAST_TITLE": "تم إرسال الرسالة",
+    "SENT_TOAST_MESSAGE": "شكرا لك. تم إرسال رسالتك بنجاح.",
+    "FAILED_TOAST_TITLE": "فشل الإرسال"
   },
  
   "COMMON": {
@@ -122,7 +151,6 @@
     "INCOME": "الدخل",
     "EXPENSES": "المصاريف",
     "REMAINING": "المتبقي",
-    "SAFE_DAILY": "المبلغ الآمن يوميا",
     "HEALTH": "صحة الميزانية",
     "GOOD": "شهر متوازن",
     "QUICK_ACTIONS": "إجراءات سريعة",
@@ -159,7 +187,10 @@
     "TOTAL_EXPENSES_6_MONTHS": "المصاريف خلال 6 أشهر",
     "NO_MONTHLY_TREND_DATA": "لا يوجد تطور لعرضه",
     "NO_MONTHLY_TREND_DATA_HINT": "أضف معاملات في أشهر مختلفة لعرض التطور.",
-    "TOP_CATEGORY": "الفئة الرئيسية"
+    "TOP_CATEGORY": "الفئة الرئيسية",
+    "DAILY_INCOME_HINT": "بناء على",
+    "DAYS_IN_MONTH": "يوما في هذا الشهر",
+    "SAFE_DAILY": "متوسط الدخل اليومي"
   },
   "AUTH": {
     "LOGIN_TITLE": "مرحبا بعودتك",

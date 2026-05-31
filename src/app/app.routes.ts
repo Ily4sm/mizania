@@ -94,6 +94,11 @@ export const routes: Routes = [
             (m) => m.Settings
           ),
       },
+      {
+        path: 'support',
+        loadComponent: () =>
+          import('./core/pages/dashboard/support/support').then((m) => m.Support),
+      },
     ],
   },
   {

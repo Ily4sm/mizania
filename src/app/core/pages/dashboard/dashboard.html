@@ -6,6 +6,9 @@
         <bdi class="money" dir="ltr">{{ firstName }}</bdi>
       </h2>
       <p class="page-subtitle">{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
+      <p class="date-badge">
+        {{ currentDateLabel() }}
+      </p>
     </div>
 
     <a class="btn btn-primary" href="/transactions">
@@ -60,8 +63,9 @@
         <bdi class="money" dir="ltr">{{ formatMoney(safeDailySpending()) }}</bdi>
       </strong>
       <small>
-        <bdi class="money" dir="ltr">{{ daysLeft() }}</bdi>
-        {{ 'DASHBOARD.DAYS_LEFT' | translate }}
+         {{ 'DASHBOARD.DAILY_INCOME_HINT' | translate }}
+        <bdi class="money" dir="ltr">{{ daysInCurrentMonth() }}</bdi>
+        {{ 'DASHBOARD.DAYS_IN_MONTH' | translate }}
       </small>
     </article>
   </div>
