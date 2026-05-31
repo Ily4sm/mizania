@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /dashboard
+Disallow: /transactions
+Disallow: /budgets
+Disallow: /categories
+Disallow: /recurring-items
+Disallow: /settings
+Disallow: /support
+
+Sitemap: https://YOUR-VERCEL-URL.vercel.app/sitemap.xml
