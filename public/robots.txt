@@ -9,4 +9,4 @@ Disallow: /recurring-items
 Disallow: /settings
 Disallow: /support
 
-Sitemap: https://YOUR-VERCEL-URL.vercel.app/sitemap.xml
+Sitemap: https://mizania-tau.vercel.app/sitemap.xml
