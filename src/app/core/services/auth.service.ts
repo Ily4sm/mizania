@@ -19,6 +19,7 @@ export interface LoginPayload {
 })
 export class AuthService {
   private readonly isBrowser: boolean;
+  private readonly productionOrigin = 'https://mizania-tau.vercel.app';
   private supabase: SupabaseClient | null = null;
 
   user = signal<User | null>(null);
@@ -60,7 +61,7 @@ export class AuthService {
         data: {
           full_name: payload.fullName,
         },
-        emailRedirectTo: `${window.location.origin}/auth/verify-email`,
+        emailRedirectTo: `${this.getAppOrigin()}/auth/verify-email`,
       },
     });
 
@@ -86,7 +87,7 @@ export class AuthService {
     const client = this.getSupabaseClient();
 
     const { error } = await client.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/reset-password`,
+      redirectTo: `${this.getAppOrigin()}/auth/reset-password`,
     });
 
     if (error) {
@@ -166,6 +167,20 @@ export class AuthService {
     this.user.set(data.session?.user ?? null);
 
     return data.session;
+  }
+
+  private getAppOrigin(): string {
+    if (!this.isBrowser) {
+      return this.productionOrigin;
+    }
+
+    const origin = window.location.origin;
+
+    if (origin.includes('localhost')) {
+      return origin;
+    }
+
+    return this.productionOrigin;
   }
 
   private async loadSession(): Promise<void> {
