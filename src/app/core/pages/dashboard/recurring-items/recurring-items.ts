@@ -8,11 +8,13 @@ import { ConfirmService } from '../../../shared/services/confirm.service';
 import { RecurringItemService } from '../../../services/recurring-item.service';
 import { ToastService } from '../../../shared/services/toast.service';
 import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
+import { Pencil, Plus, Trash2, LucideAngularModule } from 'lucide-angular';
+import { Repeat } from 'lucide-angular';
 
 @Component({
   selector: 'app-recurring-items',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect, LucideAngularModule],
   templateUrl: './recurring-items.html',
   styleUrl: './recurring-items.scss',
 })
@@ -24,6 +26,12 @@ export class RecurringItems implements OnInit {
 
   readonly categoryService = inject(CategoryService);
   readonly recurringItemService = inject(RecurringItemService);
+  readonly icons = {
+    add: Plus,
+    edit: Pencil,
+    delete: Trash2,
+    repeat: Repeat,
+  };
 
   editingItemId = signal<string | null>(null);
   selectedType = signal<TransactionType>('expense');
@@ -154,7 +162,7 @@ export class RecurringItems implements OnInit {
   async deleteItem(item: RecurringItem): Promise<void> {
     const confirmed = await this.confirmService.confirm({
       title: this.t('RECURRING.DELETE_DIALOG_TITLE'),
-      message: `${this.t('RECURRING.DELETE_CONFIRM')} "${item.title}"?`,
+      message: this.t('RECURRING.DELETE_CONFIRM_DETAIL'),
       confirmText: this.t('ACTIONS.DELETE'),
       cancelText: this.t('ACTIONS.CANCEL'),
       danger: true,

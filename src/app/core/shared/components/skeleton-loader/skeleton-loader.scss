@@ -1,0 +1,160 @@
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@mixin skeleton-base {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface-soft) 80%, var(--border));
+}
+
+@mixin shimmer-layer {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, white 25%, transparent),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+
+  span {
+    @include skeleton-base;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.85rem;
+
+    &::after {
+      @include shimmer-layer;
+    }
+  }
+
+  div {
+    flex: 1;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  strong,
+  small {
+    @include skeleton-base;
+    border-radius: 999px;
+
+    &::after {
+      @include shimmer-layer;
+    }
+  }
+
+  strong {
+    width: 45%;
+    height: 0.8rem;
+  }
+
+  small {
+    width: 70%;
+    height: 0.65rem;
+  }
+}
+
+.skeleton-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.skeleton-card {
+  padding: 0.75rem;
+  border-radius: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: grid;
+  gap: 0.45rem;
+
+  span,
+  strong,
+  small {
+    @include skeleton-base;
+    border-radius: 999px;
+
+    &::after {
+      @include shimmer-layer;
+    }
+  }
+
+  span {
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 0.65rem;
+  }
+
+  strong {
+    width: 65%;
+    height: 1rem;
+  }
+
+  small {
+    width: 45%;
+    height: 0.65rem;
+  }
+}
+
+.skeleton-chart {
+  padding: 0.85rem;
+  border-radius: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: grid;
+  gap: 0.55rem;
+
+  span,
+  strong,
+  div {
+    @include skeleton-base;
+    border-radius: 999px;
+
+    &::after {
+      @include shimmer-layer;
+    }
+  }
+
+  span {
+    width: 30%;
+    height: 0.7rem;
+  }
+
+  strong {
+    width: 55%;
+    height: 0.95rem;
+  }
+
+  div {
+    width: 100%;
+    height: 0.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .skeleton-stats {
+    grid-template-columns: 1fr;
+  }
+}

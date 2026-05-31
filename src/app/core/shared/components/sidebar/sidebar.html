@@ -1,14 +1,5 @@
 <aside class="sidebar">
-  <div class="brand">
-    <div class="logo">
-      <lucide-icon [img]="icons.wallet" size="24" strokeWidth="2.5"></lucide-icon>
-    </div>
-
-    <div>
-      <strong>Mizania</strong>
-      <span>Budget manager</span>
-    </div>
-  </div>
+  <app-brand variant="sidebar"></app-brand>
 
   <nav>
     <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">

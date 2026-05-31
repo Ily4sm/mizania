@@ -29,14 +29,11 @@
       <form class="budget-form" [formGroup]="form" (ngSubmit)="submit()">
         <label class="field">
           <span>{{ 'BUDGETS.CATEGORY' | translate }}</span>
-          <label class="field">
-            <span>{{ 'BUDGETS.CATEGORY' | translate }}</span>
-            <app-select
-              formControlName="category_id"
-              [options]="categoryOptions"
-              [placeholder]="'BUDGETS.CHOOSE_CATEGORY' | translate"
-            ></app-select>
-          </label>
+          <app-select
+            formControlName="category_id"
+            [options]="categoryOptions"
+            [placeholder]="'BUDGETS.CHOOSE_CATEGORY' | translate"
+          ></app-select>
         </label>
 
         <label class="field">
@@ -60,6 +57,7 @@
             @if (editingBudgetId()) {
               {{ 'ACTIONS.SAVE' | translate }}
             } @else {
+              <lucide-icon [img]="icons.add" size="15"></lucide-icon>
               {{ 'ACTIONS.ADD' | translate }}
             }
           </button>
@@ -128,10 +126,12 @@
 
               <div class="item-actions">
                 <button type="button" (click)="editBudget(progress.budget)">
+                    <lucide-icon [img]="icons.edit" size="15"></lucide-icon>
                   {{ 'ACTIONS.EDIT' | translate }}
                 </button>
 
                 <button type="button" class="danger-btn" (click)="deleteBudget(progress.budget)">
+                    <lucide-icon [img]="icons.delete" size="15"></lucide-icon>
                   {{ 'ACTIONS.DELETE' | translate }}
                 </button>
               </div>

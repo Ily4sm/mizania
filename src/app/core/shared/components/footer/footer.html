@@ -1,0 +1,26 @@
+<footer class="app-footer">
+  <div class="footer-brand">
+    <app-brand variant="navbar" [showTagline]="false"></app-brand>
+    <p>{{ 'FOOTER.DESCRIPTION' | translate }}</p>
+  </div>
+
+  <div class="footer-developer">
+    <span class="footer-label">
+      {{ 'FOOTER.DEVELOPED_BY' | translate }}
+    </span>
+
+    <strong>{{ developerName }}</strong>
+
+    <div class="footer-contact">
+      <a [href]="'mailto:' + developerEmail">
+        <lucide-icon [img]="icons.mail" size="15"></lucide-icon>
+        <span>{{ developerEmail }}</span>
+      </a>
+
+      <a [href]="'tel:' + developerPhone">
+        <lucide-icon [img]="icons.phone" size="15"></lucide-icon>
+        <span>{{ developerPhone }}</span>
+      </a>
+    </div>
+  </div>
+</footer>

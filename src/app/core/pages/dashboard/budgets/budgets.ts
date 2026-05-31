@@ -9,11 +9,12 @@ import { MonthlyBudgetService } from '../../../services/monthly-budget.service';
 import { TransactionService } from '../../../services/transaction.service';
 import { ToastService } from '../../../shared/services/toast.service';
 import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
+import { Pencil, Plus, Trash2, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-budgets',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect, LucideAngularModule],
   templateUrl: './budgets.html',
   styleUrl: './budgets.scss',
 })
@@ -26,6 +27,11 @@ export class Budgets implements OnInit {
   readonly categoryService = inject(CategoryService);
   readonly budgetService = inject(MonthlyBudgetService);
   readonly transactionService = inject(TransactionService);
+  readonly icons = {
+    add: Plus,
+    edit: Pencil,
+    delete: Trash2,
+  };
 
   editingBudgetId = signal<string | null>(null);
   selectedMonth = signal(this.budgetService.getCurrentMonth());
@@ -133,7 +139,7 @@ export class Budgets implements OnInit {
   async deleteBudget(budget: MonthlyBudget): Promise<void> {
     const confirmed = await this.confirmService.confirm({
       title: this.t('BUDGETS.DELETE_DIALOG_TITLE'),
-      message: this.t('BUDGETS.DELETE_CONFIRM'),
+      message: this.t('BUDGETS.DELETE_CONFIRM_DETAIL'),
       confirmText: this.t('ACTIONS.DELETE'),
       cancelText: this.t('ACTIONS.CANCEL'),
       danger: true,

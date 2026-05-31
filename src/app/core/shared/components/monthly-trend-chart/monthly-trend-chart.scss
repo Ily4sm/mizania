@@ -1,8 +1,8 @@
 .chart-card {
-  padding: 1.25rem;
-  border-radius: 1.5rem;
+  padding: 0.85rem;
+  border-radius: 1rem;
   background:
-    radial-gradient(circle at top right, rgba(139, 92, 246, 0.14), transparent 34%),
+    radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent 30%),
     var(--card-bg);
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
@@ -11,56 +11,57 @@
 .chart-header {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
+  gap: 0.7rem;
+  margin-bottom: 0.75rem;
 
   h2 {
-    margin: 0.25rem 0 0;
+    margin: 0.15rem 0 0;
     color: var(--text-color);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
+    letter-spacing: -0.03em;
   }
 
   p {
-    max-width: 34rem;
-    margin: 0.35rem 0 0;
+    max-width: 28rem;
+    margin: 0.25rem 0 0;
     color: var(--text-muted);
-    font-size: 0.88rem;
-    line-height: 1.45;
+    font-size: 0.72rem;
+    line-height: 1.35;
   }
 }
 
 .eyebrow {
   color: #8b5cf6;
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.62rem;
+  font-weight: 850;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
 }
 
 .balance-box {
   flex: 0 0 auto;
-  min-width: 140px;
-  padding: 0.75rem 0.9rem;
-  border-radius: 1rem;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.22);
+  min-width: 6.6rem;
+  padding: 0.52rem 0.62rem;
+  border-radius: 0.72rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
   text-align: end;
 
   span {
     display: block;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.08rem;
     color: var(--text-muted);
-    font-size: 0.72rem;
+    font-size: 0.62rem;
   }
 
   strong {
     color: #10b981;
-    font-size: 0.95rem;
+    font-size: 0.78rem;
   }
 
   &.negative {
-    background: rgba(239, 68, 68, 0.1);
-    border-color: rgba(239, 68, 68, 0.24);
+    background: rgba(239, 68, 68, 0.09);
+    border-color: rgba(239, 68, 68, 0.22);
 
     strong {
       color: #ef4444;
@@ -70,55 +71,55 @@
 
 .trend-layout {
   display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 1.25rem;
+  grid-template-columns: 1fr 13rem;
+  gap: 0.8rem;
   align-items: stretch;
 }
 
 .trend-chart {
-  min-height: 260px;
-  padding: 1rem 0.75rem 0.65rem;
-  border-radius: 1.25rem;
+  min-height: 11.5rem;
+  padding: 0.65rem 0.55rem 0.45rem;
+  border-radius: 0.9rem;
   background: var(--soft-bg);
   border: 1px solid var(--border-color);
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 0.75rem;
+  gap: 0.45rem;
 }
 
 .month-group {
   min-width: 0;
   display: grid;
   grid-template-rows: 1fr auto;
-  gap: 0.65rem;
+  gap: 0.38rem;
   text-align: center;
 
   > span {
     color: var(--text-muted);
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.62rem;
+    font-weight: 750;
     text-transform: capitalize;
   }
 }
 
 .bars {
-  height: 210px;
+  height: 9.2rem;
   display: flex;
   align-items: end;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.22rem;
 }
 
 .bar {
-  width: 0.9rem;
-  min-height: 0.2rem;
-  border-radius: 999px 999px 0.35rem 0.35rem;
+  width: 0.58rem;
+  min-height: 0.16rem;
+  border-radius: 999px 999px 0.28rem 0.28rem;
   transition: 0.2s ease;
 }
 
 .bar:hover {
   opacity: 0.82;
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .bar.income {
@@ -131,26 +132,26 @@
 
 .trend-summary {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.45rem;
   align-content: center;
 
   article {
-    padding: 0.9rem;
-    border-radius: 1rem;
+    padding: 0.58rem;
+    border-radius: 0.72rem;
     background: var(--soft-bg);
     border: 1px solid var(--border-color);
     display: grid;
-    gap: 0.25rem;
+    gap: 0.12rem;
   }
 
   span {
     color: var(--text-muted);
-    font-size: 0.78rem;
+    font-size: 0.65rem;
   }
 
   strong {
     color: var(--text-color);
-    font-size: 0.95rem;
+    font-size: 0.78rem;
 
     &.negative {
       color: #ef4444;
@@ -159,26 +160,26 @@
 }
 
 .legend {
-  padding: 0.75rem 0.9rem;
-  border-radius: 1rem;
+  padding: 0.52rem 0.6rem;
+  border-radius: 0.72rem;
   background: var(--soft-bg);
   border: 1px solid var(--border-color);
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
 
   span {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.28rem;
     color: var(--text-muted);
-    font-size: 0.78rem;
-    font-weight: 700;
+    font-size: 0.65rem;
+    font-weight: 750;
   }
 
   i {
-    width: 0.55rem;
-    height: 0.55rem;
+    width: 0.42rem;
+    height: 0.42rem;
     border-radius: 999px;
   }
 }
@@ -192,9 +193,9 @@
 }
 
 .empty-chart {
-  min-height: 240px;
-  padding: 2rem 1rem;
-  border-radius: 1.25rem;
+  min-height: 9rem;
+  padding: 1rem 0.75rem;
+  border-radius: 0.9rem;
   background: var(--soft-bg);
   border: 1px dashed var(--border-color);
   display: grid;
@@ -203,22 +204,21 @@
   text-align: center;
 
   .empty-icon {
-    margin-bottom: 0.6rem;
-    font-size: 2rem;
+    display: none;
   }
 
   h3 {
-    margin: 0 0 0.35rem;
+    margin: 0 0 0.25rem;
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 0.85rem;
   }
 
   p {
-    max-width: 30rem;
+    max-width: 24rem;
     margin: 0;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.72rem;
+    line-height: 1.35;
   }
 }
 
@@ -254,8 +254,8 @@ bdi {
 
 @media (max-width: 640px) {
   .chart-card {
-    padding: 1rem;
-    border-radius: 1.25rem;
+    padding: 0.75rem;
+    border-radius: 0.95rem;
   }
 
   .chart-header {
@@ -268,17 +268,17 @@ bdi {
   }
 
   .trend-chart {
-    gap: 0.45rem;
-    padding-inline: 0.5rem;
+    gap: 0.32rem;
+    padding-inline: 0.42rem;
   }
 
   .bars {
-    height: 170px;
-    gap: 0.25rem;
+    height: 7.5rem;
+    gap: 0.18rem;
   }
 
   .bar {
-    width: 0.65rem;
+    width: 0.48rem;
   }
 
   .trend-summary {

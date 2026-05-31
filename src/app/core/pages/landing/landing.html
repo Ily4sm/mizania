@@ -1,0 +1,117 @@
+<main class="landing-page">
+  <header class="landing-nav">
+    <app-brand variant="navbar"></app-brand>
+
+    <div class="nav-actions">
+      <app-language-switcher />
+      <app-theme-toggle />
+
+      <a class="ghost-link" routerLink="/auth/login">
+        {{ 'ACTIONS.LOGIN' | translate }}
+      </a>
+
+      <a class="btn btn-primary" routerLink="/auth/register">
+        {{ 'ACTIONS.REGISTER' | translate }}
+      </a>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-copy">
+      <span class="hero-pill">
+        <lucide-icon [img]="icons.wallet" size="16"></lucide-icon>
+        {{ 'LANDING.PILL' | translate }}
+      </span>
+
+      <h1>{{ 'LANDING.TITLE' | translate }}</h1>
+      <p>{{ 'LANDING.SUBTITLE' | translate }}</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" routerLink="/auth/register">
+          {{ 'LANDING.START_FREE' | translate }}
+        </a>
+
+        <a class="btn" routerLink="/auth/login">
+          {{ 'ACTIONS.LOGIN' | translate }}
+        </a>
+      </div>
+
+      <div class="trust-row">
+        <span>
+          <lucide-icon [img]="icons.check" size="15"></lucide-icon>
+          {{ 'LANDING.TRUST_1' | translate }}
+        </span>
+
+        <span>
+          <lucide-icon [img]="icons.check" size="15"></lucide-icon>
+          {{ 'LANDING.TRUST_2' | translate }}
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-preview card">
+      <div class="preview-top">
+        <span>{{ 'LANDING.PREVIEW_TITLE' | translate }}</span>
+        <strong>+2,450 DH</strong>
+      </div>
+
+      <div class="preview-stats">
+        <article>
+          <span>{{ 'DASHBOARD.INCOME' | translate }}</span>
+          <strong>8,000 DH</strong>
+        </article>
+
+        <article>
+          <span>{{ 'DASHBOARD.EXPENSES' | translate }}</span>
+          <strong>5,550 DH</strong>
+        </article>
+      </div>
+
+      <div class="preview-chart">
+        <span style="height: 45%"></span>
+        <span style="height: 70%"></span>
+        <span style="height: 52%"></span>
+        <span style="height: 82%"></span>
+        <span style="height: 65%"></span>
+        <span style="height: 90%"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <article>
+      <lucide-icon [img]="icons.chart" size="24"></lucide-icon>
+      <h2>{{ 'LANDING.FEATURE_1_TITLE' | translate }}</h2>
+      <p>{{ 'LANDING.FEATURE_1_TEXT' | translate }}</p>
+    </article>
+
+    <article>
+      <lucide-icon [img]="icons.shield" size="24"></lucide-icon>
+      <h2>{{ 'LANDING.FEATURE_2_TITLE' | translate }}</h2>
+      <p>{{ 'LANDING.FEATURE_2_TEXT' | translate }}</p>
+    </article>
+
+    <article>
+      <lucide-icon [img]="icons.language" size="24"></lucide-icon>
+      <h2>{{ 'LANDING.FEATURE_3_TITLE' | translate }}</h2>
+      <p>{{ 'LANDING.FEATURE_3_TEXT' | translate }}</p>
+    </article>
+
+    <article>
+      <lucide-icon [img]="icons.mobile" size="24"></lucide-icon>
+      <h2>{{ 'LANDING.FEATURE_4_TITLE' | translate }}</h2>
+      <p>{{ 'LANDING.FEATURE_4_TEXT' | translate }}</p>
+    </article>
+  </section>
+
+  <section class="cta-section card">
+    <h2>{{ 'LANDING.CTA_TITLE' | translate }}</h2>
+    <p>{{ 'LANDING.CTA_TEXT' | translate }}</p>
+
+    <a class="btn btn-primary" routerLink="/auth/register">
+      {{ 'LANDING.START_FREE' | translate }}
+    </a>
+  </section>
+
+  <app-footer />
+</main>

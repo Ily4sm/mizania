@@ -4,8 +4,8 @@ import { authChildGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
+    loadComponent: () =>
+      import('./core/pages/landing/landing').then((m) => m.Landing),
   },
   {
     path: 'auth',

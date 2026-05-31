@@ -77,3 +77,16 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 640px) {
+  .theme-toggle {
+    width: 2.75rem;
+    height: 1.85rem;
+    padding: 0.18rem;
+  }
+
+  .toggle-thumb {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}

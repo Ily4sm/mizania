@@ -239,7 +239,10 @@
     "SAVE_FAILED_TOAST_TITLE": "Save failed",
     "DELETE_FAILED_TOAST_TITLE": "Delete failed",
     "DELETE_CONFIRM": "Delete this transaction?",
-    "DELETE_DIALOG_TITLE": "Delete transaction"
+    "DELETE_DIALOG_TITLE": "Delete transaction",
+    "FILTER_ALL": "All",
+    "SEARCH_PLACEHOLDER": "Search transactions...",
+    "DELETE_CONFIRM_DETAIL": "This transaction will be permanently deleted. This action cannot be undone."
   },
   "RECURRING": {
     "DELETE_DIALOG_TITLE": "Delete fixed item",
@@ -274,5 +277,28 @@
     "SAVE_FAILED_TOAST_TITLE": "Save failed",
     "DELETE_FAILED_TOAST_TITLE": "Delete failed",
     "DELETE_CONFIRM": "Delete fixed item"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "A simple and clear app to track your budget.",
+    "DEVELOPED_BY": "Developed by"
+  },
+  "LANDING": {
+    "PILL": "Smart personal budget tracking",
+    "TITLE": "Take control of your money with Mizania.",
+    "SUBTITLE": "Track income, expenses, budgets and recurring payments in a clear dashboard built for daily financial control.",
+    "START_FREE": "Start for free",
+    "TRUST_1": "No complicated setup",
+    "TRUST_2": "Built for mobile and desktop",
+    "PREVIEW_TITLE": "Monthly balance",
+    "FEATURE_1_TITLE": "Clear dashboard",
+    "FEATURE_1_TEXT": "See income, expenses, balance and trends in one simple view.",
+    "FEATURE_2_TITLE": "Secure account",
+    "FEATURE_2_TEXT": "Your data is protected with authentication and user-level access rules.",
+    "FEATURE_3_TITLE": "Multilingual",
+    "FEATURE_3_TEXT": "Use Mizania in French, English or Arabic with RTL support.",
+    "FEATURE_4_TITLE": "Mobile friendly",
+    "FEATURE_4_TEXT": "Manage your budget comfortably from phone, tablet or desktop.",
+    "CTA_TITLE": "Ready to make your budget clearer?",
+    "CTA_TEXT": "Create your account and start tracking your money in minutes."
   }
 }

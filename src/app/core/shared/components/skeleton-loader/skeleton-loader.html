@@ -1,0 +1,31 @@
+@if (type === 'stats') {
+  <div class="skeleton-stats">
+    @for (item of items; track item) {
+      <div class="skeleton-card">
+        <span></span>
+        <strong></strong>
+        <small></small>
+      </div>
+    }
+  </div>
+} @else if (type === 'chart') {
+  <div class="skeleton-chart">
+    <span></span>
+    <strong></strong>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+} @else {
+  <div class="skeleton-list">
+    @for (item of items; track item) {
+      <div class="skeleton-row">
+        <span></span>
+        <div>
+          <strong></strong>
+          <small></small>
+        </div>
+      </div>
+    }
+  </div>
+}

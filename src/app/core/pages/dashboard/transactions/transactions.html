@@ -66,6 +66,7 @@
             @if (editingTransactionId()) {
               {{ 'ACTIONS.SAVE' | translate }}
             } @else {
+              <lucide-icon [img]="icons.add" size="16"></lucide-icon>
               {{ 'ACTIONS.ADD' | translate }}
             }
           </button>
@@ -80,15 +81,36 @@
     </article>
 
     <article class="card list-card">
-      <h3>{{ 'TRANSACTIONS.RECENT' | translate }}</h3>
+      <div class="list-header">
+        <h3>{{ 'TRANSACTIONS.RECENT' | translate }}</h3>
+
+        <div class="list-tools">
+          <label class="search-box">
+            <lucide-icon [img]="icons.search" size="16"></lucide-icon>
+            <input
+              type="text"
+              [value]="searchTerm()"
+              (input)="onSearchChange($event)"
+              [placeholder]="'TRANSACTIONS.SEARCH_PLACEHOLDER' | translate"
+            />
+          </label>
+
+          <app-select
+            class="filter-select"
+            [options]="filterOptions"
+            [placeholder]="'TRANSACTIONS.FILTER_ALL' | translate"
+            (selectionChange)="onFilterChange($event)"
+          ></app-select>
+        </div>
+      </div>
 
       @if (transactionService.loading()) {
-        <p class="muted">{{ 'COMMON.LOADING' | translate }}</p>
-      } @else if (transactionService.transactions().length === 0) {
+        <app-skeleton-loader [count]="4"></app-skeleton-loader>
+      } @else if (visibleTransactions().length === 0) {
         <p class="muted">{{ 'TRANSACTIONS.EMPTY' | translate }}</p>
       } @else {
         <div class="transaction-list">
-          @for (transaction of transactionService.transactions(); track transaction.id) {
+          @for (transaction of visibleTransactions(); track transaction.id) {
             <div class="transaction-item" [class.income]="transaction.type === 'income'">
               <div class="transaction-main">
                 <div class="transaction-icon" aria-hidden="true">
@@ -119,13 +141,16 @@
 
               <div class="item-actions">
                 <button type="button" (click)="editTransaction(transaction)">
+                  <lucide-icon [img]="icons.edit" size="15"></lucide-icon>
                   {{ 'ACTIONS.EDIT' | translate }}
                 </button>
+
                 <button
                   type="button"
                   class="danger"
                   (click)="deleteTransaction(transaction)"
                 >
+                  <lucide-icon [img]="icons.delete" size="15"></lucide-icon>
                   {{ 'ACTIONS.DELETE' | translate }}
                 </button>
               </div>

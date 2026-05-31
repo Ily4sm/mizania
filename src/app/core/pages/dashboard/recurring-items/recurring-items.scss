@@ -135,6 +135,14 @@
   flex-wrap: wrap;
 }
 
+.item-actions button,
+.form-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
 .item-actions button {
   border: 0;
   border-radius: 0.85rem;

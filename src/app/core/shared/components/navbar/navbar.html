@@ -1,6 +1,6 @@
 <header class="navbar">
-  <div>
-    <p class="eyebrow">{{ 'APP.NAME' | translate }}</p>
+  <div class="navbar-brand-block">
+    <app-brand variant="navbar" [showTagline]="false"></app-brand>
     <h1>{{ 'APP.TAGLINE' | translate }}</h1>
   </div>
 
@@ -8,8 +8,13 @@
     <app-language-switcher />
     <app-theme-toggle />
 
+    <app-user-avatar
+      [name]="profileService.profile()?.full_name"
+      [email]="profileService.profile()?.email"
+    ></app-user-avatar>
+
     <button class="logout-btn" type="button" (click)="logout()">
-      <lucide-icon [img]="icons.logout" size="18"></lucide-icon>
+      <lucide-icon [img]="icons.logout" size="16"></lucide-icon>
       <span>{{ 'ACTIONS.LOGOUT' | translate }}</span>
     </button>
   </div>

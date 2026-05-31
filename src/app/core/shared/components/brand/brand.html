@@ -1,0 +1,19 @@
+<div class="brand" [class.sidebar]="variant === 'sidebar'" [class.navbar]="variant === 'navbar'" [class.auth]="variant === 'auth'">
+  <img
+    class="brand-icon"
+    src="/assets/brand/mizania-icon.png"
+    alt="Mizania icon"
+  />
+
+  <div class="brand-copy">
+    <img
+      class="brand-wordmark"
+      src="/assets/brand/mizania-wordmark.png"
+      alt="Mizania"
+    />
+
+    @if (showTagline) {
+      <span class="brand-tagline">Budget manager</span>
+    }
+  </div>
+</div>

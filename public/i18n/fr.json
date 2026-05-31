@@ -205,7 +205,10 @@
     "SAVE_FAILED_TOAST_TITLE": "Échec de l'enregistrement",
     "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression",
     "DELETE_CONFIRM": "Supprimer cette transaction ?",
-    "DELETE_DIALOG_TITLE": "Supprimer la transaction"
+    "DELETE_DIALOG_TITLE": "Supprimer la transaction",
+    "FILTER_ALL": "Toutes",
+    "SEARCH_PLACEHOLDER": "Rechercher des transactions...",
+    "DELETE_CONFIRM_DETAIL": "Cette transaction sera supprimée définitivement. Cette action est irréversible."
   },
   "RECURRING": {
     "DELETE_DIALOG_TITLE": "Supprimer l’élément fixe",
@@ -273,5 +276,28 @@
     "ACCOUNT_DELETED_TOAST_TITLE": "Compte supprimé",
     "ACCOUNT_DELETED_TOAST_MESSAGE": "Votre compte et vos données ont été supprimés avec succès.",
     "DELETE_FAILED_TOAST_TITLE": "Échec de la suppression"
+  },
+  "FOOTER": {
+    "DESCRIPTION": "Une application simple et claire pour suivre votre budget.",
+    "DEVELOPED_BY": "Développé par"
+  },
+  "LANDING": {
+    "PILL": "Suivi intelligent du budget personnel",
+    "TITLE": "Prenez le contrôle de votre argent avec Mizania.",
+    "SUBTITLE": "Suivez vos revenus, dépenses, budgets et paiements récurrents dans un tableau de bord clair conçu pour le contrôle financier quotidien.",
+    "START_FREE": "Commencer gratuitement",
+    "TRUST_1": "Aucune configuration compliquée",
+    "TRUST_2": "Conçu pour mobile et desktop",
+    "PREVIEW_TITLE": "Solde mensuel",
+    "FEATURE_1_TITLE": "Tableau de bord clair",
+    "FEATURE_1_TEXT": "Visualisez revenus, dépenses, solde et tendances dans une seule vue simple.",
+    "FEATURE_2_TITLE": "Compte sécurisé",
+    "FEATURE_2_TEXT": "Vos données sont protégées par l’authentification et des règles d’accès par utilisateur.",
+    "FEATURE_3_TITLE": "Multilingue",
+    "FEATURE_3_TEXT": "Utilisez Mizania en français, anglais ou arabe avec support RTL.",
+    "FEATURE_4_TITLE": "Adapté au mobile",
+    "FEATURE_4_TEXT": "Gérez votre budget confortablement depuis téléphone, tablette ou ordinateur.",
+    "CTA_TITLE": "Prêt à rendre votre budget plus clair ?",
+    "CTA_TEXT": "Créez votre compte et commencez à suivre votre argent en quelques minutes."
   }
 }

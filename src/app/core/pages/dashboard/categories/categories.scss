@@ -198,6 +198,14 @@
     0 8px 16px rgba(15, 23, 42, 0.12);
 }
 
+.item-actions button,
+.form-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
 .color-dot.active {
   border-color: var(--text);
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);

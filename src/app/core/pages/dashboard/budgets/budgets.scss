@@ -1,36 +1,23 @@
-.budgets-page {
+.categories-page {
   display: grid;
   gap: 1rem;
 }
 
 .page-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  align-items: flex-start;
 }
 
-.month-picker {
-  width: min(100%, 220px);
-  display: grid;
-  gap: 0.4rem;
-}
-
-.month-picker span,
-.field span {
-  color: var(--muted);
-  font-weight: 850;
-  font-size: 0.82rem;
-}
-
-.budgets-grid {
+.categories-grid {
   display: grid;
   grid-template-columns: minmax(280px, 340px) 1fr;
   gap: 1rem;
   align-items: start;
 }
 
-.budget-form {
+.category-form {
   display: grid;
   gap: 0.8rem;
 }
@@ -40,10 +27,27 @@
   gap: 0.4rem;
 }
 
+.field span {
+  color: var(--muted);
+  font-weight: 850;
+  font-size: 0.82rem;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+}
+
 .form-actions {
   display: flex;
   gap: 0.65rem;
   flex-wrap: wrap;
+}
+
+.lists {
+  display: grid;
+  gap: 1rem;
 }
 
 .muted {
@@ -51,131 +55,104 @@
   margin-bottom: 0;
 }
 
-.budget-list {
+.category-list {
   display: grid;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
-.budget-item {
-  display: grid;
+.category-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.85rem;
-  padding: 1rem;
+  padding: 0.85rem;
   border: 1px solid var(--border);
-  border-radius: 1.15rem;
+  border-radius: 1.05rem;
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--surface) 82%, transparent), transparent),
     var(--surface-soft);
 }
 
-.budget-item.warning {
-  border-color: color-mix(in srgb, var(--warning) 42%, var(--border));
-}
-
-.budget-item.danger {
-  border-color: color-mix(in srgb, var(--danger) 42%, var(--border));
-}
-
-.budget-top {
+.category-main {
+  min-width: 0;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.85rem;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.budget-top strong {
+.category-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  border-radius: 0.85rem;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.category-main strong {
   display: block;
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.budget-top small {
+.category-main small {
   display: block;
   color: var(--muted);
   margin-top: 0.18rem;
   font-size: 0.8rem;
 }
 
-.budget-top .money {
-  font-weight: 950;
-  font-size: 1rem;
-}
-
-.budget-category-name {
-  display: inline-flex;
+.color-palette {
+  min-height: 2.85rem;
+  display: flex;
   align-items: center;
-  gap: 0.55rem;
-}
-
-.budget-category-badge {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.75rem;
-  display: inline-grid;
-  place-items: center;
-  background: var(--primary);
-  color: #fff;
-  font-size: 0.82rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-}
-
-.progress-track {
-  height: 0.48rem;
-  border-radius: 999px;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 0.95rem;
   background: var(--surface);
-  overflow: hidden;
 }
 
-.progress-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: var(--primary);
+.color-dot {
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
 }
 
-.budget-item.warning .progress-fill {
-  background: var(--warning);
-}
-
-.budget-item.danger .progress-fill {
-  background: var(--danger);
-}
-
-.budget-numbers {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
-  color: var(--muted);
-  font-size: 0.82rem;
-}
-
-.budget-numbers span {
-  display: grid;
-  gap: 0.25rem;
-  padding: 0.65rem;
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--surface) 72%, transparent);
-}
-
-.budget-numbers .money {
-  color: var(--text);
-  font-weight: 900;
-}
-
-.money {
-  direction: ltr;
-  unicode-bidi: isolate;
-  display: inline-block;
-  white-space: nowrap;
-  text-align: left;
+.color-dot.active {
+  border-color: var(--text);
+  box-shadow:
+    0 0 0 3px rgba(16, 185, 129, 0.14),
+    0 8px 16px rgba(15, 23, 42, 0.12);
 }
 
 .item-actions {
   display: flex;
-  gap: 0.55rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
 .item-actions button,
-.item-actions .danger-btn {
+.form-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.item-actions button {
   border: 0;
   border-radius: 0.85rem;
   padding: 0.58rem 0.8rem;
@@ -184,64 +161,46 @@
   font-weight: 850;
 }
 
-.item-actions .danger-btn {
+.item-actions .danger {
   color: var(--danger);
   background: color-mix(in srgb, var(--danger) 7%, var(--surface));
 }
 
-[dir='rtl'] .budgets-page {
-  text-align: right;
-}
-
-[dir='rtl'] .budget-category-name {
+[dir='rtl'] .category-main {
   flex-direction: row-reverse;
 }
 
-[dir='rtl'] .progress-track {
-  direction: rtl;
-}
-
-[dir='rtl'] .progress-fill {
-  margin-inline-start: auto;
-}
-
-[dir='rtl'] .budget-numbers {
-  direction: rtl;
-  text-align: right;
-}
-
-[dir='rtl'] .budget-numbers .money {
-  direction: ltr;
-  unicode-bidi: isolate;
-  text-align: left;
-}
-
-@media (max-width: 1050px) {
-  .budgets-grid {
+@media (max-width: 1000px) {
+  .categories-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .page-header {
+    align-items: flex-start;
     flex-direction: column;
   }
 
-  .month-picker {
+  .category-item {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 0.8rem;
+  }
+
+  .category-main strong {
+    max-width: 100%;
+  }
+
+  .item-actions {
     width: 100%;
   }
 
-  .budget-list {
-    gap: 0.75rem;
+  .item-actions button {
+    flex: 1;
   }
 
-  .budget-item {
-    padding: 0.85rem;
-    border-radius: 1rem;
-  }
-
-  .budget-numbers {
-    grid-template-columns: 1fr;
-    gap: 0.45rem;
+  .color-palette {
+    justify-content: space-between;
   }
 }

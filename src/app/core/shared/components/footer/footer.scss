@@ -1,0 +1,124 @@
+.app-footer {
+  margin-top: 1.4rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--surface) 88%, transparent),
+      color-mix(in srgb, var(--surface-soft) 78%, transparent)
+    );
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-brand {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.footer-brand p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.footer-developer {
+  display: grid;
+  gap: 0.28rem;
+  text-align: end;
+}
+
+.footer-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer-developer strong {
+  color: var(--text);
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.footer-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 750;
+  transition: color 0.18s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--primary);
+}
+
+:host-context([dir='rtl']) {
+  .app-footer {
+    flex-direction: row-reverse;
+  }
+
+  .footer-developer {
+    text-align: left;
+  }
+
+  .footer-contact {
+    justify-content: flex-start;
+  }
+
+  .footer-contact a {
+    flex-direction: row-reverse;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .footer-developer {
+    text-align: start;
+  }
+
+  .footer-contact {
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  :host-context([dir='rtl']) {
+    .app-footer {
+      flex-direction: column;
+      text-align: right;
+    }
+
+    .footer-developer {
+      text-align: right;
+    }
+
+    .footer-contact {
+      align-items: flex-end;
+    }
+  }
+}

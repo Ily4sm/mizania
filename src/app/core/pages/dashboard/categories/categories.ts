@@ -6,11 +6,12 @@ import { CategoryService } from '../../../services/category.service';
 import { ConfirmService } from '../../../shared/services/confirm.service';
 import { ToastService } from '../../../shared/services/toast.service';
 import { AppSelect, AppSelectOption } from '../../../shared/components/app-select/app-select';
+import { Pencil, Plus, Trash2, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, AppSelect],
+  imports: [ReactiveFormsModule, TranslatePipe, AppSelect, LucideAngularModule],
   templateUrl: './categories.html',
   styleUrl: './categories.scss',
 })
@@ -21,6 +22,11 @@ export class Categories implements OnInit {
   private readonly confirmService = inject(ConfirmService);
 
   readonly categoryService = inject(CategoryService);
+  readonly icons = {
+    add: Plus,
+    edit: Pencil,
+    delete: Trash2,
+  };
 
   editingCategoryId = signal<string | null>(null);
 
@@ -129,7 +135,7 @@ export class Categories implements OnInit {
   async deleteCategory(category: Category): Promise<void> {
     const confirmed = await this.confirmService.confirm({
       title: this.t('CATEGORIES.DELETE_DIALOG_TITLE'),
-      message: `${this.t('CATEGORIES.DELETE_CONFIRM')} "${category.name}"?`,
+      message: this.t('CATEGORIES.DELETE_CONFIRM_DETAIL'),
       confirmText: this.t('ACTIONS.DELETE'),
       cancelText: this.t('ACTIONS.CANCEL'),
       danger: true,
